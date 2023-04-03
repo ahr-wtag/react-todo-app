@@ -1,4 +1,4 @@
-import { ADD_TASK, DELETE_TASK, COMPLETE_TASK, EDIT_TASK } from "../constants";
+import { CREATE_BUTTON, ADD_TASK } from "../constants";
 
 export const addTask = (task) => {
   return {
@@ -6,24 +6,8 @@ export const addTask = (task) => {
     payload: task,
   };
 };
-
-export const deleteTask = (index) => {
+export const createButton = () => {
   return {
-    type: DELETE_TASK,
-    payload: index,
-  };
-};
-
-export const completeTask = (index) => {
-  return {
-    type: COMPLETE_TASK,
-    payload: index,
-  };
-};
-
-export const editTask = (task) => {
-  return {
-    type: EDIT_TASK,
-    payload: task,
+    type: CREATE_BUTTON,
   };
 };
