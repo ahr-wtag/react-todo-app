@@ -1,17 +1,16 @@
 import React from "react";
-import logo from "../../../assets/images/icons/logo.png";
-import search from "../../../assets/images/icons/search.png";
-import style from "./index.module.scss";
+import style from "components/Shared/Navbar/index.module.scss";
+import { LOGO, LOGO_ALT, SEARCH, SEARCH_ALT } from "utils/constant/images";
 const Navbar = () => {
   return (
     <div className={style.container}>
       <div className={style.navbar}>
         <div className={style.logo}>
-          <img src={logo} alt="logo" />
+          <img src={LOGO} alt={LOGO_ALT} />
           <h1>Todos</h1>
         </div>
         <div>
-          <img src={search} alt="logo" />
+          <img src={SEARCH} alt={SEARCH_ALT} />
         </div>
       </div>
     </div>

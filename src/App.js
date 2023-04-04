@@ -1,13 +1,14 @@
-import "./assets/style/app.scss";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Navbar from "./pages/Shared/Navbar";
+import Home from "./pages/Home";
+import Navbar from "./components/Shared/Navbar";
+import "./assets/style/app.scss";
 function App() {
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Home></Home>} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );

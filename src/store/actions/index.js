@@ -1,4 +1,4 @@
-import { CREATE_BUTTON, ADD_TASK } from "../constants";
+import { TOGGlE_CREATE_BUTTON_VISIBILITY, ADD_TASK } from "store/constants";
 
 export const addTask = (task) => {
   return {
@@ -8,6 +8,6 @@ export const addTask = (task) => {
 };
 export const createButton = () => {
   return {
-    type: CREATE_BUTTON,
+    type: TOGGlE_CREATE_BUTTON_VISIBILITY,
   };
 };

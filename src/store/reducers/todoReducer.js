@@ -1,4 +1,4 @@
-import { ADD_TASK } from "../constants";
+import { ADD_TASK } from "store/constants";
 
 const initialState = [];
 const todoReducer = (state = initialState, action) => {

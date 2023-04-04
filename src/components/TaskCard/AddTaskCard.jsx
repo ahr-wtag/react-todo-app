@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import style from "./index.module.scss";
-import { sanatizeText } from "../../../utils/helpers/sanatizeText";
 import { useDispatch } from "react-redux";
-import { addTask, createButton } from "../../../store/actions";
 import { v1 as uuidv1 } from "uuid";
+import { sanatizeText } from "utils/helpers/sanatizeText.js";
+import { addTask, createButton } from "store/actions/";
+import style from "components/TaskCard/index.module.scss";
+import { ENTER } from "utils/constant/form";
 const AddTaskCard = () => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState("");
@@ -31,7 +32,7 @@ const AddTaskCard = () => {
     setInputText("");
   };
   const storeTaskOnEnter = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === ENTER) {
       e.preventDefault();
       storeTask();
     }
