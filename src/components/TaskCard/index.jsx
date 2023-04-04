@@ -13,5 +13,7 @@ const TaskCard = ({ todo }) => {
 TaskCard.propTypes = {
   todo: PropTypes.object.isRequired,
 };
-
+TaskCard.defaultProps = {
+  todo: {},
+};
 export default TaskCard;
