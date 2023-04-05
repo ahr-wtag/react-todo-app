@@ -2,6 +2,7 @@ import {
   TOGGlE_CREATE_BUTTON_VISIBILITY,
   ADD_TASK,
   DELETE_TASK,
+  COMPLETE_TASK,
 } from "store/constants";
 
 export const addTask = (task) => {
@@ -19,6 +20,13 @@ export const createButton = () => {
 export const deleteTask = (index) => {
   return {
     type: DELETE_TASK,
+    payload: index,
+  };
+};
+
+export const completeTask = (index) => {
+  return {
+    type: COMPLETE_TASK,
     payload: index,
   };
 };
