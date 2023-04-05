@@ -1,14 +1,16 @@
+@import "assets/style/color.scss";
+
 .textarea {
   width: 21.938rem;
   height: 5rem;
   border-radius: 0.313rem;
   resize: none;
-  border: 0.188rem solid #d1d8ff;
+  border: 0.188rem solid $light-blue;
 }
 .container {
   width: 23.875rem;
   height: 10.188rem;
-  border: 0.063rem solid #dde2ff;
+  border: 0.063rem solid $lilac-blue;
   border-radius: 0.313rem;
 }
 .actionContainer {
