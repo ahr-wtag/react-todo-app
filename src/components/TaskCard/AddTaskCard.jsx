@@ -56,8 +56,14 @@ const AddTaskCard = () => {
         className={style.textarea}
       ></textarea>
       <small>{error && error}</small>
-      <div>
-        <button onClick={storeTask}>Add Task</button>
+
+      <div className={style.actionContainer}>
+        <div>
+          <button className="btn" onClick={storeTask}>
+            Add Task
+          </button>
+        </div>
+        <img src={DELETE} alt={DELETE_ALT} onClick={cancelAction} />
       </div>
     </div>
   );
