@@ -5,6 +5,7 @@ import { sanatizeText } from "utils/helpers/sanatizeText.js";
 import { addTask, createButton } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { ENTER } from "utils/constant/form";
+import { DELETE, DELETE_ALT } from "utils/constant/images";
 const AddTaskCard = () => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState("");
@@ -31,6 +32,11 @@ const AddTaskCard = () => {
     );
     setInputText("");
   };
+
+  const cancelAction = () => {
+    dispatch(createButton());
+  };
+
   const storeTaskOnEnter = (e) => {
     if (e.key === ENTER) {
       e.preventDefault();
@@ -51,7 +57,12 @@ const AddTaskCard = () => {
       ></textarea>
       <small>{error && error}</small>
       <br />
-      <button onClick={storeTask}>Add Task</button>
+      <div className={style.actionContainer}>
+        <button className="btn" onClick={storeTask}>
+          Add Task
+        </button>
+        <img src={DELETE} alt={DELETE_ALT} onClick={cancelAction} />
+      </div>
     </div>
   );
 };
