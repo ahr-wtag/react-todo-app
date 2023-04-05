@@ -4,8 +4,7 @@ import { v1 as uuidv1 } from "uuid";
 import { sanatizeText } from "utils/helpers/sanatizeText.js";
 import { addTask, createButton } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { ENTER } from "utils/constant/form";
-import { DELETE, DELETE_ALT } from "utils/constant/images";
+import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
 const AddTaskCard = () => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState("");
