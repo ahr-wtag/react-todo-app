@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "components/TaskCard/index.module.scss";
 const TaskCard = ({ todo }) => {
-  const { task, created } = todo;
+  const { task, createdTime } = todo;
   return (
     <div className={style.container}>
       <p>{task}</p>
-      <p>Created:{created}</p>
+      <p>Created:{createdTime}</p>
     </div>
   );
 };

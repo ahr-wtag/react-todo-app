@@ -25,7 +25,7 @@ const AddTaskCard = () => {
       addTask({
         id: uuidv1(),
         task,
-        created: new Date().toLocaleDateString("de-DE"),
+        createdTime: new Date().toLocaleDateString("de-DE"),
         completed: false,
       })
     );
@@ -50,8 +50,9 @@ const AddTaskCard = () => {
         className={style.textarea}
       ></textarea>
       <small>{error && error}</small>
-      <br />
-      <button onClick={storeTask}>Add Task</button>
+      <div>
+        <button onClick={storeTask}>Add Task</button>
+      </div>
     </div>
   );
 };
