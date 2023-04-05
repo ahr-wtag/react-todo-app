@@ -1,6 +1,6 @@
 import React from "react";
 import style from "components/Shared/Navbar/index.module.scss";
-import { LOGO, LOGO_ALT, SEARCH, SEARCH_ALT } from "utils/constant/images";
+import { LOGO, LOGO_ALT, SEARCH, SEARCH_ALT } from "utils/constant";
 const Navbar = () => {
   return (
     <div className={style.container}>
