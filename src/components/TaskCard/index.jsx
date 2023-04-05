@@ -5,7 +5,7 @@ import { deleteTask } from "store/actions";
 import { DELETE, DELETE_ALT } from "utils/constant/images";
 import style from "components/TaskCard/index.module.scss";
 const TaskCard = ({ todo }) => {
-  const { id, task, cratedTime } = todo;
+  const { id, task, createdTime } = todo;
   const dispatch = useDispatch();
   const deleteAction = () => {
     dispatch(deleteTask(id));
@@ -14,7 +14,7 @@ const TaskCard = ({ todo }) => {
   return (
     <div className={style.container}>
       <p>{task}</p>
-      <p>Created:{cratedTime}</p>
+      <p>Created:{createdTime}</p>
       <div className={style.actionContainer}>
         <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
       </div>
