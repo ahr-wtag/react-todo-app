@@ -11,7 +11,7 @@ import {
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
 const TaskCard = ({ todo }) => {
-  const { id, task, created, completed } = todo;
+  const { id, task, createdTime, completed } = todo;
   const dispatch = useDispatch();
   const deleteAction = () => {
     dispatch(deleteTask(id));
@@ -26,7 +26,7 @@ const TaskCard = ({ todo }) => {
       <h1 className={`${style.task} ${completed ? style.taskDone : ""}`}>
         {task}
       </h1>
-      <p className={style.dateText}>Created:{created}</p>
+      <p className={style.dateText}>Created:{createdTime}</p>
       <div className={style.actionContainer}>
         {!completed ? (
           <>
@@ -49,7 +49,7 @@ const TaskCard = ({ todo }) => {
       </div>
       {completed && (
         <div className={style.completedText}>
-          Completed in {getDateDifference(created)} days
+          Completed in {getDateDifference(createdTime)} days
         </div>
       )}
     </div>

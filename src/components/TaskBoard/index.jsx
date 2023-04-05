@@ -7,13 +7,11 @@ const TaskBoard = () => {
   const createButtonState = useSelector((state) => state.createButton);
   const tasks = useSelector((state) => state.todo);
   return (
-    <div>
-      <div className={style.taskBoard}>
-        {createButtonState && <AddTaskCard />}
-        {tasks.map((todo) => (
-          <TaskCard key={todo.id} todo={todo}></TaskCard>
-        ))}
-      </div>
+    <div className={style.taskBoard}>
+      {createButtonState && <AddTaskCard />}
+      {tasks.map((todo) => (
+        <TaskCard key={todo.id} todo={todo} />
+      ))}
     </div>
   );
 };

@@ -12,9 +12,11 @@ const Home = () => {
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
-      <button disabled={createButtonState} onClick={dispatchCreateButton}>
-        Create
-      </button>
+      <div>
+        <button disabled={createButtonState} onClick={dispatchCreateButton}>
+          Create
+        </button>
+      </div>
       <TaskBoard />
     </div>
   );
