@@ -19,16 +19,16 @@
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.758rem;
-  color: #32394b;
+  color: $navy-blue;
 }
 .taskDone {
-  color: #0bc375;
+  color: $vivid-green;
   text-decoration: line-through;
 }
 .dateText {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #bbbdd0;
+  color: $blue-grey;
   line-height: 1rem;
 }
 
@@ -55,12 +55,12 @@
   width: 8.375rem;
   height: 1.5rem;
   font-size: 0.75rem;
-  color: #ffffff;
+  color: $white;
   display: flex;
   justify-content: center;
   align-items: center;
   left: calc(50% - 8.375rem / 2 + 6.813rem);
   top: calc(50% - 1.5rem / 2 + 3.156rem);
-  background: #7a8dfd;
+  background: $lavender-blue;
   border-radius: 0.313rem;
 }
