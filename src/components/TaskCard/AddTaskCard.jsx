@@ -29,7 +29,7 @@ const AddTaskCard = () => {
         completed: false,
       })
     );
-    setInputText("");
+    setInputText(null);
   };
 
   const cancelAction = () => {

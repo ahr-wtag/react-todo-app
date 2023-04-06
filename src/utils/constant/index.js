@@ -1,4 +1,4 @@
-import { ENTER } from "./form";
+import { ENTER } from "utils/constant/form";
 import {
   LOGO,
   LOGO_ALT,
@@ -6,6 +6,6 @@ import {
   SEARCH_ALT,
   DELETE,
   DELETE_ALT,
-} from "./images";
+} from "utils/constant/images";
 
 export { LOGO, LOGO_ALT, SEARCH, SEARCH_ALT, ENTER, DELETE, DELETE_ALT };
