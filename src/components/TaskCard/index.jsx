@@ -13,8 +13,4 @@ TaskCard.propTypes = {
   task: PropTypes.string.isRequired,
   createdTime: PropTypes.string.isRequired,
 };
-TaskCard.defaultProps = {
-  task: "no Task",
-  createdTime: new Date().toLocaleDateString("de-DE"),
-};
 export default TaskCard;
