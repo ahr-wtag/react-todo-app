@@ -12,6 +12,7 @@ const TaskBoard = () => {
       {tasks.map((todo) => (
         <TaskCard
           key={todo.id}
+          id={todo.id}
           task={todo.task}
           createdTime={todo.createdTime}
         />
