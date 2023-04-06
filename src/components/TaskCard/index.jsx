@@ -8,10 +8,10 @@ import {
   DELETE,
   DELETE_ALT,
 } from "utils/constant/images";
+import { NIL as NIL_UUID } from "uuid";
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
-const TaskCard = ({ todo }) => {
-  const { id, task, createdTime, completed } = todo;
+const TaskCard = ({ id, task, createdTime, completed }) => {
   const dispatch = useDispatch();
   const deleteAction = () => {
     dispatch(deleteTask(id));
@@ -56,9 +56,15 @@ const TaskCard = ({ todo }) => {
   );
 };
 TaskCard.propTypes = {
-  todo: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  task: PropTypes.string.isRequired,
+  createdTime: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
 };
 TaskCard.defaultProps = {
-  todo: {},
+  id: NIL_UUID,
+  task: "no Task",
+  createdTime: new Date().toLocaleDateString("de-DE"),
+  completed: false,
 };
 export default TaskCard;

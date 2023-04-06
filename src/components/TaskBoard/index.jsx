@@ -10,7 +10,12 @@ const TaskBoard = () => {
     <div className={style.taskBoard}>
       {createButtonState && <AddTaskCard />}
       {tasks.map((todo) => (
-        <TaskCard key={todo.id} todo={todo} />
+        <TaskCard
+          key={todo.id}
+          id={todo.id}
+          task={todo.task}
+          createdTime={todo.createdTime}
+        />
       ))}
     </div>
   );
