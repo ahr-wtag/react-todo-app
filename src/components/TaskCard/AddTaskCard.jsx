@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { v1 as uuidv1 } from "uuid";
-import { sanatizeText } from "utils/helpers/sanatizeText.js";
+import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask, createButton } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
 const AddTaskCard = () => {
   const [inputText, setInputText] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const handleInputText = (e) => {
     setInputText(e.target.value);
   };
 
   const storeTask = () => {
-    const task = sanatizeText(inputText);
+    const task = sanitizeText(inputText);
     if (task === "") {
       setError("Please add task description");
       return;
