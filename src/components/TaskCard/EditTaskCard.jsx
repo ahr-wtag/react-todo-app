@@ -35,7 +35,8 @@ const EditTaskCard = ({ id, task }) => {
   };
 
   const completeAction = () => {
-    dispatch(editButton(null));
+    storeTask();
+
     dispatch(completeTask(id));
   };
 
