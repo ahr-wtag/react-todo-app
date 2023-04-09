@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { sanatizeText } from "utils/helpers/sanatizeText.js";
+import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { editTask, editButton, completeTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
@@ -15,7 +15,7 @@ const EditTaskCard = ({ id, task }) => {
   };
 
   const storeTask = () => {
-    const sanatizedTask = sanatizeText(inputText);
+    const sanatizedTask = sanitizeText(inputText);
     if (sanatizedTask === "") {
       setError("Please add task description");
       return;
