@@ -3,6 +3,8 @@ import {
   ADD_TASK,
   DELETE_TASK,
   COMPLETE_TASK,
+  EDIT_TASK,
+  TOGGlE_EDIT_BUTTON_VISIBILITY,
 } from "store/constants";
 
 export const addTask = (task) => {
@@ -17,6 +19,13 @@ export const createButton = () => {
   };
 };
 
+export const editButton = (index) => {
+  return {
+    type: TOGGlE_EDIT_BUTTON_VISIBILITY,
+    payload: index,
+  };
+};
+
 export const deleteTask = (index) => {
   return {
     type: DELETE_TASK,
@@ -28,5 +37,12 @@ export const completeTask = (index) => {
   return {
     type: COMPLETE_TASK,
     payload: index,
+  };
+};
+
+export const editTask = (task) => {
+  return {
+    type: EDIT_TASK,
+    payload: task,
   };
 };

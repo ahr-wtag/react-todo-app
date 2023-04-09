@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { deleteTask, completeTask } from "store/actions";
+import { deleteTask, completeTask, editButton } from "store/actions";
 import {
   COMPLETE,
   COMPLETE_ALT,
   DELETE,
   DELETE_ALT,
+  EDIT,
+  EDIT_ALT,
 } from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
@@ -20,6 +22,10 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
 
   const completeAction = () => {
     dispatch(completeTask(id));
+  };
+
+  const editAction = () => {
+    dispatch(editButton(id));
   };
 
   return (
@@ -36,6 +42,12 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
               src={COMPLETE}
               alt={COMPLETE_ALT}
               onClick={completeAction}
+            />
+            <img
+              className={style.completeTask}
+              src={EDIT}
+              alt={EDIT_ALT}
+              onClick={editAction}
             />
           </>
         ) : (

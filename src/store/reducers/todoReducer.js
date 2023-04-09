@@ -1,4 +1,9 @@
-import { ADD_TASK, COMPLETE_TASK, DELETE_TASK } from "store/constants";
+import {
+  ADD_TASK,
+  COMPLETE_TASK,
+  DELETE_TASK,
+  EDIT_TASK,
+} from "store/constants";
 
 const initialState = [];
 const todoReducer = (state = initialState, action) => {
@@ -17,6 +22,15 @@ const todoReducer = (state = initialState, action) => {
           return task;
         }
       });
+
+    case EDIT_TASK: {
+      const targetedTask = state.findIndex(
+        (task) => task.id == action.payload.id
+      );
+
+      state[targetedTask].task = action.payload.task;
+      return state;
+    }
 
     default:
       return state;
