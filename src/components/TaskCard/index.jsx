@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteTask, completeTask, editButton } from "store/actions";
@@ -13,9 +13,17 @@ import {
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
+import { dateFormatter } from "utils/helpers/dateFormatter";
 
 const TaskCard = ({ id, task, createdTime, completed }) => {
+  const [completedDate, setCompletedDate] = useState(null);
+
+  useEffect(() => {
+    setCompletedDate(getDateDifference(createdTime));
+  }, []);
+
   const dispatch = useDispatch();
+
   const deleteAction = () => {
     dispatch(deleteTask(id));
   };
@@ -33,7 +41,9 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
       <h1 className={`${style.task} ${completed ? style.taskDone : ""}`}>
         {task}
       </h1>
-      <p className={style.dateText}>{`Created at: ${createdTime}`}</p>
+      <p className={style.dateText}>{`Created at: ${dateFormatter(
+        createdTime
+      )}`}</p>
       <div className={style.actionContainer}>
         {!completed ? (
           <>
@@ -62,7 +72,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
       </div>
       {completed && (
         <div className={style.completedText}>
-          Completed in {getDateDifference(createdTime)} days
+          Completed in {completedDate} {completedDate > 1 ? "days" : "day"}
         </div>
       )}
     </div>

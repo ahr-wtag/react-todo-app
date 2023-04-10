@@ -7,6 +7,7 @@
   resize: none;
   border: 0.188rem solid $light-blue;
 }
+
 .container {
   width: 23.875rem;
   height: 10.188rem;
@@ -21,10 +22,12 @@
   line-height: 1.758rem;
   color: $navy-blue;
 }
+
 .taskDone {
   color: $vivid-green;
   text-decoration: line-through;
 }
+
 .dateText {
   font-size: 0.875rem;
   font-weight: 700;
@@ -40,10 +43,12 @@
   position: absolute;
   right: calc(50% - 8.375rem / 2 + 6.813rem);
   top: calc(50% - 1.5rem / 2 + 3.156rem);
+
   .deleteIcon {
     width: 1.25rem;
     height: 1.5rem;
   }
+
   .completeIcon {
     width: 1.5rem;
     height: 1.188rem;

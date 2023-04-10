@@ -25,7 +25,7 @@ const AddTaskCard = () => {
       addTask({
         id: uuidv1(),
         task,
-        createdTime: new Date().toLocaleDateString("de-DE"),
+        createdTime: new Date(),
         completed: false,
       })
     );
