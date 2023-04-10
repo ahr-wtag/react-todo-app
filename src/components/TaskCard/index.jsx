@@ -5,6 +5,7 @@ import { deleteTask } from "store/actions";
 import { DELETE, DELETE_ALT } from "utils/constant/images";
 import style from "components/TaskCard/index.module.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
+import { dateFormatter } from "utils/helpers/dateFormatter";
 
 const TaskCard = ({ id, task, createdTime }) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const TaskCard = ({ id, task, createdTime }) => {
   return (
     <div className={style.container}>
       <p>{task}</p>
-      <p>{`Created at: ${createdTime}`}</p>
+      <p>{`Created at: ${dateFormatter(createdTime)}`}</p>
       <div className={style.actionContainer}>
         <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
       </div>
