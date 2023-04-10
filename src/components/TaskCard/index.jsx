@@ -11,6 +11,7 @@ import {
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
+import { dateFormatter } from "utils/helpers/dateFormatter";
 
 const TaskCard = ({ id, task, createdTime, completed }) => {
   const dispatch = useDispatch();
@@ -27,7 +28,9 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
       <h1 className={`${style.task} ${completed ? style.taskDone : ""}`}>
         {task}
       </h1>
-      <p className={style.dateText}>{`Created at: ${createdTime}`}</p>
+      <p className={style.dateText}>{`Created at: ${dateFormatter(
+        createdTime
+      )}`}</p>
       <div className={style.actionContainer}>
         {!completed ? (
           <>
