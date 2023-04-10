@@ -27,7 +27,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
       <h1 className={`${style.task} ${completed ? style.taskDone : ""}`}>
         {task}
       </h1>
-      <p className={style.dateText}>Created:{createdTime}</p>
+      <p className={style.dateText}>{`Created at: ${createdTime}`}</p>
       <div className={style.actionContainer}>
         {!completed ? (
           <>

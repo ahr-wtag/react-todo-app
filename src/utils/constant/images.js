@@ -9,6 +9,6 @@ export const DELETE = deleteIcon;
 export const COMPLETE = completeIcon;
 
 export const LOGO_ALT = "logo";
-export const SEARCH_ALT = "search";
-export const DELETE_ALT = "delete";
-export const COMPLETE_ALT = "complete";
+export const SEARCH_ALT = "search icon";
+export const DELETE_ALT = "delete icon";
+export const COMPLETE_ALT = "complete icon";
