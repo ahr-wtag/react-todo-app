@@ -7,5 +7,5 @@ export const SEARCH = search;
 export const DELETE = deleteIcon;
 
 export const LOGO_ALT = "logo";
-export const SEARCH_ALT = "search";
-export const DELETE_ALT = "delete";
+export const SEARCH_ALT = "search icon";
+export const DELETE_ALT = "delete icon";
