@@ -5,4 +5,4 @@ export const LOGO = logo;
 export const SEARCH = search;
 
 export const LOGO_ALT = "logo";
-export const SEARCH_ALT = "search";
+export const SEARCH_ALT = "search icon";

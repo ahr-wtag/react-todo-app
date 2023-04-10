@@ -6,7 +6,7 @@ const TaskCard = ({ task, createdTime }) => {
   return (
     <div className={style.container}>
       <p>{task}</p>
-      <p>{`Created: ${createdTime}`}</p>
+      <p>{`Created at: ${createdTime}`}</p>
     </div>
   );
 };
