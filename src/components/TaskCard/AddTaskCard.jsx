@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v1 as uuidv1 } from "uuid";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask, createButton } from "store/actions/";
+import { addTask, createButton, paginationUpdate } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
 const AddTaskCard = () => {
+  const pagination = useSelector((state) => state.paginationLength);
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const AddTaskCard = () => {
       return;
     }
     dispatch(createButton());
-
+    dispatch(paginationUpdate(pagination + 1));
     dispatch(
       addTask({
         id: uuidv1(),

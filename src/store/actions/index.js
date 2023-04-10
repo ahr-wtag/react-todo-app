@@ -5,6 +5,7 @@ import {
   COMPLETE_TASK,
   EDIT_TASK,
   TOGGlE_EDIT_BUTTON_VISIBILITY,
+  PAGINATION_UPDATE,
 } from "store/constants";
 
 export const addTask = (task) => {
@@ -44,5 +45,12 @@ export const editTask = (task) => {
   return {
     type: EDIT_TASK,
     payload: task,
+  };
+};
+
+export const paginationUpdate = (count) => {
+  return {
+    type: PAGINATION_UPDATE,
+    payload: count,
   };
 };
