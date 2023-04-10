@@ -19,7 +19,6 @@ const TaskCard = ({ id, task, createdTime }) => {
       <div className={style.actionContainer}>
         <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
       </div>
-      <div></div>
     </div>
   );
 };

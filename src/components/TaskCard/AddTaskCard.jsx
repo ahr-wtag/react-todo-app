@@ -58,7 +58,7 @@ const AddTaskCard = () => {
 
       <div className={style.actionContainer}>
         <div>
-          <button className="btn" onClick={storeTask}>
+          <button className="button" onClick={storeTask}>
             Add Task
           </button>
         </div>
