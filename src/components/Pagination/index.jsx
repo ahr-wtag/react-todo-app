@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { paginationUpdate } from "store/actions/";
 import style from "components/Pagination/index.module.scss";
 const Pagination = ({ children, taskListLength }) => {
-  const createButtonState = useSelector((state) => state.createButton);
+  const createButtonState = useSelector((state) => state.createButtonState);
   const pagination = useSelector((state) => state.paginationLength);
   const dispatch = useDispatch();
   const paginate = () => {
