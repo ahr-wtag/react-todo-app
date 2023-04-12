@@ -47,6 +47,12 @@ const EditTaskCard = ({ id, task }) => {
     }
   };
 
+  const sendCursorToEnd = (e) => {
+    const inputElement = e.target;
+    inputElement.selectionStart = inputElement.value.length;
+    inputElement.selectionEnd = inputElement.value.length;
+  };
+
   return (
     <div className={style.container}>
       <textarea
@@ -55,6 +61,7 @@ const EditTaskCard = ({ id, task }) => {
         onChange={handleInputText}
         value={inputText}
         autoFocus
+        onFocus={sendCursorToEnd}
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
