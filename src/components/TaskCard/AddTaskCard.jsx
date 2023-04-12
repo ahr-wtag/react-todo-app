@@ -51,7 +51,7 @@ const AddTaskCard = ({ createButtonState, setCreateButtonState }) => {
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
-      <>{error && <small>error</small>}</>
+      <small className={style.error}>{error && error}</small>
 
       <div className={style.actionButtonContainer}>
         <button className={style.button} onClick={storeTask}>
