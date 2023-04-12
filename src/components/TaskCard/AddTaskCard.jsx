@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v1 as uuidv1 } from "uuid";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask, createButton, paginationUpdate } from "store/actions/";
+import {
+  addTask,
+  toggleCreateButtonVisibility,
+  paginationUpdate,
+} from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
 const AddTaskCard = () => {
@@ -20,7 +24,7 @@ const AddTaskCard = () => {
       setError("Please add task description");
       return;
     }
-    dispatch(createButton());
+    dispatch(toggleCreateButtonVisibility());
     dispatch(paginationUpdate(pagination + 1));
     dispatch(
       addTask({
@@ -34,7 +38,7 @@ const AddTaskCard = () => {
   };
 
   const cancelAction = () => {
-    dispatch(createButton());
+    dispatch(toggleCreateButtonVisibility());
   };
 
   const storeTaskOnEnter = (e) => {
@@ -57,12 +61,10 @@ const AddTaskCard = () => {
       ></textarea>
       <small>{error && error}</small>
 
-      <div className={style.actionContainer}>
-        <div>
-          <button className="button" onClick={storeTask}>
-            Add Task
-          </button>
-        </div>
+      <div className={style.actionButtonContainer}>
+        <button className={style.button} onClick={storeTask}>
+          Add Task
+        </button>
         <img src={DELETE} alt={DELETE_ALT} onClick={cancelAction} />
       </div>
     </div>

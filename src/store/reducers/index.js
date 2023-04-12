@@ -6,7 +6,7 @@ import paginationReducer from "store/reducers/paginationReducer";
 
 const rootReducers = combineReducers({
   todo: todoReducer,
-  createButton: createButtonReducer,
+  createButtonState: createButtonReducer,
   editButton: editButtonReducer,
   paginationLength: paginationReducer,
 });

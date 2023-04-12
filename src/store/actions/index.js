@@ -14,7 +14,7 @@ export const addTask = (task) => {
     payload: task,
   };
 };
-export const createButton = () => {
+export const toggleCreateButtonVisibility = () => {
   return {
     type: TOGGlE_CREATE_BUTTON_VISIBILITY,
   };

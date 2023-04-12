@@ -8,7 +8,7 @@ import Pagination from "components/Pagination";
 import { PAGINATION } from "utils/constant/form";
 import { paginationUpdate } from "store/actions/";
 const TaskBoard = () => {
-  const createButtonState = useSelector((state) => state.createButton);
+  const createButtonState = useSelector((state) => state.createButtonState);
   const pagination = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const editableTask = useSelector((state) => state.editButton);
