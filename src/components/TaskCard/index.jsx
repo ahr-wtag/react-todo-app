@@ -14,10 +14,10 @@ import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
+import classNames from "classnames";
 
 const TaskCard = ({ id, task, createdTime, completed }) => {
   const [completedDate, setCompletedDate] = useState(null);
-
   useEffect(() => {
     setCompletedDate(getDateDifference(createdTime));
   }, []);
@@ -38,20 +38,18 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
 
   return (
     <div className={style.container}>
-      <h1 className={`${style.task} ${completed ? style.taskDone : ""}`}>
+      <h1 className={classNames(style.task, { [style.taskDone]: completed })}>
         {task}
       </h1>
       <p className={style.dateText}>{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>
       <div className={style.actionButtonContainer}>
-        {!completed ? (
+        {!completed && (
           <>
             <img src={COMPLETE} alt={COMPLETE_ALT} onClick={completeAction} />
             <img src={EDIT} alt={EDIT_ALT} onClick={editAction} />
           </>
-        ) : (
-          <></>
         )}
         <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
       </div>
