@@ -24,10 +24,6 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
 
   const dispatch = useDispatch();
 
-  const deleteAction = () => {
-    dispatch(deleteTask(id));
-  };
-
   const completeAction = () => {
     dispatch(completeTask(id));
   };
@@ -51,7 +47,11 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
             <img src={EDIT} alt={EDIT_ALT} onClick={editAction} />
           </>
         )}
-        <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
+        <img
+          src={DELETE}
+          alt={DELETE_ALT}
+          onClick={() => dispatch(deleteTask(id))}
+        />
       </div>
       {completed && (
         <div className={style.completedText}>

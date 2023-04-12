@@ -1,5 +1,4 @@
 import {
-  TOGGlE_CREATE_BUTTON_VISIBILITY,
   ADD_TASK,
   DELETE_TASK,
   COMPLETE_TASK,
@@ -11,11 +10,6 @@ export const addTask = (task) => {
   return {
     type: ADD_TASK,
     payload: task,
-  };
-};
-export const toggleCreateButtonVisibility = () => {
-  return {
-    type: TOGGlE_CREATE_BUTTON_VISIBILITY,
   };
 };
 

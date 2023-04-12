@@ -1,25 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleCreateButtonVisibility } from "store/actions";
 import TaskBoard from "components/TaskBoard/index.jsx";
-import style from "pages/Home/index.module.scss";
 const Home = () => {
-  const dispatch = useDispatch();
-  const createButtonState = useSelector((state) => state.createButtonState);
-  const dispatchCreateButton = () => {
-    dispatch(toggleCreateButtonVisibility());
-  };
-  return (
-    <div className={style.container}>
-      <h1>Add Task</h1>
-      <div>
-        <button disabled={createButtonState} onClick={dispatchCreateButton}>
-          Create
-        </button>
-      </div>
-      <TaskBoard />
-    </div>
-  );
+  return <TaskBoard />;
 };
-
 export default Home;
