@@ -33,7 +33,7 @@ const AddTaskCard = () => {
   };
 
   const cancelAction = () => {
-    dispatch(createButton());
+    dispatch(toggleCreateButtonVisibility());
   };
 
   const storeTaskOnEnter = (e) => {
@@ -57,11 +57,9 @@ const AddTaskCard = () => {
       <small>{error && error}</small>
 
       <div className={style.actionContainer}>
-        <div>
-          <button className="button" onClick={storeTask}>
-            Add Task
-          </button>
-        </div>
+        <button className={style.button} onClick={storeTask}>
+          Add Task
+        </button>
         <img src={DELETE} alt={DELETE_ALT} onClick={cancelAction} />
       </div>
     </div>
