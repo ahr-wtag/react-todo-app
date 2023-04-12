@@ -10,13 +10,9 @@ const todoReducer = (state = initialState, action) => {
       return state.filter((task) => task.id !== action.payload);
 
     case COMPLETE_TASK:
-      return state.map((task) => {
-        if (task.id === action.payload) {
-          return { ...task, completed: true };
-        } else {
-          return task;
-        }
-      });
+      return state.map((task) =>
+        task.id === action.payload ? { ...task, completed: true } : task
+      );
 
     default:
       return state;

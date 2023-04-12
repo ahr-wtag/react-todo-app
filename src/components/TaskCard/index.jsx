@@ -39,12 +39,8 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
         createdTime
       )}`}</p>
       <div className={style.actionButtonContainer}>
-        {!completed ? (
-          <>
-            <img src={COMPLETE} alt={COMPLETE_ALT} onClick={completeAction} />
-          </>
-        ) : (
-          <></>
+        {!completed && (
+          <img src={COMPLETE} alt={COMPLETE_ALT} onClick={completeAction} />
         )}
         <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
       </div>
