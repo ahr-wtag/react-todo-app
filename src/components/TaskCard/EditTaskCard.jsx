@@ -60,9 +60,9 @@ const EditTaskCard = ({ id, task }) => {
       ></textarea>
       <small>{error && error}</small>
 
-      <div className={style.actionContainer}>
+      <div className={style.actionButtonContainer}>
         <div>
-          <button className="btn" onClick={storeTask}>
+          <button className={style.button} onClick={storeTask}>
             save
           </button>
         </div>
