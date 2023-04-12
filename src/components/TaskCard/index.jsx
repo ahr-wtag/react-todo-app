@@ -38,7 +38,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
       <p className={style.dateText}>{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>
-      <div className={style.actionContainer}>
+      <div className={style.actionButtonContainer}>
         {!completed ? (
           <>
             <img src={COMPLETE} alt={COMPLETE_ALT} onClick={completeAction} />

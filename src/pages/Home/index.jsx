@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createButton } from "store/actions";
+import { toggleCreateButtonVisibility } from "store/actions";
 import TaskBoard from "components/TaskBoard/index.jsx";
 import style from "pages/Home/index.module.scss";
 const Home = () => {
   const dispatch = useDispatch();
-  const createButtonState = useSelector((state) => state.createButton);
+  const createButtonState = useSelector((state) => state.createButtonState);
   const dispatchCreateButton = () => {
-    dispatch(createButton());
+    dispatch(toggleCreateButtonVisibility());
   };
   return (
     <div className={style.container}>

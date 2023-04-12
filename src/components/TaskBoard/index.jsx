@@ -4,7 +4,7 @@ import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import TaskCard from "components/TaskCard";
 import style from "components/TaskBoard/index.module.scss";
 const TaskBoard = () => {
-  const createButtonState = useSelector((state) => state.createButton);
+  const createButtonState = useSelector((state) => state.createButtonState);
   const tasks = useSelector((state) => state.todo);
   return (
     <div className={style.taskBoard}>
