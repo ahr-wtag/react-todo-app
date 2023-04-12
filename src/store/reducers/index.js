@@ -5,7 +5,7 @@ import editButtonReducer from "store/reducers/editButtonReducer";
 
 const rootReducers = combineReducers({
   todo: todoReducer,
-  createButton: createButtonReducer,
+  createButtonState: createButtonReducer,
   editButton: editButtonReducer,
 });
 

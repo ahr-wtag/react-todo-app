@@ -5,7 +5,7 @@ import TaskCard from "components/TaskCard";
 import style from "components/TaskBoard/index.module.scss";
 import EditTaskCard from "components/TaskCard/EditTaskCard";
 const TaskBoard = () => {
-  const createButtonState = useSelector((state) => state.createButton);
+  const createButtonState = useSelector((state) => state.createButtonState);
   const tasks = useSelector((state) => state.todo);
   const editableTask = useSelector((state) => state.editButton);
 
