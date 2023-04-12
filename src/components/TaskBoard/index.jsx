@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import TaskCard from "components/TaskCard";
 import style from "components/TaskBoard/index.module.scss";
@@ -8,10 +8,10 @@ import Pagination from "components/Pagination";
 import { PAGINATION_LIMIT, SHOW_MORE, SHOW_LESS } from "utils/constant";
 import { paginationUpdate } from "store/actions/";
 const TaskBoard = () => {
-  const createButtonState = useSelector((state) => state.createButtonState);
+  const [createButtonState, setCreateButtonState] = useState(false);
+  const [editableTask, setEditableTask] = useState(false);
   const pagination = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
-  const editableTask = useSelector((state) => state.editButton);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,14 +25,33 @@ const TaskBoard = () => {
   }, [createButtonState]);
 
   return (
-    <div>
+    <div className={style.container}>
+      <h1>Add Task</h1>
+      <div>
+        <button
+          disabled={createButtonState}
+          onClick={() => setCreateButtonState(!createButtonState)}
+        >
+          Create
+        </button>
+      </div>
       <div className={style.taskBoard}>
-        {createButtonState && <AddTaskCard />}
+        {createButtonState && (
+          <AddTaskCard
+            createButtonState={createButtonState}
+            setCreateButtonState={setCreateButtonState}
+          />
+        )}
         {tasks
           .slice(0, pagination)
           .map((todo) =>
             todo.id == editableTask ? (
-              <EditTaskCard key={todo.id} id={todo.id} task={todo.task} />
+              <EditTaskCard
+                key={todo.id}
+                id={todo.id}
+                task={todo.task}
+                setEditableTask={setEditableTask}
+              />
             ) : (
               <TaskCard
                 key={todo.id}
@@ -40,13 +59,17 @@ const TaskBoard = () => {
                 task={todo.task}
                 createdTime={todo.createdTime}
                 completed={todo.completed}
+                setEditableTask={setEditableTask}
               />
             )
           )}
       </div>
 
       {tasks.length + createButtonState > PAGINATION_LIMIT ? (
-        <Pagination taskListLength={tasks.length}>
+        <Pagination
+          createButtonState={createButtonState}
+          taskListLength={tasks.length}
+        >
           {pagination >= tasks.length ? SHOW_LESS : SHOW_MORE}
         </Pagination>
       ) : (

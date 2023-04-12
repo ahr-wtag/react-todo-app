@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { deleteTask, completeTask, editButton } from "store/actions";
+import { deleteTask, completeTask } from "store/actions";
 import {
   COMPLETE,
   COMPLETE_ALT,
@@ -16,7 +16,7 @@ import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
 import classNames from "classnames";
 
-const TaskCard = ({ id, task, createdTime, completed }) => {
+const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
   const [completedDate, setCompletedDate] = useState(null);
   useEffect(() => {
     setCompletedDate(getDateDifference(createdTime));
@@ -24,16 +24,12 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
 
   const dispatch = useDispatch();
 
-  const deleteAction = () => {
-    dispatch(deleteTask(id));
-  };
-
   const completeAction = () => {
     dispatch(completeTask(id));
   };
 
   const editAction = () => {
-    dispatch(editButton(id));
+    setEditableTask(id);
   };
 
   return (
@@ -51,7 +47,11 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
             <img src={EDIT} alt={EDIT_ALT} onClick={editAction} />
           </>
         )}
-        <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
+        <img
+          src={DELETE}
+          alt={DELETE_ALT}
+          onClick={() => dispatch(deleteTask(id))}
+        />
       </div>
       {completed && (
         <div className={style.completedText}>
@@ -66,5 +66,6 @@ TaskCard.propTypes = {
   task: PropTypes.string.isRequired,
   createdTime: checkDateString,
   completed: PropTypes.bool.isRequired,
+  setEditableTask: PropTypes.func.isRequired,
 };
 export default TaskCard;

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { editTask, editButton, completeTask } from "store/actions/";
+import { editTask, completeTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
 import { COMPLETE, COMPLETE_ALT } from "utils/constant/images";
-const EditTaskCard = ({ id, task }) => {
+const EditTaskCard = ({ id, task, setEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const EditTaskCard = ({ id, task }) => {
       setError("Please add task description");
       return;
     }
-    dispatch(editButton(null));
+    setEditableTask(null);
     dispatch(
       editTask({
         id,
@@ -31,7 +31,7 @@ const EditTaskCard = ({ id, task }) => {
   };
 
   const cancelAction = () => {
-    dispatch(editButton(null));
+    setEditableTask(null);
   };
 
   const completeAction = () => {
@@ -83,6 +83,7 @@ const EditTaskCard = ({ id, task }) => {
 EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
+  setEditableTask: PropTypes.func.isRequired,
 };
 
 export default EditTaskCard;
