@@ -30,7 +30,9 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
     setInputText(null);
   };
 
-  const cancelAction = () => {};
+  const cancelAction = () => {
+    setEditableTask(null);
+  };
 
   const completeAction = () => {
     storeTask();
