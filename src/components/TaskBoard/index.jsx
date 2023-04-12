@@ -6,9 +6,8 @@ import style from "components/TaskBoard/index.module.scss";
 import EditTaskCard from "components/TaskCard/EditTaskCard";
 const TaskBoard = () => {
   const [createButtonState, setCreateButtonState] = useState(false);
+  const [editableTask, setEditableTask] = useState(false);
   const tasks = useSelector((state) => state.todo);
-  const editableTask = useSelector((state) => state.editButton);
-
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
@@ -29,7 +28,12 @@ const TaskBoard = () => {
         )}
         {tasks.map((todo) =>
           todo.id == editableTask ? (
-            <EditTaskCard key={todo.id} id={todo.id} task={todo.task} />
+            <EditTaskCard
+              key={todo.id}
+              id={todo.id}
+              task={todo.task}
+              setEditableTask={setEditableTask}
+            />
           ) : (
             <TaskCard
               key={todo.id}
@@ -37,6 +41,7 @@ const TaskBoard = () => {
               task={todo.task}
               createdTime={todo.createdTime}
               completed={todo.completed}
+              setEditableTask={setEditableTask}
             />
           )
         )}
