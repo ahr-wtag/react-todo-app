@@ -17,7 +17,7 @@ const TaskCard = ({ id, task, createdTime }) => {
     <div className={style.container}>
       <p>{task}</p>
       <p>{`Created at: ${dateFormatter(createdTime)}`}</p>
-      <div className={style.actionContainer}>
+      <div className={style.actionButtonContainer}>
         <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
       </div>
     </div>

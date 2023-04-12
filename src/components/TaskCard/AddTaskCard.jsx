@@ -56,7 +56,7 @@ const AddTaskCard = () => {
       ></textarea>
       <small>{error && error}</small>
 
-      <div className={style.actionContainer}>
+      <div className={style.actionButtonContainer}>
         <button className={style.button} onClick={storeTask}>
           Add Task
         </button>
