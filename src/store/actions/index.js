@@ -1,8 +1,4 @@
-import {
-  TOGGlE_CREATE_BUTTON_VISIBILITY,
-  ADD_TASK,
-  DELETE_TASK,
-} from "store/constants";
+import { ADD_TASK, DELETE_TASK } from "store/constants";
 
 export const addTask = (task) => {
   return {
@@ -10,12 +6,6 @@ export const addTask = (task) => {
     payload: task,
   };
 };
-export const toggleCreateButtonVisibility = () => {
-  return {
-    type: TOGGlE_CREATE_BUTTON_VISIBILITY,
-  };
-};
-
 export const deleteTask = (index) => {
   return {
     type: DELETE_TASK,
