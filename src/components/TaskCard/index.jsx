@@ -9,16 +9,17 @@ import { dateFormatter } from "utils/helpers/dateFormatter";
 
 const TaskCard = ({ id, task, createdTime }) => {
   const dispatch = useDispatch();
-  const deleteAction = () => {
-    dispatch(deleteTask(id));
-  };
 
   return (
     <div className={style.container}>
       <p>{task}</p>
       <p>{`Created at: ${dateFormatter(createdTime)}`}</p>
       <div className={style.actionButtonContainer}>
-        <img src={DELETE} alt={DELETE_ALT} onClick={deleteAction} />
+        <img
+          src={DELETE}
+          alt={DELETE_ALT}
+          onClick={() => dispatch(deleteTask(id))}
+        />
       </div>
     </div>
   );

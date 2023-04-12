@@ -33,10 +33,6 @@ const AddTaskCard = ({ createButtonState, setCreateButtonState }) => {
     setInputText(null);
   };
 
-  const cancelAction = () => {
-    setCreateButtonState(!createButtonState);
-  };
-
   const storeTaskOnEnter = (e) => {
     if (e.key === ENTER) {
       e.preventDefault();
@@ -61,7 +57,11 @@ const AddTaskCard = ({ createButtonState, setCreateButtonState }) => {
         <button className={style.button} onClick={storeTask}>
           Add Task
         </button>
-        <img src={DELETE} alt={DELETE_ALT} onClick={cancelAction} />
+        <img
+          src={DELETE}
+          alt={DELETE_ALT}
+          onClick={() => setCreateButtonState(!createButtonState)}
+        />
       </div>
     </div>
   );
