@@ -4,7 +4,7 @@ import createButtonReducer from "store/reducers/createButtonReducer.js";
 
 const rootReducers = combineReducers({
   todo: todoReducer,
-  createButton: createButtonReducer,
+  createButtonState: createButtonReducer,
 });
 
 export default rootReducers;

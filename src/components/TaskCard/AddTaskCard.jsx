@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { v1 as uuidv1 } from "uuid";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask, createButton } from "store/actions/";
+import { addTask, toggleCreateButtonVisibility } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
 const AddTaskCard = () => {
@@ -19,7 +19,7 @@ const AddTaskCard = () => {
       setError("Please add task description");
       return;
     }
-    dispatch(createButton());
+    dispatch(toggleCreateButtonVisibility());
 
     dispatch(
       addTask({
