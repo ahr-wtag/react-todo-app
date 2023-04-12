@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { v1 as uuidv1 } from "uuid";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask, toggleCreateButtonVisibility } from "store/actions/";
+import PropTypes from "prop-types";
+import { addTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
-const AddTaskCard = () => {
+const AddTaskCard = ({ createButtonState, setCreateButtonState }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const AddTaskCard = () => {
       setError("Please add task description");
       return;
     }
-    dispatch(toggleCreateButtonVisibility());
+    setCreateButtonState(!createButtonState);
 
     dispatch(
       addTask({
@@ -30,10 +31,6 @@ const AddTaskCard = () => {
       })
     );
     setInputText(null);
-  };
-
-  const cancelAction = () => {
-    dispatch(toggleCreateButtonVisibility());
   };
 
   const storeTaskOnEnter = (e) => {
@@ -54,16 +51,23 @@ const AddTaskCard = () => {
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
-      <small>{error && error}</small>
+      <small className={style.error}>{error && error}</small>
 
       <div className={style.actionButtonContainer}>
         <button className={style.button} onClick={storeTask}>
           Add Task
         </button>
-        <img src={DELETE} alt={DELETE_ALT} onClick={cancelAction} />
+        <img
+          src={DELETE}
+          alt={DELETE_ALT}
+          onClick={() => setCreateButtonState(!createButtonState)}
+        />
       </div>
     </div>
   );
 };
-
+AddTaskCard.propTypes = {
+  createButtonState: PropTypes.bool.isRequired,
+  setCreateButtonState: PropTypes.func.isRequired,
+};
 export default AddTaskCard;
