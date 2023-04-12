@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { PAGINATION } from "utils/constant/form";
+import { PAGINATION_LIMIT } from "utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { paginationUpdate } from "store/actions/";
 import style from "components/Pagination/index.module.scss";
@@ -10,9 +10,9 @@ const Pagination = ({ children, taskListLength }) => {
   const dispatch = useDispatch();
   const paginate = () => {
     if (pagination >= taskListLength) {
-      dispatch(paginationUpdate(PAGINATION - createButtonState));
+      dispatch(paginationUpdate(PAGINATION_LIMIT - createButtonState));
     } else {
-      dispatch(paginationUpdate(PAGINATION + pagination));
+      dispatch(paginationUpdate(PAGINATION_LIMIT + pagination));
     }
   };
 

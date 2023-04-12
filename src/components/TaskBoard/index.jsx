@@ -5,7 +5,7 @@ import TaskCard from "components/TaskCard";
 import style from "components/TaskBoard/index.module.scss";
 import EditTaskCard from "components/TaskCard/EditTaskCard";
 import Pagination from "components/Pagination";
-import { PAGINATION } from "utils/constant/form";
+import { PAGINATION_LIMIT, SHOW_MORE, SHOW_LESS } from "utils/constant";
 import { paginationUpdate } from "store/actions/";
 const TaskBoard = () => {
   const createButtonState = useSelector((state) => state.createButtonState);
@@ -18,7 +18,7 @@ const TaskBoard = () => {
     if (createButtonState) {
       dispatch(paginationUpdate(pagination - 1));
     } else {
-      if (pagination < PAGINATION) {
+      if (pagination < PAGINATION_LIMIT) {
         dispatch(paginationUpdate(pagination + 1));
       }
     }
@@ -45,9 +45,9 @@ const TaskBoard = () => {
           )}
       </div>
 
-      {tasks.length + createButtonState > PAGINATION ? (
+      {tasks.length + createButtonState > PAGINATION_LIMIT ? (
         <Pagination taskListLength={tasks.length}>
-          {pagination >= tasks.length ? "Show Less" : "Load More"}
+          {pagination >= tasks.length ? SHOW_LESS : SHOW_MORE}
         </Pagination>
       ) : (
         <></>
