@@ -2,12 +2,14 @@ import TaskCard from "components/TaskCard";
 import EditTaskCard from "components/TaskCard/EditTaskCard";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { ALL, COMPLETE, INCOMPLETE } from "utils/constant";
+import { useDispatch } from "react-redux";
+import { paginationUpdate } from "store/actions";
+import { ALL, COMPLETE, INCOMPLETE, PAGINATION_LIMIT } from "utils/constant";
 
 const TaskList = ({ tasks, limit, filter, setTaskLength }) => {
   const [editableTask, setEditableTask] = useState(null);
   const [filteredTasks, setFilteredTasks] = useState([]);
-
+  const dispatch = useDispatch();
   const getCompletedTasks = () => {
     return tasks.filter((todo) => todo.completed == true);
   };
@@ -32,6 +34,10 @@ const TaskList = ({ tasks, limit, filter, setTaskLength }) => {
   useEffect(() => {
     setTaskLength(filteredTasks.length);
   }, [filteredTasks]);
+
+  useEffect(() => {
+    dispatch(paginationUpdate(PAGINATION_LIMIT));
+  }, [filter]);
 
   return filteredTasks
     .slice(0, limit)

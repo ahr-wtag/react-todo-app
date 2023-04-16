@@ -38,6 +38,7 @@ const TaskBoard = () => {
     }
   }, [showCreateCard]);
 
+  console.log(taskLength);
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
