@@ -10,6 +10,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+
   const handleInputText = (e) => {
     setInputText(e.target.value);
   };
@@ -18,6 +19,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
     const sanatizedTask = sanitizeText(inputText);
     if (sanatizedTask === "") {
       setError("Please add task description");
+
       return;
     }
     setEditableTask(null);
@@ -27,6 +29,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
         task: sanatizedTask,
       })
     );
+
     setInputText(null);
   };
 
@@ -65,7 +68,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
-      <small>{error && error}</small>
+      <small className={style.error}>{error && error}</small>
 
       <div className={style.actionButtonContainer}>
         <div>
