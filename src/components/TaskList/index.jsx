@@ -9,6 +9,7 @@ const TaskList = ({ tasks }) => {
       id={todo.id}
       task={todo.task}
       createdTime={todo.createdTime}
+      completed={todo.completed}
     />
   ));
 };
