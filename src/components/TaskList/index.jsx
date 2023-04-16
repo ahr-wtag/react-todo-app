@@ -4,7 +4,12 @@ import React from "react";
 
 const TaskList = ({ tasks }) => {
   return tasks.map((todo) => (
-    <TaskCard key={todo.id} task={todo.task} createdTime={todo.createdTime} />
+    <TaskCard
+      key={todo.id}
+      id={todo.id}
+      task={todo.task}
+      createdTime={todo.createdTime}
+    />
   ));
 };
 
