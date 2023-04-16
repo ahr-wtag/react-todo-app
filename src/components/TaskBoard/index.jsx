@@ -1,36 +1,27 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
-import TaskCard from "components/TaskCard";
 import style from "components/TaskBoard/index.module.scss";
+import TaskList from "components/TaskList";
 const TaskBoard = () => {
-  const [createButtonState, setCreateButtonState] = useState(false);
+  const [showCreateCard, setShowCreateCard] = useState(false);
   const tasks = useSelector((state) => state.todo);
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
       <div>
         <button
-          disabled={createButtonState}
-          onClick={() => setCreateButtonState(!createButtonState)}
+          disabled={showCreateCard}
+          onClick={() => setShowCreateCard(!showCreateCard)}
         >
           Create
         </button>
       </div>
       <div className={style.taskBoard}>
-        {createButtonState && (
-          <AddTaskCard
-            createButtonState
-            setCreateButtonState={setCreateButtonState}
-          />
+        {showCreateCard && (
+          <AddTaskCard showCreateCard setShowCreateCard={setShowCreateCard} />
         )}
-        {tasks.map((todo) => (
-          <TaskCard
-            key={todo.id}
-            task={todo.task}
-            createdTime={todo.createdTime}
-          />
-        ))}
+        <TaskList tasks={tasks}></TaskList>
       </div>
     </div>
   );
