@@ -17,9 +17,14 @@ import { dateFormatter } from "utils/helpers/dateFormatter";
 import classNames from "classnames";
 
 const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
-  const [completedDate, setCompletedDate] = useState(null);
+  const [taskCompletedIn, setTaskCompletedIn] = useState(null);
+
+  const TaskText = classNames({
+    task: true,
+    [style.taskDone]: completed,
+  });
   useEffect(() => {
-    setCompletedDate(getDateDifference(createdTime));
+    setTaskCompletedIn(getDateDifference(createdTime));
   }, []);
 
   const dispatch = useDispatch();
@@ -34,9 +39,7 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
 
   return (
     <div className={style.container}>
-      <h1 className={classNames(style.task, { [style.taskDone]: completed })}>
-        {task}
-      </h1>
+      <h1 className={TaskText}>{task}</h1>
       <p className={style.dateText}>{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>
@@ -55,7 +58,7 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
       </div>
       {completed && (
         <div className={style.completedText}>
-          Completed in {completedDate} {completedDate > 1 ? "days" : "day"}
+          Completed in {taskCompletedIn} {taskCompletedIn > 1 ? "days" : "day"}
         </div>
       )}
     </div>
