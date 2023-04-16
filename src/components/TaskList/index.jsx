@@ -1,11 +1,39 @@
 import TaskCard from "components/TaskCard";
 import EditTaskCard from "components/TaskCard/EditTaskCard";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ALL, COMPLETE, INCOMPLETE } from "utils/constant";
 
-const TaskList = ({ tasks, limit }) => {
+const TaskList = ({ tasks, limit, filter, setTaskLength }) => {
   const [editableTask, setEditableTask] = useState(null);
-  return tasks
+  const [filteredTasks, setFilteredTasks] = useState([]);
+
+  const getCompletedTasks = () => {
+    return tasks.filter((todo) => todo.completed == true);
+  };
+
+  const getIncompletedTasks = () => {
+    return tasks.filter((todo) => todo.completed !== true);
+  };
+  useEffect(() => {
+    switch (filter) {
+      case COMPLETE:
+        setFilteredTasks(getCompletedTasks());
+        break;
+      case INCOMPLETE:
+        setFilteredTasks(getIncompletedTasks);
+        break;
+      case ALL:
+        setFilteredTasks(tasks);
+        break;
+    }
+  }, [tasks, filter]);
+
+  useEffect(() => {
+    setTaskLength(filteredTasks.length);
+  }, [filteredTasks]);
+
+  return filteredTasks
     .slice(0, limit)
     .map((todo) =>
       todo.id == editableTask ? (
@@ -31,5 +59,7 @@ const TaskList = ({ tasks, limit }) => {
 TaskList.propTypes = {
   tasks: PropTypes.array.isRequired,
   limit: PropTypes.number.isRequired,
+  filter: PropTypes.string.isRequired,
+  setTaskLength: PropTypes.func.isRequired,
 };
 export default TaskList;
