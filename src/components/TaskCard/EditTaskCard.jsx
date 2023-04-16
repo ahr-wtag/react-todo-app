@@ -16,8 +16,8 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
   };
 
   const storeTask = () => {
-    const sanatizedTask = sanitizeText(inputText);
-    if (sanatizedTask === "") {
+    const sanitizedTask = sanitizeText(inputText);
+    if (sanitizedTask === "") {
       setError("Please add task description");
 
       return;
@@ -26,7 +26,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
     dispatch(
       editTask({
         id,
-        task: sanatizedTask,
+        task: sanitizedTask,
       })
     );
 
@@ -52,8 +52,10 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
 
   const sendCursorToEnd = (e) => {
     const inputElement = e.target;
-    inputElement.selectionStart = inputElement.value.length;
-    inputElement.selectionEnd = inputElement.value.length;
+    inputElement.setSelectionRange(
+      inputElement.value.length,
+      inputElement.value.length
+    );
   };
 
   return (
