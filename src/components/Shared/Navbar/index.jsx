@@ -9,9 +9,7 @@ const Navbar = () => {
           <img src={LOGO} alt={LOGO_ALT} />
           <h1 className={style.title}>Todos</h1>
         </div>
-        <div>
-          <img src={SEARCH} alt={SEARCH_ALT} />
-        </div>
+        <img src={SEARCH} alt={SEARCH_ALT} />
       </div>
     </div>
   );
