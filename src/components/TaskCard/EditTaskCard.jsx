@@ -22,6 +22,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
 
       return;
     }
+
     setEditableTask(null);
     dispatch(
       editTask({
