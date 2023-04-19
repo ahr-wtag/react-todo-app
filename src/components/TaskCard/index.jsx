@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
 import {
-  COMPLETE,
+  ICON_COMPLETE,
   COMPLETE_ALT,
-  DELETE,
+  ICON_DELETE,
   DELETE_ALT,
-  EDIT,
+  ICON_EDIT,
   EDIT_ALT,
 } from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
@@ -46,12 +46,16 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
       <div className={style.actionButtonContainer}>
         {!completed && (
           <>
-            <img src={COMPLETE} alt={COMPLETE_ALT} onClick={completeAction} />
-            <img src={EDIT} alt={EDIT_ALT} onClick={editAction} />
+            <img
+              src={ICON_COMPLETE}
+              alt={COMPLETE_ALT}
+              onClick={completeAction}
+            />
+            <img src={ICON_EDIT} alt={EDIT_ALT} onClick={editAction} />
           </>
         )}
         <img
-          src={DELETE}
+          src={ICON_DELETE}
           alt={DELETE_ALT}
           onClick={() => dispatch(deleteTask(id))}
         />

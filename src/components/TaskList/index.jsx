@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { paginationUpdate } from "store/actions";
-import { ALL, COMPLETE, INCOMPLETE, PAGINATION_LIMIT } from "utils/constant";
+import {
+  FILTER_STATE_ALL,
+  FILTER_STATE_COMPLETE,
+  FILTER_STATE_INCOMPLETE,
+  PAGINATION_LIMIT,
+} from "utils/constant";
 
 const TaskList = ({ tasks, limit, filter, setTaskLength }) => {
   const [editableTask, setEditableTask] = useState(null);
@@ -19,13 +24,13 @@ const TaskList = ({ tasks, limit, filter, setTaskLength }) => {
   };
   useEffect(() => {
     switch (filter) {
-      case COMPLETE:
+      case FILTER_STATE_COMPLETE:
         setFilteredTasks(getCompletedTasks());
         break;
-      case INCOMPLETE:
+      case FILTER_STATE_INCOMPLETE:
         setFilteredTasks(getIncompletedTasks);
         break;
-      case ALL:
+      case FILTER_STATE_ALL:
         setFilteredTasks(tasks);
         break;
     }

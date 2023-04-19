@@ -5,7 +5,7 @@ import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import PropTypes from "prop-types";
 import { addTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
+import { ICON_DELETE, DELETE_ALT, ENTER } from "utils/constant";
 const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
@@ -62,7 +62,7 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
           Add Task
         </button>
         <img
-          src={DELETE}
+          src={ICON_DELETE}
           alt={DELETE_ALT}
           onClick={() => setShowCreateCard(!showCreateCard)}
         />

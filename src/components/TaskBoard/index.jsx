@@ -5,23 +5,29 @@ import style from "components/TaskBoard/index.module.scss";
 import Pagination from "components/Pagination";
 import {
   PAGINATION_LIMIT,
-  SHOW_MORE,
-  SHOW_LESS,
-  ADD,
+  TEXT_SHOW_MORE,
+  TEXT_SHOW_LESS,
+  ICON_ADD,
   ADD_ALT,
-  ALL,
-  COMPLETE,
-  INCOMPLETE,
+  FILTER_STATE_ALL,
+  FILTER_STATE_COMPLETE,
+  FILTER_STATE_INCOMPLETE,
 } from "utils/constant";
 import { paginationUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 const TaskBoard = () => {
   const [showCreateCard, setShowCreateCard] = useState(false);
-  const [filter, setFilter] = useState(ALL);
+  const [filter, setFilter] = useState(FILTER_STATE_ALL);
   const pagination = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
 
   const [taskLength, setTaskLength] = useState(tasks.length);
+
+  const filterButtons = [
+    { label: "All", filter: FILTER_STATE_ALL },
+    { label: "Incomplete", filter: FILTER_STATE_INCOMPLETE },
+    { label: "Complete", filter: FILTER_STATE_COMPLETE },
+  ];
 
   useEffect(() => {
     setTaskLength(tasks.length);
@@ -48,25 +54,19 @@ const TaskBoard = () => {
           disabled={showCreateCard}
           onClick={() => setShowCreateCard(!showCreateCard)}
         >
-          <img className={style.addIcon} src={ADD} alt={ADD_ALT} />
+          <img className={style.addIcon} src={ICON_ADD} alt={ADD_ALT} />
           Create
         </button>
         <div className={style.filterBar}>
-          <button onClick={() => setFilter(ALL)} className={style.filterButton}>
-            All
-          </button>
-          <button
-            onClick={() => setFilter(INCOMPLETE)}
-            className={style.filterButton}
-          >
-            Incomplete
-          </button>
-          <button
-            onClick={() => setFilter(COMPLETE)}
-            className={style.filterButton}
-          >
-            Complete
-          </button>
+          {filterButtons.map((button) => (
+            <button
+              key={button.filter}
+              onClick={() => setFilter(button.filter)}
+              className={style.filterButton}
+            >
+              {button.label}
+            </button>
+          ))}
         </div>
       </div>
       <div className={style.taskBoard}>
@@ -83,7 +83,7 @@ const TaskBoard = () => {
 
       {taskLength + showCreateCard > PAGINATION_LIMIT ? (
         <Pagination showCreateCard={showCreateCard} taskListLength={taskLength}>
-          {pagination >= taskLength ? SHOW_LESS : SHOW_MORE}
+          {pagination >= taskLength ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
         </Pagination>
       ) : (
         <></>
