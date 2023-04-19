@@ -1,8 +1,12 @@
+@import "assets/style/color.scss";
+
 .container {
-  margin: auto;
-  max-width: 78rem;
+  background-color: $white;
+  border: 0.063rem solid $light-periwinkle;
 
   .navbar {
+    max-width: 78rem;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,6 +19,23 @@
 
       .title {
         padding-left: 0.875rem;
+        color: $lavender-blue;
+      }
+    }
+
+    .searchBar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .searchField {
+        width: 32.375rem;
+        height: 2.25rem;
+        border: 0.188rem solid $light-blue;
+        background-color: $white;
+        border-radius: 0.313rem;
+        margin-right: 1.063rem;
+        width: 500;
+        font-size: 1rem;
       }
     }
   }

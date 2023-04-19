@@ -5,7 +5,7 @@ import Navbar from "components/Shared/Navbar/index.jsx";
 import "assets/style/app.scss";
 function App() {
   return (
-    <div>
+    <div className="app">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
