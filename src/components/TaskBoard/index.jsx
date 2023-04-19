@@ -40,7 +40,7 @@ const TaskBoard = () => {
     if (showCreateCard) {
       dispatch(paginationUpdate(pagination - 1));
     } else {
-      if (pagination < PAGINATION_LIMIT) {
+      if (pagination != PAGINATION_LIMIT) {
         dispatch(paginationUpdate(pagination + 1));
       }
     }
