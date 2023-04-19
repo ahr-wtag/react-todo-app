@@ -15,11 +15,13 @@ import {
 } from "utils/constant";
 import { paginationUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
+import Loading from "components/Shared/Loading";
 const TaskBoard = () => {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const [filter, setFilter] = useState(FILTER_STATE_ALL);
   const pagination = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
+  const isLoading = useSelector((state) => state.loadingState);
 
   const [taskLength, setTaskLength] = useState(tasks.length);
 
@@ -45,6 +47,7 @@ const TaskBoard = () => {
   }, [showCreateCard]);
   return (
     <div className={style.container}>
+      {isLoading && <Loading />}
       <h1>Add Task</h1>
       <div className={style.topBar}>
         <button
