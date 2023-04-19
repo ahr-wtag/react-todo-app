@@ -7,6 +7,7 @@ import style from "components/Pagination/index.module.scss";
 const Pagination = ({ children, showCreateCard, taskListLength }) => {
   const pagination = useSelector((state) => state.paginationLength);
   const dispatch = useDispatch();
+  console.log(PAGINATION_LIMIT, pagination, showCreateCard);
   const paginate = () => {
     if (pagination >= taskListLength) {
       dispatch(paginationUpdate(PAGINATION_LIMIT - showCreateCard));

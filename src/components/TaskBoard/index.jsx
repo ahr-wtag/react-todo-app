@@ -16,12 +16,12 @@ const TaskBoard = () => {
     if (showCreateCard) {
       dispatch(paginationUpdate(pagination - 1));
     } else {
-      if (pagination < PAGINATION_LIMIT) {
+      if (pagination != PAGINATION_LIMIT) {
         dispatch(paginationUpdate(pagination + 1));
       }
     }
   }, [showCreateCard]);
-
+  console.log(pagination);
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
