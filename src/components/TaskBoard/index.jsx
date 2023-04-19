@@ -21,7 +21,6 @@ const TaskBoard = () => {
       }
     }
   }, [showCreateCard]);
-  console.log(pagination);
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
