@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import style from "components/TaskBoard/index.module.scss";
 import Pagination from "components/Pagination";
+import PropTypes from "prop-types";
 import {
   PAGINATION_LIMIT,
   TEXT_SHOW_MORE,
@@ -16,7 +17,7 @@ import {
 import { paginationUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 import Loading from "components/Shared/Loading";
-const TaskBoard = () => {
+const TaskBoard = ({ setSearchText }) => {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const [filter, setFilter] = useState(FILTER_STATE_ALL);
   const pagination = useSelector((state) => state.paginationLength);
@@ -72,7 +73,11 @@ const TaskBoard = () => {
       </div>
       <div className={style.taskBoard}>
         {showCreateCard && (
-          <AddTaskCard showCreateCard setShowCreateCard={setShowCreateCard} />
+          <AddTaskCard
+            setSearchText={setSearchText}
+            showCreateCard={showCreateCard}
+            setShowCreateCard={setShowCreateCard}
+          />
         )}
         <TaskList
           setTaskLength={setTaskLength}
@@ -93,4 +98,7 @@ const TaskBoard = () => {
   );
 };
 
+TaskBoard.propTypes = {
+  setSearchText: PropTypes.func.isRequired,
+};
 export default TaskBoard;

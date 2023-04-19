@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { v1 as uuidv1 } from "uuid";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import PropTypes from "prop-types";
-import { addTask } from "store/actions/";
+import { addTask, searchTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { ICON_DELETE, DELETE_ALT, ENTER } from "utils/constant";
-const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
+const AddTaskCard = ({ setSearchText, showCreateCard, setShowCreateCard }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -34,6 +34,8 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
         completed: false,
       })
     );
+    dispatch(searchTask(""));
+    setSearchText("");
     setInputText(null);
   };
 
@@ -74,5 +76,6 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
 AddTaskCard.propTypes = {
   showCreateCard: PropTypes.bool.isRequired,
   setShowCreateCard: PropTypes.func.isRequired,
+  setSearchText: PropTypes.func.isRequired,
 };
 export default AddTaskCard;

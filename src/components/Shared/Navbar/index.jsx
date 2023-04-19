@@ -7,13 +7,13 @@ import {
   SEARCH_ALT,
   PAGINATION_LIMIT,
 } from "utils/constant";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { loadingState, paginationUpdate, searchTask } from "store/actions";
 import { sanitizeText } from "utils/helpers/sanitizeText";
 
-const Navbar = () => {
+const Navbar = ({ searchText, setSearchText }) => {
   const [searchBarVisible, setSearchBarVisible] = useState(false);
-  const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -49,6 +49,7 @@ const Navbar = () => {
             <input
               onChange={handleChange}
               autoFocus
+              value={searchText}
               className={style.searchField}
             ></input>
           )}
@@ -58,5 +59,8 @@ const Navbar = () => {
     </div>
   );
 };
-
+Navbar.propTypes = {
+  searchText: PropTypes.string.isRequired,
+  setSearchText: PropTypes.func.isRequired,
+};
 export default Navbar;
