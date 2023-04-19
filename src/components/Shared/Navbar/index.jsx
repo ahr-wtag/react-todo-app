@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "components/Shared/Navbar/index.module.scss";
 import {
   LOGO,
@@ -8,17 +8,30 @@ import {
   PAGINATION_LIMIT,
 } from "utils/constant";
 import { useDispatch } from "react-redux";
-import { paginationUpdate, searchTask } from "store/actions";
+import { loadingState, paginationUpdate, searchTask } from "store/actions";
 import { sanitizeText } from "utils/helpers/sanitizeText";
-import { debounce } from "utils/helpers/debounce";
+
 const Navbar = () => {
   const [searchBarVisible, setSearchBarVisible] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
 
-  const handleSearch = debounce((e) => {
-    const searchText = sanitizeText(e.target.value);
-    dispatch(searchTask(searchText));
-  }, 500);
+  useEffect(() => {
+    dispatch(loadingState(true));
+    const timerId = setTimeout(() => {
+      dispatch(loadingState(false));
+
+      dispatch(searchTask(searchText));
+    }, 500);
+
+    return () => clearTimeout(timerId);
+  }, [searchText]);
+
+  const handleChange = (event) => {
+    const sanitizedText = sanitizeText(event.target.value);
+    setSearchText(sanitizedText);
+  };
+
   const setVisibality = () => {
     setSearchBarVisible(!searchBarVisible);
     dispatch(paginationUpdate(PAGINATION_LIMIT));
@@ -34,7 +47,7 @@ const Navbar = () => {
         <div className={style.searchBar}>
           {searchBarVisible && (
             <input
-              onKeyUp={handleSearch}
+              onChange={handleChange}
               autoFocus
               className={style.searchField}
             ></input>

@@ -4,7 +4,7 @@ const initialState = false;
 const loadingReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOADING:
-      return (state = !state);
+      return (state = action.payload);
     default:
       return state;
   }

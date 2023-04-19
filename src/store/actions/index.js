@@ -49,8 +49,9 @@ export const searchTask = (text) => {
     payload: text,
   };
 };
-export const loadingState = () => {
+export const loadingState = (state) => {
   return {
     type: LOADING,
+    payload: state,
   };
 };
