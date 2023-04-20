@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import style from "components/TaskBoard/index.module.scss";
 import Pagination from "components/Pagination";
+import classNames from "classnames";
 import {
   PAGINATION_LIMIT,
   TEXT_SHOW_MORE,
   TEXT_SHOW_LESS,
   ICON_ADD,
-  ADD_ALT,
+  ALT_ADD,
   FILTER_STATE_ALL,
   FILTER_STATE_COMPLETE,
   FILTER_STATE_INCOMPLETE,
@@ -43,6 +44,7 @@ const TaskBoard = () => {
       }
     }
   }, [showCreateCard]);
+
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
@@ -52,7 +54,7 @@ const TaskBoard = () => {
           disabled={showCreateCard}
           onClick={() => setShowCreateCard(!showCreateCard)}
         >
-          <img className={style.addIcon} src={ICON_ADD} alt={ADD_ALT} />
+          <img className={style.addIcon} src={ICON_ADD} alt={ALT_ADD} />
           Create
         </button>
         <div className={style.filterBar}>
@@ -60,7 +62,10 @@ const TaskBoard = () => {
             <button
               key={button.filter}
               onClick={() => setFilter(button.filter)}
-              className={style.filterButton}
+              className={classNames({
+                [style.filterButton]: true,
+                [style.filterButtonActive]: button.filter == filter,
+              })}
             >
               {button.label}
             </button>
@@ -69,7 +74,11 @@ const TaskBoard = () => {
       </div>
       <div className={style.taskBoard}>
         {showCreateCard && (
-          <AddTaskCard showCreateCard setShowCreateCard={setShowCreateCard} />
+          <AddTaskCard
+            showCreateCard
+            setShowCreateCard={setShowCreateCard}
+            setFilter={setFilter}
+          />
         )}
         <TaskList
           setTaskLength={setTaskLength}

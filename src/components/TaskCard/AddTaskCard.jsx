@@ -5,8 +5,13 @@ import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import PropTypes from "prop-types";
 import { addTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { ICON_DELETE, DELETE_ALT, ENTER } from "utils/constant";
-const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
+import {
+  ICON_DELETE,
+  ALT_DELETE,
+  ENTER,
+  FILTER_STATE_ALL,
+} from "utils/constant";
+const AddTaskCard = ({ showCreateCard, setShowCreateCard, setFilter }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -35,6 +40,7 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
       })
     );
     setInputText(null);
+    setFilter(FILTER_STATE_ALL);
   };
 
   const handleTaskOnEnter = (e) => {
@@ -63,7 +69,7 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
         </button>
         <img
           src={ICON_DELETE}
-          alt={DELETE_ALT}
+          alt={ALT_DELETE}
           onClick={() => setShowCreateCard(!showCreateCard)}
         />
       </div>
@@ -74,5 +80,6 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
 AddTaskCard.propTypes = {
   showCreateCard: PropTypes.bool.isRequired,
   setShowCreateCard: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
 };
 export default AddTaskCard;

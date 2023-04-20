@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { editTask, completeTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { ICON_DELETE, DELETE_ALT, ENTER } from "utils/constant";
-import { ICON_COMPLETE, COMPLETE_ALT } from "utils/constant/images";
+import { ICON_DELETE, ALT_DELETE, ENTER } from "utils/constant";
+import { ICON_COMPLETE, ALT_COMPLETE } from "utils/constant/images";
 const EditTaskCard = ({ id, task, setEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
@@ -81,12 +81,12 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
         </div>
         <img
           src={ICON_COMPLETE}
-          alt={COMPLETE_ALT}
+          alt={ALT_COMPLETE}
           onClick={handleCompleteButtonClick}
         />
         <img
           src={ICON_DELETE}
-          alt={DELETE_ALT}
+          alt={ALT_DELETE}
           onClick={handleDeleteButtonClick}
         />
       </div>

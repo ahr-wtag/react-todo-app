@@ -4,11 +4,11 @@ import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
 import {
   ICON_COMPLETE,
-  COMPLETE_ALT,
+  ALT_COMPLETE,
   ICON_DELETE,
-  DELETE_ALT,
+  ALT_DELETE,
   ICON_EDIT,
-  EDIT_ALT,
+  ALT_EDIT,
 } from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
@@ -20,7 +20,7 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
 
   const TaskText = classNames({
-    task: true,
+    [style.task]: true,
     [style.taskDone]: completed,
   });
   useEffect(() => {
@@ -48,19 +48,19 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
           <>
             <img
               src={ICON_COMPLETE}
-              alt={COMPLETE_ALT}
+              alt={ALT_COMPLETE}
               onClick={handleCompleteButtonClick}
             />
             <img
               src={ICON_EDIT}
-              alt={EDIT_ALT}
+              alt={ALT_EDIT}
               onClick={handleEditButtonClick}
             />
           </>
         )}
         <img
           src={ICON_DELETE}
-          alt={DELETE_ALT}
+          alt={ALT_DELETE}
           onClick={() => dispatch(deleteTask(id))}
         />
       </div>

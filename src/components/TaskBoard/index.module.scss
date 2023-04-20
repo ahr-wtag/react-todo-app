@@ -50,5 +50,9 @@
       border-radius: 0.313rem;
       border: 0.063rem solid $light-periwinkle;
     }
+    .filterButtonActive {
+      background-color: $lavender-blue;
+      color: $white;
+    }
   }
 }
