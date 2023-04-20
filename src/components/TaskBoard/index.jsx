@@ -4,12 +4,14 @@ import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import style from "components/TaskBoard/index.module.scss";
 import Pagination from "components/Pagination";
 import PropTypes from "prop-types";
+import classNames from "classnames";
+
 import {
   PAGINATION_LIMIT,
   TEXT_SHOW_MORE,
   TEXT_SHOW_LESS,
   ICON_ADD,
-  ADD_ALT,
+  ALT_ADD,
   FILTER_STATE_ALL,
   FILTER_STATE_COMPLETE,
   FILTER_STATE_INCOMPLETE,
@@ -46,6 +48,7 @@ const TaskBoard = ({ setSearchText }) => {
       }
     }
   }, [showCreateCard]);
+
   return (
     <div className={style.container}>
       {isLoading && <Loading />}
@@ -56,7 +59,7 @@ const TaskBoard = ({ setSearchText }) => {
           disabled={showCreateCard}
           onClick={() => setShowCreateCard(!showCreateCard)}
         >
-          <img className={style.addIcon} src={ICON_ADD} alt={ADD_ALT} />
+          <img className={style.addIcon} src={ICON_ADD} alt={ALT_ADD} />
           Create
         </button>
         <div className={style.filterBar}>
@@ -64,7 +67,10 @@ const TaskBoard = ({ setSearchText }) => {
             <button
               key={button.filter}
               onClick={() => setFilter(button.filter)}
-              className={style.filterButton}
+              className={classNames({
+                [style.filterButton]: true,
+                [style.filterButtonActive]: button.filter == filter,
+              })}
             >
               {button.label}
             </button>
@@ -77,6 +83,7 @@ const TaskBoard = ({ setSearchText }) => {
             setSearchText={setSearchText}
             showCreateCard={showCreateCard}
             setShowCreateCard={setShowCreateCard}
+            setFilter={setFilter}
           />
         )}
         <TaskList

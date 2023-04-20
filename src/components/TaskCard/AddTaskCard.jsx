@@ -5,8 +5,13 @@ import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import PropTypes from "prop-types";
 import { addTask, searchTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { ICON_DELETE, DELETE_ALT, ENTER } from "utils/constant";
-const AddTaskCard = ({ setSearchText, showCreateCard, setShowCreateCard }) => {
+import { ICON_DELETE, ALT_DELETE, ENTER } from "utils/constant";
+const AddTaskCard = ({
+  setSearchText,
+  showCreateCard,
+  setShowCreateCard,
+  setFilter,
+}) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -37,6 +42,7 @@ const AddTaskCard = ({ setSearchText, showCreateCard, setShowCreateCard }) => {
     dispatch(searchTask(""));
     setSearchText("");
     setInputText(null);
+    setFilter(FILTER_STATE_ALL);
   };
 
   const handleTaskOnEnter = (e) => {
@@ -65,7 +71,7 @@ const AddTaskCard = ({ setSearchText, showCreateCard, setShowCreateCard }) => {
         </button>
         <img
           src={ICON_DELETE}
-          alt={DELETE_ALT}
+          alt={ALT_DELETE}
           onClick={() => setShowCreateCard(!showCreateCard)}
         />
       </div>
@@ -77,5 +83,6 @@ AddTaskCard.propTypes = {
   showCreateCard: PropTypes.bool.isRequired,
   setShowCreateCard: PropTypes.func.isRequired,
   setSearchText: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
 };
 export default AddTaskCard;

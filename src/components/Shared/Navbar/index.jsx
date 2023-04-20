@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "components/Shared/Navbar/index.module.scss";
 import {
   LOGO,
-  LOGO_ALT,
+  ALT_LOGO,
   ICON_SEARCH,
   SEARCH_ALT,
   PAGINATION_LIMIT,
@@ -41,7 +41,7 @@ const Navbar = ({ searchText, setSearchText }) => {
     <div className={style.container}>
       <div className={style.navbar}>
         <div className={style.logo}>
-          <img src={LOGO} alt={LOGO_ALT} />
+          <img src={LOGO} alt={ALT_LOGO} />
           <h1 className={style.title}>Todos</h1>
         </div>
         <div className={style.searchBar}>

@@ -12,9 +12,9 @@ export const ICON_COMPLETE = completeIcon;
 export const ICON_EDIT = editIcon;
 export const ICON_ADD = addIcon;
 
-export const LOGO_ALT = "logo";
-export const SEARCH_ALT = "search icon";
-export const DELETE_ALT = "delete icon";
-export const COMPLETE_ALT = "complete icon";
-export const EDIT_ALT = "edit icon";
-export const ADD_ALT = "add icon";
+export const ALT_LOGO = "logo";
+export const ALT_SEARCH = "search icon";
+export const ALT_DELETE = "delete icon";
+export const ALT_COMPLETE = "complete icon";
+export const ALT_EDIT = "edit icon";
+export const ALT_ADD = "add icon";
