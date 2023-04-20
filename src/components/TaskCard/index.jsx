@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
 import {
@@ -12,7 +13,6 @@ import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
-import classNames from "classnames";
 
 const TaskCard = ({ id, task, createdTime, completed }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
@@ -42,8 +42,8 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
           <img src={COMPLETE} alt={COMPLETE_ALT} onClick={completeAction} />
         )}
         <img
-          src={DELETE}
-          alt={DELETE_ALT}
+          src={ICON_DELETE}
+          alt={DELETE_ICON_ALT_TEXT}
           onClick={() => dispatch(deleteTask(id))}
         />
       </div>
@@ -55,6 +55,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
     </div>
   );
 };
+
 TaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,

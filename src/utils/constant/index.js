@@ -1,11 +1,19 @@
-import { ENTER } from "utils/constant/form";
+import { KEY_ENTER } from "utils/constant/form";
 import {
-  LOGO,
-  LOGO_ALT,
-  SEARCH,
-  SEARCH_ALT,
-  DELETE,
-  DELETE_ALT,
+  ICON_LOGO,
+  LOGO_ICON_ALT_TEXT,
+  ICON_SEARCH,
+  SEARCH_ICON_ALT_TEXT,
+  ICON_DELETE,
+  DELETE_ICON_ALT_TEXT,
 } from "utils/constant/images";
 
-export { LOGO, LOGO_ALT, SEARCH, SEARCH_ALT, ENTER, DELETE, DELETE_ALT };
+export {
+  ICON_LOGO,
+  LOGO_ICON_ALT_TEXT,
+  ICON_SEARCH,
+  SEARCH_ICON_ALT_TEXT,
+  KEY_ENTER,
+  ICON_DELETE,
+  DELETE_ICON_ALT_TEXT,
+};
