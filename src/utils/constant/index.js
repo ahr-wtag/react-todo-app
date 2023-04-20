@@ -1,4 +1,15 @@
-import { ENTER } from "utils/constant/form";
-import { LOGO, LOGO_ALT, SEARCH, SEARCH_ALT } from "utils/constant/images";
+import { KEY_ENTER } from "utils/constant/form";
+import {
+  ICON_LOGO,
+  LOGO_ICON_ALT_TEXT,
+  ICON_SEARCH,
+  SEARCH_ICON_ALT_TEXT,
+} from "utils/constant/images";
 
-export { LOGO, LOGO_ALT, SEARCH, SEARCH_ALT, ENTER };
+export {
+  ICON_LOGO,
+  LOGO_ICON_ALT_TEXT,
+  ICON_SEARCH,
+  SEARCH_ICON_ALT_TEXT,
+  KEY_ENTER,
+};
