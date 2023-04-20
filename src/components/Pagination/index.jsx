@@ -7,7 +7,7 @@ import style from "components/Pagination/index.module.scss";
 const Pagination = ({ children, showCreateCard, taskListLength }) => {
   const pagination = useSelector((state) => state.paginationLength);
   const dispatch = useDispatch();
-  const paginate = () => {
+  const handlePaginateButtonClick = () => {
     if (pagination >= taskListLength) {
       dispatch(paginationUpdate(PAGINATION_LIMIT - showCreateCard));
     } else {
@@ -17,7 +17,7 @@ const Pagination = ({ children, showCreateCard, taskListLength }) => {
 
   return (
     <div className={style.container}>
-      <button className={style.button} onClick={paginate}>
+      <button className={style.button} onClick={handlePaginateButtonClick}>
         {children}
       </button>
     </div>
