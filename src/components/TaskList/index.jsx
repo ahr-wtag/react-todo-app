@@ -29,4 +29,5 @@ const TaskList = ({ tasks }) => {
 TaskList.propTypes = {
   tasks: PropTypes.array.isRequired,
 };
+
 export default TaskList;

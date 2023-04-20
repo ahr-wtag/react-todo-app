@@ -1,6 +1,8 @@
+import { isValid } from "date-fns";
+
 export const checkDateString = (props, createdTime) => {
-  const date = Date.parse(props[createdTime]);
-  if (isNaN(date)) {
+  let date = props[createdTime];
+  if (!isValid(date)) {
     return new Error(
       `Invalid prop ${createdTime} supplied. Expected a date string.`
     );

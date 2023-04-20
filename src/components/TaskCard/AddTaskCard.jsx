@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { v1 as uuidv1 } from "uuid";
-import { sanitizeText } from "utils/helpers/sanitizeText.js";
+
 import PropTypes from "prop-types";
+import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
-const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
+import { ICON_DELETE, DELETE_ICON_ALT_TEXT, KEY_ENTER } from "utils/constant";
+const AddTaskCard = ({ showCreateCard, onCreateCard }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -24,22 +24,15 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
       return;
     }
 
-    setShowCreateCard(!showCreateCard);
+    onCreateCard(!showCreateCard);
 
-    dispatch(
-      addTask({
-        id: uuidv1(),
-        task,
-        createdTime: new Date(),
-        completed: false,
-      })
-    );
+    dispatch(addTask({ task }));
 
     setInputText(null);
   };
 
-  const handleTaskOnEnter = (e) => {
-    if (e.key === ENTER) {
+  const storeTaskOnEnter = (e) => {
+    if (e.key === KEY_ENTER) {
       e.preventDefault();
       handleSaveButtonClick();
     }
@@ -53,7 +46,7 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
         onChange={handleInputText}
         value={inputText}
         autoFocus
-        onKeyDown={handleTaskOnEnter}
+        onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
       <small className={style.error}>{error && error}</small>
@@ -63,9 +56,9 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
           Add Task
         </button>
         <img
-          src={DELETE}
-          alt={DELETE_ALT}
-          onClick={() => setShowCreateCard(!showCreateCard)}
+          src={ICON_DELETE}
+          alt={DELETE_ICON_ALT_TEXT}
+          onClick={() => onCreateCard(!showCreateCard)}
         />
       </div>
     </div>
@@ -74,6 +67,7 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
 
 AddTaskCard.propTypes = {
   showCreateCard: PropTypes.bool.isRequired,
-  setShowCreateCard: PropTypes.func.isRequired,
+  onCreateCard: PropTypes.func.isRequired,
 };
+
 export default AddTaskCard;
