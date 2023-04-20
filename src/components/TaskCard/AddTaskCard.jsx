@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { v1 as uuidv1 } from "uuid";
-import { sanitizeText } from "utils/helpers/sanitizeText.js";
+
 import PropTypes from "prop-types";
+import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
-const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
+import { DELETE, DELETE_ALT, KEY_ENTER } from "utils/constant";
+const AddTaskCard = ({ showCreateCard, onCreateCard }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -24,22 +24,15 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
       return;
     }
 
-    setShowCreateCard(!showCreateCard);
+    onCreateCard(!showCreateCard);
 
-    dispatch(
-      addTask({
-        id: uuidv1(),
-        task,
-        createdTime: new Date(),
-        completed: false,
-      })
-    );
+    dispatch(addTask({ task }));
 
     setInputText(null);
   };
 
   const storeTaskOnEnter = (e) => {
-    if (e.key === ENTER) {
+    if (e.key === KEY_ENTER) {
       e.preventDefault();
       storeTask();
     }
@@ -65,7 +58,7 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
         <img
           src={DELETE}
           alt={DELETE_ALT}
-          onClick={() => setShowCreateCard(!showCreateCard)}
+          onClick={() => onCreateCard(!showCreateCard)}
         />
       </div>
     </div>
@@ -74,6 +67,7 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
 
 AddTaskCard.propTypes = {
   showCreateCard: PropTypes.bool.isRequired,
-  setShowCreateCard: PropTypes.func.isRequired,
+  onCreateCard: PropTypes.func.isRequired,
 };
+
 export default AddTaskCard;

@@ -24,6 +24,7 @@ const TaskCard = ({ id, task, createdTime }) => {
     </div>
   );
 };
+
 TaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
