@@ -4,7 +4,7 @@ import {
   LOGO,
   ALT_LOGO,
   ICON_SEARCH,
-  SEARCH_ALT,
+  ALT_SEARCH,
   PAGINATION_LIMIT,
 } from "utils/constant";
 import PropTypes from "prop-types";
@@ -53,7 +53,7 @@ const Navbar = ({ searchText, setSearchText }) => {
               className={style.searchField}
             ></input>
           )}
-          <img onClick={setVisibality} src={ICON_SEARCH} alt={SEARCH_ALT} />
+          <img onClick={setVisibality} src={ICON_SEARCH} alt={ALT_SEARCH} />
         </div>
       </div>
     </div>

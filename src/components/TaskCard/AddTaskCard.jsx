@@ -5,7 +5,12 @@ import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import PropTypes from "prop-types";
 import { addTask, searchTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { ICON_DELETE, ALT_DELETE, ENTER } from "utils/constant";
+import {
+  ICON_DELETE,
+  ALT_DELETE,
+  ENTER,
+  FILTER_STATE_ALL,
+} from "utils/constant";
 const AddTaskCard = ({
   setSearchText,
   showCreateCard,
