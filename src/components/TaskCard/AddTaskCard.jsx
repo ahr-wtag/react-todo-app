@@ -15,7 +15,7 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
     setInputText(e.target.value);
   };
 
-  const storeTask = () => {
+  const handleSaveButtonClick = () => {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -37,10 +37,10 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
     setInputText(null);
   };
 
-  const storeTaskOnEnter = (e) => {
+  const handleTaskOnEnter = (e) => {
     if (e.key === ENTER) {
       e.preventDefault();
-      storeTask();
+      handleSaveButtonClick();
     }
   };
 
@@ -52,13 +52,13 @@ const AddTaskCard = ({ showCreateCard, setShowCreateCard }) => {
         onChange={handleInputText}
         value={inputText}
         autoFocus
-        onKeyDown={storeTaskOnEnter}
+        onKeyDown={handleTaskOnEnter}
         className={style.textarea}
       ></textarea>
       <small className={style.error}>{error && error}</small>
 
       <div className={style.actionButtonContainer}>
-        <button className={style.button} onClick={storeTask}>
+        <button className={style.button} onClick={handleSaveButtonClick}>
           Add Task
         </button>
         <img
