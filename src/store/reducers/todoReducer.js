@@ -20,11 +20,12 @@ const todoReducer = (state = initialState, action) => {
       );
 
     case EDIT_TASK: {
-      const targetedTask = state.findIndex(
+      const tasks = [...state];
+      const targetedTask = tasks.findIndex(
         (task) => task.id == action.payload.id
       );
 
-      state[targetedTask].task = action.payload.task;
+      tasks[targetedTask].task = action.payload.task;
       return state;
     }
 
