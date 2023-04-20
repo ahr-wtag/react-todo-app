@@ -6,6 +6,7 @@ import Pagination from "components/Pagination";
 import { PAGINATION_LIMIT, SHOW_MORE, SHOW_LESS } from "utils/constant";
 import { paginationUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
+
 const TaskBoard = () => {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const pagination = useSelector((state) => state.paginationLength);
@@ -21,20 +22,22 @@ const TaskBoard = () => {
       }
     }
   }, [showCreateCard]);
+
+  const onCreateButtonClick = () => {
+    setShowCreateCard(!showCreateCard);
+  };
+
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
       <div>
-        <button
-          disabled={showCreateCard}
-          onClick={() => setShowCreateCard(!showCreateCard)}
-        >
+        <button disabled={showCreateCard} onClick={onCreateButtonClick}>
           Create
         </button>
       </div>
       <div className={style.taskBoard}>
         {showCreateCard && (
-          <AddTaskCard showCreateCard setShowCreateCard={setShowCreateCard} />
+          <AddTaskCard showCreateCard onCreateCard={setShowCreateCard} />
         )}
         <TaskList limit={pagination} tasks={tasks}></TaskList>
       </div>

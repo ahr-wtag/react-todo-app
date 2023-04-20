@@ -4,14 +4,14 @@ import deleteIcon from "assets/images/icons/deleteIcon.png";
 import completeIcon from "assets/images/icons/completeIcon.png";
 import editIcon from "assets/images/icons/editIcon.png";
 
-export const LOGO = logo;
-export const SEARCH = search;
-export const DELETE = deleteIcon;
-export const COMPLETE = completeIcon;
-export const EDIT = editIcon;
+export const ICON_LOGO = logo;
+export const ICON_SEARCH = search;
+export const ICON_DELETE = deleteIcon;
+export const ICON_COMPLETE = completeIcon;
+export const ICON_EDIT = editIcon;
 
-export const LOGO_ALT = "logo";
-export const SEARCH_ALT = "search icon";
-export const DELETE_ALT = "delete icon";
-export const COMPLETE_ALT = "complete icon";
-export const EDIT_ALT = "edit icon";
+export const LOGO_ICON_ALT_TEXT = "logo";
+export const SEARCH_ICON_ALT_TEXT = "search icon";
+export const DELETE_ICON_ALT_TEXT = "delete icon";
+export const COMPLETE_ICON_ALT_TEXT = "complete icon";
+export const EDIT_ICON_ALT_TEXT = "edit icon";

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
 import {
-  COMPLETE,
-  COMPLETE_ALT,
-  DELETE,
-  DELETE_ALT,
-  EDIT,
-  EDIT_ALT,
+  ICON_COMPLETE,
+  COMPLETE_ICON_ALT_TEXT,
+  ICON_DELETE,
+  DELETE_ICON_ALT_TEXT,
+  ICON_EDIT,
+  EDIT_ICON_ALT_TEXT,
 } from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
-import classNames from "classnames";
 
 const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
@@ -47,16 +47,20 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
         {!completed && (
           <>
             <img
-              src={COMPLETE}
-              alt={COMPLETE_ALT}
+              src={ICON_COMPLETE}
+              alt={COMPLETE_ICON_ALT_TEXT}
               onClick={handleCompleteButtonClick}
             />
-            <img src={EDIT} alt={EDIT_ALT} onClick={handleEditButtonClick} />
+            <img
+              src={ICON_EDIT}
+              alt={EDIT_ICON_ALT_TEXT}
+              onClick={handleEditButtonClick}
+            />
           </>
         )}
         <img
-          src={DELETE}
-          alt={DELETE_ALT}
+          src={ICON_DELETE}
+          alt={DELETE_ICON_ALT_TEXT}
           onClick={() => dispatch(deleteTask(id))}
         />
       </div>
@@ -68,6 +72,7 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
     </div>
   );
 };
+
 TaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,

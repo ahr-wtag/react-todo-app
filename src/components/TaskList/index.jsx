@@ -32,4 +32,5 @@ TaskList.propTypes = {
   tasks: PropTypes.array.isRequired,
   limit: PropTypes.number.isRequired,
 };
+
 export default TaskList;
