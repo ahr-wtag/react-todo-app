@@ -29,11 +29,11 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
 
   const dispatch = useDispatch();
 
-  const completeAction = () => {
+  const handleCompleteButtonClick = () => {
     dispatch(completeTask(id));
   };
 
-  const editAction = () => {
+  const handleEditButtonClick = () => {
     setEditableTask(id);
   };
 
@@ -49,9 +49,13 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
             <img
               src={ICON_COMPLETE}
               alt={COMPLETE_ALT}
-              onClick={completeAction}
+              onClick={handleCompleteButtonClick}
             />
-            <img src={ICON_EDIT} alt={EDIT_ALT} onClick={editAction} />
+            <img
+              src={ICON_EDIT}
+              alt={EDIT_ALT}
+              onClick={handleEditButtonClick}
+            />
           </>
         )}
         <img
