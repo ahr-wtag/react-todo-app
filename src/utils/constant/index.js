@@ -6,6 +6,8 @@ import {
   SEARCH_ICON_ALT_TEXT,
   ICON_DELETE,
   DELETE_ICON_ALT_TEXT,
+  ICON_COMPLETE,
+  COMPLETE_ICON_ALT_TEXT,
 } from "utils/constant/images";
 
 export {
@@ -16,4 +18,6 @@ export {
   KEY_ENTER,
   ICON_DELETE,
   DELETE_ICON_ALT_TEXT,
+  ICON_COMPLETE,
+  COMPLETE_ICON_ALT_TEXT,
 };

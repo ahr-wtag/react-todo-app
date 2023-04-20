@@ -4,10 +4,10 @@ import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
 import {
-  COMPLETE,
-  COMPLETE_ALT,
-  DELETE,
-  DELETE_ALT,
+  ICON_COMPLETE,
+  COMPLETE_ICON_ALT_TEXT,
+  ICON_DELETE,
+  DELETE_ICON_ALT_TEXT,
 } from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
@@ -39,7 +39,11 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
       )}`}</p>
       <div className={style.actionButtonContainer}>
         {!completed && (
-          <img src={COMPLETE} alt={COMPLETE_ALT} onClick={completeAction} />
+          <img
+            src={ICON_COMPLETE}
+            alt={COMPLETE_ICON_ALT_TEXT}
+            onClick={completeAction}
+          />
         )}
         <img
           src={ICON_DELETE}
