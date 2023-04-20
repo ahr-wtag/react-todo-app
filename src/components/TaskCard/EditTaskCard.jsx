@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { editTask, completeTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { DELETE, DELETE_ALT, ENTER } from "utils/constant";
-import { COMPLETE, COMPLETE_ALT } from "utils/constant/images";
+import { ICON_DELETE, DELETE_ICON_ALT_TEXT, KEY_ENTER } from "utils/constant";
+import { ICON_COMPLETE, COMPLETE_ICON_ALT_TEXT } from "utils/constant/images";
 const EditTaskCard = ({ id, task, setEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
@@ -45,7 +45,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
   };
 
   const storeTaskOnEnter = (e) => {
-    if (e.key === ENTER) {
+    if (e.key === KEY_ENTER) {
       e.preventDefault();
       handleSaveButtonClick();
     }
@@ -80,11 +80,15 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
           </button>
         </div>
         <img
-          src={COMPLETE}
-          alt={COMPLETE_ALT}
+          src={ICON_COMPLETE}
+          alt={COMPLETE_ICON_ALT_TEXT}
           onClick={handleCompleteButtonClick}
         />
-        <img src={DELETE} alt={DELETE_ALT} onClick={handleDeleteButtonClick} />
+        <img
+          src={ICON_DELETE}
+          alt={DELETE_ICON_ALT_TEXT}
+          onClick={handleDeleteButtonClick}
+        />
       </div>
     </div>
   );
