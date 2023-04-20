@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import style from "components/TaskBoard/index.module.scss";
 import Pagination from "components/Pagination";
-import { PAGINATION_LIMIT, SHOW_MORE, SHOW_LESS } from "utils/constant";
+import {
+  PAGINATION_LIMIT,
+  TEXT_SHOW_MORE,
+  TEXT_SHOW_LESS,
+} from "utils/constant";
 import { paginationUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 
@@ -47,7 +51,7 @@ const TaskBoard = () => {
           showCreateCard={showCreateCard}
           taskListLength={tasks.length}
         >
-          {pagination >= tasks.length ? SHOW_LESS : SHOW_MORE}
+          {pagination >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
         </Pagination>
       ) : (
         <></>
