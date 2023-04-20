@@ -20,16 +20,15 @@ const Navbar = ({ searchText, setSearchText }) => {
     dispatch(loadingState(true));
     const timerId = setTimeout(() => {
       dispatch(loadingState(false));
-
-      dispatch(searchTask(searchText));
+      const sanitizedText = sanitizeText(searchText);
+      dispatch(searchTask(sanitizedText));
     }, 500);
 
     return () => clearTimeout(timerId);
   }, [searchText]);
 
   const handleChange = (event) => {
-    const sanitizedText = sanitizeText(event.target.value);
-    setSearchText(sanitizedText);
+    setSearchText(event.target.value);
   };
 
   const setVisibality = () => {
