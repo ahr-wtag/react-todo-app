@@ -73,4 +73,5 @@ TaskList.propTypes = {
   filter: PropTypes.string.isRequired,
   setTaskLength: PropTypes.func.isRequired,
 };
+
 export default TaskList;

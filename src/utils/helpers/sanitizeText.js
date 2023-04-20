@@ -1,3 +1,2 @@
-export const sanitizeText = (text) => {
-  return text.replaceAll(/<\/?[^>]+(>|$)/gi, "").trim();
-};
+export const sanitizeText = (text) =>
+  text.replaceAll(/<\/?[^>]+(>|$)/gi, "").trim();

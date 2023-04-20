@@ -9,13 +9,14 @@ import {
   TEXT_SHOW_MORE,
   TEXT_SHOW_LESS,
   ICON_ADD,
-  ALT_ADD,
+  ADD_ICON_ALT_TEXT,
   FILTER_STATE_ALL,
   FILTER_STATE_COMPLETE,
   FILTER_STATE_INCOMPLETE,
 } from "utils/constant";
 import { paginationUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
+
 const TaskBoard = () => {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const [filter, setFilter] = useState(FILTER_STATE_ALL);
@@ -45,6 +46,10 @@ const TaskBoard = () => {
     }
   }, [showCreateCard]);
 
+  const onCreateButtonClick = () => {
+    setShowCreateCard(!showCreateCard);
+  };
+
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
@@ -52,9 +57,13 @@ const TaskBoard = () => {
         <button
           className={style.createButton}
           disabled={showCreateCard}
-          onClick={() => setShowCreateCard(!showCreateCard)}
+          onClick={onCreateButtonClick}
         >
-          <img className={style.addIcon} src={ICON_ADD} alt={ALT_ADD} />
+          <img
+            className={style.addIcon}
+            src={ICON_ADD}
+            alt={ADD_ICON_ALT_TEXT}
+          />
           Create
         </button>
         <div className={style.filterBar}>
@@ -76,7 +85,7 @@ const TaskBoard = () => {
         {showCreateCard && (
           <AddTaskCard
             showCreateCard
-            setShowCreateCard={setShowCreateCard}
+            onCreateCard={setShowCreateCard}
             setFilter={setFilter}
           />
         )}
