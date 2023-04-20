@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
-import { DELETE, DELETE_ALT, KEY_ENTER } from "utils/constant";
+import { ICON_DELETE, DELETE_ICON_ALT_TEXT, KEY_ENTER } from "utils/constant";
 const AddTaskCard = ({ showCreateCard, onCreateCard }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
@@ -56,8 +56,8 @@ const AddTaskCard = ({ showCreateCard, onCreateCard }) => {
           Add Task
         </button>
         <img
-          src={DELETE}
-          alt={DELETE_ALT}
+          src={ICON_DELETE}
+          alt={DELETE_ICON_ALT_TEXT}
           onClick={() => onCreateCard(!showCreateCard)}
         />
       </div>
