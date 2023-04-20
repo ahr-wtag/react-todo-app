@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import style from "components/Shared/Navbar/index.module.scss";
 import {
-  LOGO,
-  ALT_LOGO,
+  ICON_LOGO,
+  LOGO_ICON_ALT_TEXT,
   ICON_SEARCH,
-  ALT_SEARCH,
+  SEARCH_ICON_ALT_TEXT,
   PAGINATION_LIMIT,
 } from "utils/constant";
 import PropTypes from "prop-types";
@@ -40,7 +40,7 @@ const Navbar = ({ searchText, setSearchText }) => {
     <div className={style.container}>
       <div className={style.navbar}>
         <div className={style.logo}>
-          <img src={LOGO} alt={ALT_LOGO} />
+          <img src={ICON_LOGO} alt={LOGO_ICON_ALT_TEXT} />
           <h1 className={style.title}>Todos</h1>
         </div>
         <div className={style.searchBar}>
@@ -52,7 +52,11 @@ const Navbar = ({ searchText, setSearchText }) => {
               className={style.searchField}
             ></input>
           )}
-          <img onClick={setVisibality} src={ICON_SEARCH} alt={ALT_SEARCH} />
+          <img
+            onClick={setVisibality}
+            src={ICON_SEARCH}
+            alt={SEARCH_ICON_ALT_TEXT}
+          />
         </div>
       </div>
     </div>
