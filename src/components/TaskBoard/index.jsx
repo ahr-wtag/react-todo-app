@@ -19,6 +19,8 @@ import {
 import { paginationUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 import Loading from "components/Shared/Loading";
+import EmptyPage from "components/EmptyPage";
+
 const TaskBoard = ({ setSearchText }) => {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const [filter, setFilter] = useState(FILTER_STATE_ALL);
@@ -86,6 +88,13 @@ const TaskBoard = ({ setSearchText }) => {
         </div>
       </div>
       <div className={style.taskBoard}>
+        {Boolean(taskLength + showCreateCard) || (
+          <EmptyPage
+            onShowCreateCard={setShowCreateCard}
+            showCreateCard={showCreateCard}
+          />
+        )}
+
         {showCreateCard && (
           <AddTaskCard
             setSearchText={setSearchText}
