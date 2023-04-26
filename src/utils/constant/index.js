@@ -20,6 +20,8 @@ import {
   EDIT_ICON_ALT_TEXT,
   ICON_ADD,
   ADD_ICON_ALT_TEXT,
+  ICON_EMPTY_PAGE,
+  EMPTY_PAGE_ICON_ALT_TEXT,
 } from "utils/constant/images";
 
 export {
@@ -42,4 +44,6 @@ export {
   EDIT_ICON_ALT_TEXT,
   ICON_ADD,
   ADD_ICON_ALT_TEXT,
+  ICON_EMPTY_PAGE,
+  EMPTY_PAGE_ICON_ALT_TEXT,
 };
