@@ -52,32 +52,36 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
       <p className={style.dateText}>{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>
-      <div className={style.actionButtonContainer}>
-        {!completed && (
-          <>
-            <img
-              src={ICON_COMPLETE}
-              alt={COMPLETE_ICON_ALT_TEXT}
-              onClick={handleCompleteButtonClick}
-            />
-            <img
-              src={ICON_EDIT}
-              alt={EDIT_ICON_ALT_TEXT}
-              onClick={handleEditButtonClick}
-            />
-          </>
-        )}
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteButtonClick}
-        />
-      </div>
-      {completed && (
-        <div className={style.completedText}>
-          Completed in {taskCompletedIn} {taskCompletedIn > 1 ? "days" : "day"}
+
+      <div className={style.bottomBar}>
+        <div className={style.actionButtonContainer}>
+          {!completed && (
+            <>
+              <img
+                src={ICON_COMPLETE}
+                alt={COMPLETE_ICON_ALT_TEXT}
+                onClick={handleCompleteButtonClick}
+              />
+              <img
+                src={ICON_EDIT}
+                alt={EDIT_ICON_ALT_TEXT}
+                onClick={handleEditButtonClick}
+              />
+            </>
+          )}
+          <img
+            src={ICON_DELETE}
+            alt={DELETE_ICON_ALT_TEXT}
+            onClick={handleDeleteButtonClick}
+          />
         </div>
-      )}
+        {completed && (
+          <div className={style.completedText}>
+            Completed in {taskCompletedIn}{" "}
+            {taskCompletedIn > 1 ? "days" : "day"}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

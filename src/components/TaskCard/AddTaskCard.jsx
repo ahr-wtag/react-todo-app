@@ -61,15 +61,17 @@ const AddTaskCard = ({
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
-      <div className={style.actionButtonContainer}>
-        <button className={style.button} onClick={handleSaveButtonClick}>
-          Add Task
-        </button>
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={() => onCreateCard(!showCreateCard)}
-        />
+      <div className={style.bottomBar}>
+        <div className={style.actionButtonContainer}>
+          <button className={style.button} onClick={handleSaveButtonClick}>
+            Add Task
+          </button>
+          <img
+            src={ICON_DELETE}
+            alt={DELETE_ICON_ALT_TEXT}
+            onClick={() => onCreateCard(!showCreateCard)}
+          />
+        </div>
       </div>
     </div>
   );
