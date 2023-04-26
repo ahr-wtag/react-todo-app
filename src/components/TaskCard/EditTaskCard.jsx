@@ -11,9 +11,9 @@ import {
   DELETE_ICON_ALT_TEXT,
   KEY_ENTER,
 } from "utils/constant";
+import { showErrorToast, showSuccessToast } from "utils/notification";
 const EditTaskCard = ({ id, task, setEditableTask }) => {
   const [inputText, setInputText] = useState(task);
-  const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   const handleInputText = (e) => {
@@ -23,7 +23,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
   const handleSaveButtonClick = () => {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
-      setError("Please add task description");
+      showErrorToast("Task Title Can Not Be Empty!");
 
       return;
     }
@@ -37,6 +37,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
     );
 
     setInputText(null);
+    showSuccessToast("Task Updated");
   };
 
   const handleDeleteButtonClick = () => {
@@ -45,6 +46,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
 
   const handleCompleteButtonClick = () => {
     handleSaveButtonClick();
+    showSuccessToast("Task Completed!");
 
     dispatch(completeTask(id));
   };
@@ -76,8 +78,6 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
-      <small className={style.error}>{error && error}</small>
-
       <div className={style.actionButtonContainer}>
         <div>
           <button className={style.button} onClick={handleSaveButtonClick}>

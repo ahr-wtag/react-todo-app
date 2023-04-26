@@ -10,6 +10,7 @@ import {
   FILTER_STATE_ALL,
 } from "utils/constant";
 import { sanitizeText } from "utils/helpers/sanitizeText";
+import { showErrorToast, showSuccessToast } from "utils/notification";
 const AddTaskCard = ({
   setSearchText,
   showCreateCard,
@@ -17,7 +18,6 @@ const AddTaskCard = ({
   setFilter,
 }) => {
   const [inputText, setInputText] = useState("");
-  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   const handleInputText = (e) => {
@@ -28,7 +28,7 @@ const AddTaskCard = ({
     const task = sanitizeText(inputText);
 
     if (task === "") {
-      setError("Please add task description");
+      showErrorToast("Task Title Can Not Be Empty!");
 
       return;
     }
@@ -40,6 +40,7 @@ const AddTaskCard = ({
     setSearchText("");
     setInputText(null);
     setFilter(FILTER_STATE_ALL);
+    showSuccessToast("Task Created");
   };
 
   const storeTaskOnEnter = (e) => {
@@ -60,8 +61,6 @@ const AddTaskCard = ({
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
-      <small className={style.error}>{error && error}</small>
-
       <div className={style.actionButtonContainer}>
         <button className={style.button} onClick={handleSaveButtonClick}>
           Add Task

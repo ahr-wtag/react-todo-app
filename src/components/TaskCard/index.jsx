@@ -15,6 +15,7 @@ import { getDateDifference } from "utils/helpers/getDateDifference";
 import style from "components/TaskCard/index.module.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
+import { showErrorToast, showSuccessToast } from "utils/notification";
 
 const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
@@ -30,7 +31,15 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
   const dispatch = useDispatch();
 
   const handleCompleteButtonClick = () => {
+    showSuccessToast("Task Completed!");
+
     dispatch(completeTask(id));
+  };
+
+  const handleDeleteButtonClick = () => {
+    showErrorToast("Task Deleted!");
+
+    dispatch(deleteTask(id));
   };
 
   const handleEditButtonClick = () => {
@@ -61,7 +70,7 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={() => dispatch(deleteTask(id))}
+          onClick={handleDeleteButtonClick}
         />
       </div>
       {completed && (
