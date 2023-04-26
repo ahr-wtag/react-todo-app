@@ -16,6 +16,7 @@ import {
 } from "utils/constant";
 import { paginationUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
+import EmptyPage from "components/EmptyPage";
 
 const TaskBoard = () => {
   const [showCreateCard, setShowCreateCard] = useState(false);
@@ -82,6 +83,13 @@ const TaskBoard = () => {
         </div>
       </div>
       <div className={style.taskBoard}>
+        {Boolean(taskLength + showCreateCard) || (
+          <EmptyPage
+            onShowCreateCard={setShowCreateCard}
+            showCreateCard={showCreateCard}
+          />
+        )}
+
         {showCreateCard && (
           <AddTaskCard
             showCreateCard
