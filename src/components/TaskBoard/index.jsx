@@ -108,6 +108,7 @@ const TaskBoard = ({ setSearchText }) => {
           filter={filter}
           limit={pagination}
           tasks={tasks}
+          showCreateCard={showCreateCard}
         ></TaskList>
       </div>
 
