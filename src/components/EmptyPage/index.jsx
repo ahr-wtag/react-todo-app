@@ -6,6 +6,7 @@ const EmptyPage = ({ showCreateCard, onShowCreateCard }) => {
   return (
     <div className={style.container}>
       <img
+        className={style.icon}
         onClick={() => onShowCreateCard(!showCreateCard)}
         src={ICON_EMPTY_PAGE}
         alt={EMPTY_PAGE_ICON_ALT_TEXT}

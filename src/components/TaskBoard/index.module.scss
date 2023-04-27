@@ -10,12 +10,12 @@
 .container {
   margin: auto;
   width: 80%;
+  padding: 3.125rem 0;
 }
 
 .topBar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   .createButton {
     display: flex;
@@ -40,9 +40,10 @@
   }
 
   .filterBar {
-    width: 15.625rem;
     display: flex;
-    justify-content: space-between;
+    gap: 1.25rem;
+
+    align-items: center;
     margin-bottom: 2.125rem;
     .filterButton {
       background-color: $white;
@@ -50,6 +51,9 @@
       padding: 0 0.938rem;
       border-radius: 0.313rem;
       border: 0.063rem solid $light-periwinkle;
+      color: $navy-blue;
+      font-size: 1rem;
+      font-weight: 500;
     }
     .filterButtonActive {
       background-color: $lavender-blue;
@@ -58,9 +62,22 @@
   }
 }
 
+.title {
+  color: $navy-blue;
+  font-size: 1.875rem;
+}
+
 @media only screen and (max-width: $screen-sm) {
   .taskBoard {
     grid-template-columns: repeat(1, 100%);
+  }
+  .topBar {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .title {
+    text-align: center;
   }
 }
 

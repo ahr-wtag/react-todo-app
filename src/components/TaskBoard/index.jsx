@@ -58,7 +58,7 @@ const TaskBoard = ({ setSearchText }) => {
   return (
     <div className={style.container}>
       {isLoading && <Loading />}
-      <h1>Add Task</h1>
+      <h1 className={style.title}>Add Tasks</h1>
       <div className={style.topBar}>
         <button
           className={style.createButton}

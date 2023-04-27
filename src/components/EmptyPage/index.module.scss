@@ -1,6 +1,16 @@
+@import "assets/style/breakPoints.scss";
+
 .container {
   position: absolute;
   top: 50%;
   left: 50%;
+}
+.icon {
+  width: 100%;
   transform: translate(-50%, -50%);
+}
+@media only screen and (max-width: $screen-sm) {
+  .icon {
+    width: 80%;
+  }
 }
