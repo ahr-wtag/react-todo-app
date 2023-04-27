@@ -1,14 +1,15 @@
 @import "assets/style/color.scss";
+@import "assets/style/breakPoints.scss";
 
 .taskBoard {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, calc((100% - 4.25rem) / 3));
   gap: 2.125rem;
 }
 
 .container {
   margin: auto;
-  max-width: 78rem;
+  width: 80%;
 }
 
 .topBar {
@@ -54,5 +55,17 @@
       background-color: $lavender-blue;
       color: $white;
     }
+  }
+}
+
+@media only screen and (max-width: $screen-sm) {
+  .taskBoard {
+    grid-template-columns: repeat(1, 100%);
+  }
+}
+
+@media only screen and (min-width: $screen-sm) and (max-width: $screen-md) {
+  .taskBoard {
+    grid-template-columns: repeat(2, calc((100% - 2.125rem) / 2));
   }
 }
