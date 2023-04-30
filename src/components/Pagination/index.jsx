@@ -4,9 +4,12 @@ import { PAGINATION_LIMIT } from "utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { paginationUpdate } from "store/actions/";
 import style from "components/Pagination/index.module.scss";
+
 const Pagination = ({ children, showCreateCard, taskListLength }) => {
   const pagination = useSelector((state) => state.paginationLength);
+
   const dispatch = useDispatch();
+
   const handlePaginateButtonClick = () => {
     if (pagination >= taskListLength) {
       dispatch(paginationUpdate(PAGINATION_LIMIT - showCreateCard));
@@ -23,6 +26,7 @@ const Pagination = ({ children, showCreateCard, taskListLength }) => {
     </div>
   );
 };
+
 Pagination.propTypes = {
   children: PropTypes.string.isRequired,
   taskListLength: PropTypes.number.isRequired,
