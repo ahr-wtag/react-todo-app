@@ -31,6 +31,8 @@ const TaskBoard = () => {
     setShowCreateCard(!showCreateCard);
   };
 
+  const showPaginationButton = tasks.length + showCreateCard > PAGINATION_LIMIT;
+
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
@@ -46,15 +48,13 @@ const TaskBoard = () => {
         <TaskList limit={pagination} tasks={tasks}></TaskList>
       </div>
 
-      {tasks.length + showCreateCard > PAGINATION_LIMIT ? (
+      {showPaginationButton && (
         <Pagination
           showCreateCard={showCreateCard}
           taskListLength={tasks.length}
         >
           {pagination >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
         </Pagination>
-      ) : (
-        <></>
       )}
     </div>
   );

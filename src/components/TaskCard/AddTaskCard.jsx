@@ -5,6 +5,7 @@ import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { ICON_DELETE, DELETE_ICON_ALT_TEXT, KEY_ENTER } from "utils/constant";
+
 const AddTaskCard = ({ showCreateCard, onCreateCard }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
