@@ -12,6 +12,7 @@ import {
   KEY_ENTER,
 } from "utils/constant";
 import { showErrorToast, showSuccessToast } from "utils/notification";
+
 const EditTaskCard = ({ id, task, setEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const dispatch = useDispatch();
