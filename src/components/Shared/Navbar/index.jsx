@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { loadingState, paginationUpdate, searchTask } from "store/actions";
 import { sanitizeText } from "utils/helpers/sanitizeText";
 
-const Navbar = ({ searchText, setSearchText }) => {
+const Navbar = ({ searchText, onSearchText }) => {
   const [searchBarVisible, setSearchBarVisible] = useState(false);
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const Navbar = ({ searchText, setSearchText }) => {
   }, [searchText]);
 
   const handleChange = (event) => {
-    setSearchText(event.target.value);
+    onSearchText(event.target.value);
   };
 
   const setVisibality = () => {
@@ -64,6 +64,6 @@ const Navbar = ({ searchText, setSearchText }) => {
 };
 Navbar.propTypes = {
   searchText: PropTypes.string.isRequired,
-  setSearchText: PropTypes.func.isRequired,
+  onSearchText: PropTypes.func.isRequired,
 };
 export default Navbar;
