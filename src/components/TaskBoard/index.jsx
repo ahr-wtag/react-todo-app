@@ -51,6 +51,9 @@ const TaskBoard = () => {
     setShowCreateCard(!showCreateCard);
   };
 
+  const showPaginationButton = taskLength + showCreateCard > PAGINATION_LIMIT;
+  const showEmptyCard = Boolean(taskLength + showCreateCard);
+
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
@@ -83,7 +86,7 @@ const TaskBoard = () => {
         </div>
       </div>
       <div className={style.taskBoard}>
-        {Boolean(taskLength + showCreateCard) || (
+        {showEmptyCard || (
           <EmptyPage
             onShowCreateCard={setShowCreateCard}
             showCreateCard={showCreateCard}
@@ -106,12 +109,10 @@ const TaskBoard = () => {
         ></TaskList>
       </div>
 
-      {taskLength + showCreateCard > PAGINATION_LIMIT ? (
+      {showPaginationButton && (
         <Pagination showCreateCard={showCreateCard} taskListLength={taskLength}>
-          {pagination >= taskLength ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
+          {pagination >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
         </Pagination>
-      ) : (
-        <></>
       )}
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask } from "store/actions/";
@@ -11,6 +10,7 @@ import {
   KEY_ENTER,
   FILTER_STATE_ALL,
 } from "utils/constant";
+
 const AddTaskCard = ({ showCreateCard, onCreateCard, setFilter }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
