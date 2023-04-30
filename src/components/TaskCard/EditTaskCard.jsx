@@ -12,7 +12,7 @@ import {
   KEY_ENTER,
 } from "utils/constant";
 
-const EditTaskCard = ({ id, task, setEditableTask }) => {
+const EditTaskCard = ({ id, task, onEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
       return;
     }
 
-    setEditableTask(null);
+    onEditableTask(null);
     dispatch(
       editTask({
         id,
@@ -41,7 +41,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
   };
 
   const handleDeleteButtonClick = () => {
-    setEditableTask(null);
+    onEditableTask(null);
   };
 
   const handleCompleteButtonClick = () => {
@@ -103,7 +103,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
 EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
-  setEditableTask: PropTypes.func.isRequired,
+  onEditableTask: PropTypes.func.isRequired,
 };
 
 export default EditTaskCard;
