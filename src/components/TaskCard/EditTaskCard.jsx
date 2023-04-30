@@ -7,7 +7,7 @@ import style from "components/TaskCard/index.module.scss";
 import { ICON_DELETE, DELETE_ICON_ALT_TEXT, KEY_ENTER } from "utils/constant";
 import { ICON_COMPLETE, COMPLETE_ICON_ALT_TEXT } from "utils/constant/images";
 
-const EditTaskCard = ({ id, task, setEditableTask }) => {
+const EditTaskCard = ({ id, task, onEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
       return;
     }
 
-    setEditableTask(null);
+    onEditableTask(null);
     dispatch(
       editTask({
         id,
@@ -36,7 +36,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
   };
 
   const handleDeleteButtonClick = () => {
-    setEditableTask(null);
+    onEditableTask(null);
   };
 
   const handleCompleteButtonClick = () => {
@@ -98,7 +98,7 @@ const EditTaskCard = ({ id, task, setEditableTask }) => {
 EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
-  setEditableTask: PropTypes.func.isRequired,
+  onEditableTask: PropTypes.func.isRequired,
 };
 
 export default EditTaskCard;
