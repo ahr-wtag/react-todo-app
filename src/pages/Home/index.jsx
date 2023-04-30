@@ -6,8 +6,8 @@ const Home = () => {
   const [searchText, setSearchText] = useState("");
   return (
     <>
-      <Navbar searchText={searchText} setSearchText={setSearchText} />
-      <TaskBoard setSearchText={setSearchText} />
+      <Navbar searchText={searchText} onSearchText={setSearchText} />
+      <TaskBoard onSearchText={setSearchText} />
     </>
   );
 };
