@@ -17,7 +17,7 @@ import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
 import { showErrorToast, showSuccessToast } from "utils/notification";
 
-const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
+const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
 
   const TaskText = classNames({
@@ -44,7 +44,7 @@ const TaskCard = ({ id, task, createdTime, completed, setEditableTask }) => {
   };
 
   const handleEditButtonClick = () => {
-    setEditableTask(id);
+    onEditableTask(id);
   };
 
   return (
@@ -88,7 +88,7 @@ TaskCard.propTypes = {
   task: PropTypes.string.isRequired,
   createdTime: checkDateString,
   completed: PropTypes.bool.isRequired,
-  setEditableTask: PropTypes.func.isRequired,
+  onEditableTask: PropTypes.func.isRequired,
 };
 
 export default TaskCard;
