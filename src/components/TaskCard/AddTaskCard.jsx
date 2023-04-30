@@ -10,6 +10,7 @@ import {
   FILTER_STATE_ALL,
 } from "utils/constant";
 import { sanitizeText } from "utils/helpers/sanitizeText";
+
 const AddTaskCard = ({
   setSearchText,
   showCreateCard,

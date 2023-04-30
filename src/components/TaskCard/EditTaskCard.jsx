@@ -11,6 +11,7 @@ import {
   DELETE_ICON_ALT_TEXT,
   KEY_ENTER,
 } from "utils/constant";
+
 const EditTaskCard = ({ id, task, setEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
