@@ -21,7 +21,7 @@ import TaskList from "components/TaskList";
 import Loading from "components/Shared/Loading";
 import EmptyPage from "components/EmptyPage";
 
-const TaskBoard = ({ setSearchText }) => {
+const TaskBoard = ({ onSearchText }) => {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const [filter, setFilter] = useState(FILTER_STATE_ALL);
   const pagination = useSelector((state) => state.paginationLength);
@@ -100,7 +100,7 @@ const TaskBoard = ({ setSearchText }) => {
 
         {showCreateCard && (
           <AddTaskCard
-            setSearchText={setSearchText}
+            onSearchText={onSearchText}
             showCreateCard={showCreateCard}
             onCreateCard={setShowCreateCard}
             setFilter={setFilter}
@@ -125,6 +125,6 @@ const TaskBoard = ({ setSearchText }) => {
 };
 
 TaskBoard.propTypes = {
-  setSearchText: PropTypes.func.isRequired,
+  onSearchText: PropTypes.func.isRequired,
 };
 export default TaskBoard;
