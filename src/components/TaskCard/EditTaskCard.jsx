@@ -6,6 +6,7 @@ import { editTask, completeTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { ICON_DELETE, DELETE_ICON_ALT_TEXT, KEY_ENTER } from "utils/constant";
 import { ICON_COMPLETE, COMPLETE_ICON_ALT_TEXT } from "utils/constant/images";
+
 const EditTaskCard = ({ id, task, setEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
