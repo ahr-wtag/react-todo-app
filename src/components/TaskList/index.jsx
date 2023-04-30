@@ -11,7 +11,7 @@ const TaskList = ({ tasks }) => {
         key={todo.id}
         id={todo.id}
         task={todo.task}
-        setEditableTask={setEditableTask}
+        onEditableTask={setEditableTask}
       />
     ) : (
       <TaskCard
@@ -20,7 +20,7 @@ const TaskList = ({ tasks }) => {
         task={todo.task}
         createdTime={todo.createdTime}
         completed={todo.completed}
-        setEditableTask={setEditableTask}
+        onEditableTask={setEditableTask}
       />
     )
   );
