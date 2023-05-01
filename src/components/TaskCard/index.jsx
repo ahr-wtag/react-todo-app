@@ -23,6 +23,7 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
     task: true,
     [style.taskDone]: completed,
   });
+
   useEffect(() => {
     setTaskCompletedIn(getDateDifference(createdTime));
   }, []);
