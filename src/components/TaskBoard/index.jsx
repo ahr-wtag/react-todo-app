@@ -16,15 +16,15 @@ import {
   FILTER_STATE_COMPLETE,
   FILTER_STATE_INCOMPLETE,
 } from "utils/constant";
-import { paginationUpdate } from "store/actions/";
+import { paginationLimitUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 import Loading from "components/Shared/Loading";
 import EmptyPage from "components/EmptyPage";
 
 const TaskBoard = ({ onSearchText }) => {
-  const [showCreateCard, setShowCreateCard] = useState(false);
+  const [isCardCreated, setIsCardCreated] = useState(false);
   const [filter, setFilter] = useState(FILTER_STATE_ALL);
-  const pagination = useSelector((state) => state.paginationLength);
+  const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const isLoading = useSelector((state) => state.loadingState);
 
@@ -42,21 +42,22 @@ const TaskBoard = ({ onSearchText }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (showCreateCard) {
-      dispatch(paginationUpdate(pagination - 1));
+    if (isCardCreated) {
+      dispatch(paginationLimitUpdate(paginationLength - 1));
     } else {
-      if (pagination != PAGINATION_LIMIT) {
-        dispatch(paginationUpdate(pagination + 1));
+      if (paginationLength != PAGINATION_LIMIT) {
+        dispatch(paginationLimitUpdate(paginationLength + 1));
       }
     }
-  }, [showCreateCard]);
+  }, [isCardCreated]);
 
   const onCreateButtonClick = () => {
-    setShowCreateCard(!showCreateCard);
+    setIsCardCreated(!isCardCreated);
   };
 
-  const showPaginationButton = taskLength + showCreateCard > PAGINATION_LIMIT;
-  const showEmptyCard = Boolean(taskLength + showCreateCard);
+  const isPaginationButtonVisible =
+    taskLength + isCardCreated > PAGINATION_LIMIT;
+  const isTaskListEmpty = Boolean(taskLength + isCardCreated);
 
   return (
     <div className={style.container}>
@@ -65,7 +66,7 @@ const TaskBoard = ({ onSearchText }) => {
       <div className={style.topBar}>
         <button
           className={style.createButton}
-          disabled={showCreateCard}
+          disabled={isCardCreated}
           onClick={onCreateButtonClick}
         >
           <img
@@ -91,33 +92,33 @@ const TaskBoard = ({ onSearchText }) => {
         </div>
       </div>
       <div className={style.taskBoard}>
-        {showEmptyCard || (
+        {isTaskListEmpty || (
           <EmptyPage
-            onShowCreateCard={setShowCreateCard}
-            showCreateCard={showCreateCard}
+            onShowCreateCard={setIsCardCreated}
+            isCardCreated={isCardCreated}
           />
         )}
 
-        {showCreateCard && (
+        {isCardCreated && (
           <AddTaskCard
             onSearchText={onSearchText}
-            showCreateCard={showCreateCard}
-            onCreateCard={setShowCreateCard}
+            isCardCreated={isCardCreated}
+            onCreateCard={setIsCardCreated}
             setFilter={setFilter}
           />
         )}
         <TaskList
           setTaskLength={setTaskLength}
           filter={filter}
-          limit={pagination}
+          limit={paginationLength}
           tasks={tasks}
-          showCreateCard={showCreateCard}
+          isCardCreated={isCardCreated}
         ></TaskList>
       </div>
 
-      {showPaginationButton && (
-        <Pagination showCreateCard={showCreateCard} taskListLength={taskLength}>
-          {pagination >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
+      {isPaginationButtonVisible && (
+        <Pagination isCardCreated={isCardCreated} taskListLength={taskLength}>
+          {paginationLength >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
         </Pagination>
       )}
     </div>

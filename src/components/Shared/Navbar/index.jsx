@@ -9,7 +9,7 @@ import {
 } from "utils/constant";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { loadingState, paginationUpdate, searchTask } from "store/actions";
+import { loadingState, paginationLimitUpdate, searchTask } from "store/actions";
 import { sanitizeText } from "utils/helpers/sanitizeText";
 
 const Navbar = ({ searchText, onSearchText }) => {
@@ -33,7 +33,7 @@ const Navbar = ({ searchText, onSearchText }) => {
 
   const setVisibality = () => {
     setSearchBarVisible(!searchBarVisible);
-    dispatch(paginationUpdate(PAGINATION_LIMIT));
+    dispatch(paginationLimitUpdate(PAGINATION_LIMIT));
   };
 
   return (
