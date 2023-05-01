@@ -30,4 +30,5 @@ TaskCard.propTypes = {
   task: PropTypes.string.isRequired,
   createdTime: checkDateString,
 };
+
 export default TaskCard;
