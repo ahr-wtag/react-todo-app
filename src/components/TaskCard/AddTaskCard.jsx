@@ -11,7 +11,7 @@ import {
   FILTER_STATE_ALL,
 } from "utils/constant";
 
-const AddTaskCard = ({ showCreateCard, onCreateCard, setFilter }) => {
+const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const AddTaskCard = ({ showCreateCard, onCreateCard, setFilter }) => {
       return;
     }
 
-    onCreateCard(!showCreateCard);
+    onCreateCard(!isCardCreated);
 
     dispatch(addTask({ task }));
 
@@ -64,7 +64,7 @@ const AddTaskCard = ({ showCreateCard, onCreateCard, setFilter }) => {
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={() => onCreateCard(!showCreateCard)}
+          onClick={() => onCreateCard(!isCardCreated)}
         />
       </div>
     </div>
@@ -72,7 +72,7 @@ const AddTaskCard = ({ showCreateCard, onCreateCard, setFilter }) => {
 };
 
 AddTaskCard.propTypes = {
-  showCreateCard: PropTypes.bool.isRequired,
+  isCardCreated: PropTypes.bool.isRequired,
   onCreateCard: PropTypes.func.isRequired,
   setFilter: PropTypes.func.isRequired,
 };

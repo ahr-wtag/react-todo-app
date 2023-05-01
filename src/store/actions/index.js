@@ -39,7 +39,7 @@ export const editTask = (task) => {
   };
 };
 
-export const paginationUpdate = (count) => {
+export const paginationLimitUpdate = (count) => {
   return {
     type: PAGINATION_UPDATE,
     payload: count,
