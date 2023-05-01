@@ -58,7 +58,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={() => onCreateCard(!showCreateCard)}
+          onClick={() => onCreateCard(!isCardCreated)}
         />
       </div>
     </div>
