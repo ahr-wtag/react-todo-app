@@ -80,4 +80,5 @@ TaskCard.propTypes = {
   completed: PropTypes.bool.isRequired,
   onEditableTask: PropTypes.func.isRequired,
 };
+
 export default TaskCard;
