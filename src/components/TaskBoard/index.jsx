@@ -5,24 +5,24 @@ import style from "components/TaskBoard/index.module.scss";
 import TaskList from "components/TaskList";
 
 const TaskBoard = () => {
-  const [showCreateCard, setShowCreateCard] = useState(false);
+  const [isCardCreated, setIsCardCreated] = useState(false);
   const tasks = useSelector((state) => state.todo);
 
-  const onCreateButtonClick = () => {
-    setShowCreateCard(!showCreateCard);
+  const handleCreateClick = () => {
+    setIsCardCreated(!isCardCreated);
   };
 
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
       <div>
-        <button disabled={showCreateCard} onClick={onCreateButtonClick}>
+        <button disabled={isCardCreated} onClick={handleCreateClick}>
           Create
         </button>
       </div>
       <div className={style.taskBoard}>
-        {showCreateCard && (
-          <AddTaskCard showCreateCard onCreateCard={setShowCreateCard} />
+        {isCardCreated && (
+          <AddTaskCard isCardCreated onCreateCard={setIsCardCreated} />
         )}
         <TaskList tasks={tasks}></TaskList>
       </div>
