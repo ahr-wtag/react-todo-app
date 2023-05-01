@@ -6,7 +6,7 @@ import { addTask } from "store/actions/";
 import style from "components/TaskCard/index.module.scss";
 import { KEY_ENTER } from "utils/constant";
 
-const AddTaskCard = ({ showCreateCard, onCreateCard }) => {
+const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const AddTaskCard = ({ showCreateCard, onCreateCard }) => {
       return;
     }
 
-    onCreateCard(!showCreateCard);
+    onCreateCard(!isCardCreated);
 
     dispatch(addTask({ task }));
 
@@ -56,7 +56,7 @@ const AddTaskCard = ({ showCreateCard, onCreateCard }) => {
 };
 
 AddTaskCard.propTypes = {
-  showCreateCard: PropTypes.bool.isRequired,
+  isCardCreated: PropTypes.bool.isRequired,
   onCreateCard: PropTypes.func.isRequired,
 };
 
