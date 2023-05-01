@@ -8,52 +8,50 @@ import {
   TEXT_SHOW_MORE,
   TEXT_SHOW_LESS,
 } from "utils/constant";
-import { paginationUpdate } from "store/actions/";
+import { paginationLimitUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 
 const TaskBoard = () => {
-  const [showCreateCard, setShowCreateCard] = useState(false);
-  const pagination = useSelector((state) => state.paginationLength);
+  const [isCardCreated, setIsCardCreated] = useState(false);
+  const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (showCreateCard) {
-      dispatch(paginationUpdate(pagination - 1));
+    if (isCardCreated) {
+      dispatch(paginationLimitUpdate(paginationLength - 1));
     } else {
-      if (pagination != PAGINATION_LIMIT) {
-        dispatch(paginationUpdate(pagination + 1));
+      if (paginationLength != PAGINATION_LIMIT) {
+        dispatch(paginationLimitUpdate(paginationLength + 1));
       }
     }
-  }, [showCreateCard]);
+  }, [isCardCreated]);
 
   const onCreateButtonClick = () => {
-    setShowCreateCard(!showCreateCard);
+    setIsCardCreated(!isCardCreated);
   };
 
-  const showPaginationButton = tasks.length + showCreateCard > PAGINATION_LIMIT;
+  const isPaginationButtonVisible =
+    tasks.length + isCardCreated > PAGINATION_LIMIT;
 
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
       <div>
-        <button disabled={showCreateCard} onClick={onCreateButtonClick}>
+        <button disabled={isCardCreated} onClick={onCreateButtonClick}>
           Create
         </button>
       </div>
       <div className={style.taskBoard}>
-        {showCreateCard && (
-          <AddTaskCard showCreateCard onCreateCard={setShowCreateCard} />
+        {isCardCreated && (
+          <AddTaskCard isCardCreated onCreateCard={setIsCardCreated} />
         )}
-        <TaskList limit={pagination} tasks={tasks}></TaskList>
+        <TaskList limit={paginationLength} tasks={tasks}></TaskList>
       </div>
 
-      {showPaginationButton && (
-        <Pagination
-          showCreateCard={showCreateCard}
-          taskListLength={tasks.length}
-        >
-          {pagination >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
+      {isPaginationButtonVisible && (
+        <Pagination isCardCreated={isCardCreated} taskListLength={tasks.length}>
+          {paginationLength >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
         </Pagination>
       )}
     </div>
