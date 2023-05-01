@@ -51,7 +51,7 @@ const TaskBoard = ({ onSearchText }) => {
     }
   }, [isCardCreated]);
 
-  const onCreateButtonClick = () => {
+  const handleCreateClick = () => {
     setIsCardCreated(!isCardCreated);
   };
 
@@ -67,7 +67,7 @@ const TaskBoard = ({ onSearchText }) => {
         <button
           className={style.createButton}
           disabled={isCardCreated}
-          onClick={onCreateButtonClick}
+          onClick={handleCreateClick}
         >
           <img
             className={style.addIcon}
