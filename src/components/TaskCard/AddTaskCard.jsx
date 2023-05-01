@@ -14,7 +14,7 @@ import { showErrorToast, showSuccessToast } from "utils/notification";
 
 const AddTaskCard = ({
   onSearchText,
-  showCreateCard,
+  isCardCreated,
   onCreateCard,
   setFilter,
 }) => {
@@ -34,7 +34,7 @@ const AddTaskCard = ({
       return;
     }
 
-    onCreateCard(!showCreateCard);
+    onCreateCard(!isCardCreated);
 
     dispatch(addTask({ task }));
     dispatch(searchTask(""));
@@ -69,7 +69,7 @@ const AddTaskCard = ({
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={() => onCreateCard(!showCreateCard)}
+          onClick={() => onCreateCard(!isCardCreated)}
         />
       </div>
     </div>
@@ -77,7 +77,7 @@ const AddTaskCard = ({
 };
 
 AddTaskCard.propTypes = {
-  showCreateCard: PropTypes.bool.isRequired,
+  isCardCreated: PropTypes.bool.isRequired,
   onCreateCard: PropTypes.func.isRequired,
   onSearchText: PropTypes.func.isRequired,
   setFilter: PropTypes.func.isRequired,
