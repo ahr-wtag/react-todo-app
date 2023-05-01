@@ -3,7 +3,7 @@ import EditTaskCard from "components/TaskCard/EditTaskCard";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { paginationUpdate } from "store/actions";
+import { paginationLimitUpdate } from "store/actions";
 import {
   FILTER_STATE_ALL,
   FILTER_STATE_COMPLETE,
@@ -58,8 +58,8 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, showCreateCard }) => {
 
   useEffect(() => {
     showCreateCard
-      ? dispatch(paginationUpdate(PAGINATION_LIMIT - 1))
-      : dispatch(paginationUpdate(PAGINATION_LIMIT));
+      ? dispatch(paginationLimitUpdate(PAGINATION_LIMIT - 1))
+      : dispatch(paginationLimitUpdate(PAGINATION_LIMIT));
   }, [filter]);
 
   return filteredTasks
