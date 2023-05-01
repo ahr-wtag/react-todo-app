@@ -27,7 +27,7 @@ const TaskBoard = () => {
     }
   }, [isCardCreated]);
 
-  const onCreateButtonClick = () => {
+  const handleCreateClick = () => {
     setIsCardCreated(!isCardCreated);
   };
 
@@ -38,7 +38,7 @@ const TaskBoard = () => {
     <div className={style.container}>
       <h1>Add Task</h1>
       <div>
-        <button disabled={isCardCreated} onClick={onCreateButtonClick}>
+        <button disabled={isCardCreated} onClick={handleCreateClick}>
           Create
         </button>
       </div>
