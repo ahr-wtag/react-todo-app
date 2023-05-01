@@ -66,4 +66,5 @@ TaskCard.propTypes = {
   createdTime: checkDateString,
   completed: PropTypes.bool.isRequired,
 };
+
 export default TaskCard;
