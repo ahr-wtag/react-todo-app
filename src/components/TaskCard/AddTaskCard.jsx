@@ -21,11 +21,11 @@ const AddTaskCard = ({
   const [inputText, setInputText] = useState("");
   const dispatch = useDispatch();
 
-  const handleInputText = (e) => {
+  function handleInputText(e) {
     setInputText(e.target.value);
-  };
+  }
 
-  const handleSaveButtonClick = () => {
+  function handleAddClick() {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -42,14 +42,18 @@ const AddTaskCard = ({
     setInputText(null);
     setFilter(FILTER_STATE_ALL);
     showSuccessToast("Task Created");
-  };
+  }
 
-  const storeTaskOnEnter = (e) => {
+  function storeTaskOnEnter(e) {
     if (e.key === KEY_ENTER) {
       e.preventDefault();
-      handleSaveButtonClick();
+      handleAddClick();
     }
-  };
+  }
+
+  function handleDeleteClick() {
+    onCreateCard(!isCardCreated);
+  }
 
   return (
     <div className={style.container}>
@@ -64,13 +68,13 @@ const AddTaskCard = ({
       ></textarea>
       <div className={style.bottomBar}>
         <div className={style.actionButtonContainer}>
-          <button className={style.button} onClick={handleSaveButtonClick}>
+          <button className={style.button} onClick={handleAddClick}>
             Add Task
           </button>
           <img
             src={ICON_DELETE}
             alt={DELETE_ICON_ALT_TEXT}
-            onClick={() => onCreateCard(!isCardCreated)}
+            onClick={handleDeleteClick}
           />
         </div>
       </div>

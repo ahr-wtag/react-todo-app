@@ -31,19 +31,19 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
 
   const dispatch = useDispatch();
 
-  const handleCompleteButtonClick = () => {
+  const handleCompleteClick = () => {
     showSuccessToast("Task Completed!");
 
     dispatch(completeTask(id));
   };
 
-  const handleDeleteButtonClick = () => {
+  const handleDeleteClick = () => {
     showErrorToast("Task Deleted!");
 
     dispatch(deleteTask(id));
   };
 
-  const handleEditButtonClick = () => {
+  const handleEditClick = () => {
     onEditableTask(id);
   };
 
@@ -61,19 +61,19 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
               <img
                 src={ICON_COMPLETE}
                 alt={COMPLETE_ICON_ALT_TEXT}
-                onClick={handleCompleteButtonClick}
+                onClick={handleCompleteClick}
               />
               <img
                 src={ICON_EDIT}
                 alt={EDIT_ICON_ALT_TEXT}
-                onClick={handleEditButtonClick}
+                onClick={handleEditClick}
               />
             </>
           )}
           <img
             src={ICON_DELETE}
             alt={DELETE_ICON_ALT_TEXT}
-            onClick={handleDeleteButtonClick}
+            onClick={handleDeleteClick}
           />
         </div>
         {completed && (
