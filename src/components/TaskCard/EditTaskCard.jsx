@@ -16,7 +16,7 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     setInputText(e.target.value);
   };
 
-  const handleSaveButtonClick = () => {
+  const handleSaveClick = () => {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       setError("Please add task description");
@@ -35,12 +35,12 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     setInputText(null);
   };
 
-  const handleDeleteButtonClick = () => {
+  const handleDeleteClick = () => {
     onEditableTask(null);
   };
 
-  const handleCompleteButtonClick = () => {
-    handleSaveButtonClick();
+  const handleCompleteClick = () => {
+    handleSaveClick();
 
     dispatch(completeTask(id));
   };
@@ -48,7 +48,7 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
   const storeTaskOnEnter = (e) => {
     if (e.key === KEY_ENTER) {
       e.preventDefault();
-      handleSaveButtonClick();
+      handleSaveClick();
     }
   };
 
@@ -76,19 +76,19 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
 
       <div className={style.actionButtonContainer}>
         <div>
-          <button className={style.button} onClick={handleSaveButtonClick}>
+          <button className={style.button} onClick={handleSaveClick}>
             save
           </button>
         </div>
         <img
           src={ICON_COMPLETE}
           alt={COMPLETE_ICON_ALT_TEXT}
-          onClick={handleCompleteButtonClick}
+          onClick={handleCompleteClick}
         />
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteButtonClick}
+          onClick={handleDeleteClick}
         />
       </div>
     </div>
