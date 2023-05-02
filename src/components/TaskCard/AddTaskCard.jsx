@@ -15,7 +15,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
     setInputText(e.target.value);
   }
 
-  function storeTask() {
+  function handleAddClick() {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -34,7 +34,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
   function storeTaskOnEnter(e) {
     if (e.key === KEY_ENTER) {
       e.preventDefault();
-      storeTask();
+      handleAddClick();
     }
   }
 
@@ -56,7 +56,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
       <small className={style.error}>{error && error}</small>
 
       <div className={style.actionButtonContainer}>
-        <button className={style.button} onClick={storeTask}>
+        <button className={style.button} onClick={handleAddClick}>
           Add Task
         </button>
         <img
