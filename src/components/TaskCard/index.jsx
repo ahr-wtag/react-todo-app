@@ -28,7 +28,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
 
   const dispatch = useDispatch();
 
-  function completeAction() {
+  function handleCompleteClick() {
     dispatch(completeTask(id));
   }
 
@@ -47,7 +47,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
           <img
             src={ICON_COMPLETE}
             alt={COMPLETE_ICON_ALT_TEXT}
-            onClick={completeAction}
+            onClick={handleCompleteClick}
           />
         )}
         <img
