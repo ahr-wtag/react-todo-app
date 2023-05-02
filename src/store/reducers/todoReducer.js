@@ -1,6 +1,7 @@
 import { ADD_TASK, COMPLETE_TASK, DELETE_TASK } from "store/constants";
 
 const initialState = [];
+
 const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TASK:
