@@ -38,6 +38,10 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
     }
   }
 
+  function handleDeleteClick() {
+    onCreateCard(!isCardCreated);
+  }
+
   return (
     <div className={style.container}>
       <textarea
@@ -58,7 +62,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={() => onCreateCard(!isCardCreated)}
+          onClick={handleDeleteClick}
         />
       </div>
     </div>
