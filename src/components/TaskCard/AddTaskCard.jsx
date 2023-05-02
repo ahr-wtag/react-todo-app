@@ -11,11 +11,11 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  const handleInputText = (e) => {
+  function handleInputText(e) {
     setInputText(e.target.value);
-  };
+  }
 
-  const storeTask = () => {
+  function storeTask() {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -29,14 +29,14 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
     dispatch(addTask({ task }));
 
     setInputText(null);
-  };
+  }
 
-  const storeTaskOnEnter = (e) => {
+  function storeTaskOnEnter(e) {
     if (e.key === KEY_ENTER) {
       e.preventDefault();
       storeTask();
     }
-  };
+  }
 
   return (
     <div className={style.container}>

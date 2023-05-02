@@ -8,9 +8,9 @@ const TaskBoard = () => {
   const [isCardCreated, setIsCardCreated] = useState(false);
   const tasks = useSelector((state) => state.todo);
 
-  const handleCreateClick = () => {
+  function handleCreateClick() {
     setIsCardCreated(!isCardCreated);
-  };
+  }
 
   return (
     <div className={style.container}>
