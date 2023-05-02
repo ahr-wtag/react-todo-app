@@ -11,11 +11,11 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  const handleInputText = (e) => {
+  function handleInputText(e) {
     setInputText(e.target.value);
-  };
+  }
 
-  const handleSaveButtonClick = () => {
+  function handleAddClick() {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -29,14 +29,18 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
     dispatch(addTask({ task }));
 
     setInputText(null);
-  };
+  }
 
-  const storeTaskOnEnter = (e) => {
+  function storeTaskOnEnter(e) {
     if (e.key === KEY_ENTER) {
       e.preventDefault();
-      handleSaveButtonClick();
+      handleAddClick();
     }
-  };
+  }
+
+  function handleDeleteClick() {
+    onCreateCard(!isCardCreated);
+  }
 
   return (
     <div className={style.container}>
@@ -52,13 +56,13 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
       <small className={style.error}>{error && error}</small>
 
       <div className={style.actionButtonContainer}>
-        <button className={style.button} onClick={handleSaveButtonClick}>
+        <button className={style.button} onClick={handleAddClick}>
           Add Task
         </button>
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={() => onCreateCard(!isCardCreated)}
+          onClick={handleDeleteClick}
         />
       </div>
     </div>
