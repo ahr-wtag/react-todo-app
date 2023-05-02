@@ -51,9 +51,9 @@ const TaskBoard = ({ onSearchText }) => {
     }
   }, [isCardCreated]);
 
-  const handleCreateClick = () => {
+  function handleCreateClick() {
     setIsCardCreated(!isCardCreated);
-  };
+  }
 
   const isPaginationButtonVisible =
     taskLength + isCardCreated > PAGINATION_LIMIT;

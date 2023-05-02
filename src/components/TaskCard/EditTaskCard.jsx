@@ -21,7 +21,7 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     setInputText(e.target.value);
   };
 
-  const handleSaveButtonClick = () => {
+  const handleSaveClick = () => {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       showErrorToast("Task Title Can Not Be Empty!");
@@ -41,12 +41,12 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     showSuccessToast("Task Updated");
   };
 
-  const handleDeleteButtonClick = () => {
+  const handleDeleteClick = () => {
     onEditableTask(null);
   };
 
-  const handleCompleteButtonClick = () => {
-    handleSaveButtonClick();
+  const handleCompleteClick = () => {
+    handleSaveClick();
     showSuccessToast("Task Completed!");
 
     dispatch(completeTask(id));
@@ -55,7 +55,7 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
   const storeTaskOnEnter = (e) => {
     if (e.key === KEY_ENTER) {
       e.preventDefault();
-      handleSaveButtonClick();
+      handleSaveClick();
     }
   };
 
@@ -82,19 +82,19 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
       <div className={style.bottomBar}>
         <div className={style.actionButtonContainer}>
           <div>
-            <button className={style.button} onClick={handleSaveButtonClick}>
+            <button className={style.button} onClick={handleSaveClick}>
               save
             </button>
           </div>
           <img
             src={ICON_COMPLETE}
             alt={COMPLETE_ICON_ALT_TEXT}
-            onClick={handleCompleteButtonClick}
+            onClick={handleCompleteClick}
           />
           <img
             src={ICON_DELETE}
             alt={DELETE_ICON_ALT_TEXT}
-            onClick={handleDeleteButtonClick}
+            onClick={handleDeleteClick}
           />
         </div>
       </div>
