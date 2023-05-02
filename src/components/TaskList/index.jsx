@@ -11,7 +11,7 @@ import {
   PAGINATION_LIMIT,
 } from "utils/constant";
 
-const TaskList = ({ tasks, limit, filter, setTaskLength, showCreateCard }) => {
+const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
   const [editableTask, setEditableTask] = useState(null);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const searchText = useSelector((state) => state.searchText);
@@ -57,7 +57,7 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, showCreateCard }) => {
   }, [filteredTasks]);
 
   useEffect(() => {
-    showCreateCard
+    isCardCreated
       ? dispatch(paginationLimitUpdate(PAGINATION_LIMIT - 1))
       : dispatch(paginationLimitUpdate(PAGINATION_LIMIT));
   }, [filter]);
@@ -90,7 +90,7 @@ TaskList.propTypes = {
   limit: PropTypes.number.isRequired,
   filter: PropTypes.string.isRequired,
   setTaskLength: PropTypes.func.isRequired,
-  showCreateCard: PropTypes.bool.isRequired,
+  isCardCreated: PropTypes.bool.isRequired,
 };
 
 export default TaskList;

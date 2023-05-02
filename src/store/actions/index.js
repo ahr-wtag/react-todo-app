@@ -20,10 +20,10 @@ export const addTask = (task) => {
   };
 };
 
-export const deleteTask = (index) => {
+export const deleteTask = (taskId) => {
   return {
     type: DELETE_TASK,
-    payload: index,
+    payload: taskId,
   };
 };
 
