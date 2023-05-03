@@ -15,13 +15,13 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
   const [editableTask, setEditableTask] = useState(null);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const dispatch = useDispatch();
-  const getCompletedTasks = () => {
+  function getCompletedTasks() {
     return tasks.filter((todo) => todo.completed == true);
-  };
+  }
 
-  const getIncompletedTasks = () => {
+  function getIncompletedTasks() {
     return tasks.filter((todo) => todo.completed !== true);
-  };
+  }
   useEffect(() => {
     switch (filter) {
       case FILTER_STATE_COMPLETE:
