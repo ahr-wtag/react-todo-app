@@ -10,8 +10,12 @@ import {
   ICON_DELETE,
   DELETE_ICON_ALT_TEXT,
   KEY_ENTER,
+  NOTIFICATION_MESSAGE_EMPTY_TASK,
+  NOTIFICATION_MESSAGE_COMPLETE_TASK,
+  NOTIFICATION_MESSAGE_UPDATE_TASK,
 } from "utils/constant";
 import { showErrorToast, showSuccessToast } from "utils/notification";
+import { NOTIFICATION_MESSAGE_PROCESSING_ERROR } from "utils/constant/notification";
 
 const EditTaskCard = ({ id, task, onEditableTask }) => {
   const [inputText, setInputText] = useState(task);
@@ -21,14 +25,7 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     setInputText(e.target.value);
   };
 
-  const handleSaveClick = () => {
-    const sanitizedTask = sanitizeText(inputText);
-    if (sanitizedTask === "") {
-      showErrorToast("Task Title Can Not Be Empty!");
-
-      return;
-    }
-
+  const storeTask = (sanitizedTask) => {
     onEditableTask(null);
     dispatch(
       editTask({
@@ -38,17 +35,33 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     );
 
     setInputText(null);
-    showSuccessToast("Task Updated");
+  };
+
+  const handleSaveClick = () => {
+    const sanitizedTask = sanitizeText(inputText);
+    if (sanitizedTask === "") {
+      showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
+
+      return;
+    }
+    storeTask(sanitizedTask);
+    showSuccessToast(NOTIFICATION_MESSAGE_UPDATE_TASK);
   };
 
   const handleDeleteClick = () => {
     onEditableTask(null);
+    showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   };
 
   const handleCompleteClick = () => {
-    handleSaveClick();
-    showSuccessToast("Task Completed!");
+    const sanitizedTask = sanitizeText(inputText);
+    if (sanitizedTask === "") {
+      showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
 
+      return;
+    }
+    storeTask(sanitizedTask);
+    showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
     dispatch(completeTask(id));
   };
 

@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
+import { getDateDifference } from "utils/helpers/getDateDifference";
+import style from "components/TaskCard/index.module.scss";
+import { checkDateString } from "utils/helpers/propCustomValidation";
+import { dateFormatter } from "utils/helpers/dateFormatter";
+import { showErrorToast, showSuccessToast } from "utils/notification";
 import {
   ICON_COMPLETE,
   COMPLETE_ICON_ALT_TEXT,
@@ -10,12 +15,9 @@ import {
   DELETE_ICON_ALT_TEXT,
   ICON_EDIT,
   EDIT_ICON_ALT_TEXT,
-} from "utils/constant/images";
-import { getDateDifference } from "utils/helpers/getDateDifference";
-import style from "components/TaskCard/index.module.scss";
-import { checkDateString } from "utils/helpers/propCustomValidation";
-import { dateFormatter } from "utils/helpers/dateFormatter";
-import { showErrorToast, showSuccessToast } from "utils/notification";
+  NOTIFICATION_MESSAGE_COMPLETE_TASK,
+  NOTIFICATION_MESSAGE_DELETE_TASK,
+} from "utils/constant";
 
 const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
@@ -32,13 +34,13 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
   const dispatch = useDispatch();
 
   const handleCompleteClick = () => {
-    showSuccessToast("Task Completed!");
+    showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
 
     dispatch(completeTask(id));
   };
 
   const handleDeleteClick = () => {
-    showErrorToast("Task Deleted!");
+    showErrorToast(NOTIFICATION_MESSAGE_DELETE_TASK);
 
     dispatch(deleteTask(id));
   };
