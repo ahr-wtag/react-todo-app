@@ -1,27 +1,13 @@
 import { toast } from "react-toastify";
+import {
+  NOTIFICATION_SETTINGS_ERROR,
+  NOTIFICATION_SETTINGS_SUCCESS,
+} from "utils/constant";
 
 export const showSuccessToast = (message) => {
-  toast.success(message, {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
+  toast.success(message, NOTIFICATION_SETTINGS_SUCCESS);
 };
 
 export const showErrorToast = (message) => {
-  toast.error(message, {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
+  toast.error(message, NOTIFICATION_SETTINGS_ERROR);
 };
