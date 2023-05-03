@@ -11,8 +11,8 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  function handleInputText(e) {
-    setInputText(e.target.value);
+  function handleInputText(event) {
+    setInputText(event.target.value);
   }
 
   function storeTask() {
@@ -31,9 +31,9 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
     setInputText(null);
   }
 
-  function storeTaskOnEnter(e) {
-    if (e.key === KEY_ENTER) {
-      e.preventDefault();
+  function storeTaskOnEnter(event) {
+    if (event.key === KEY_ENTER) {
+      event.preventDefault();
       storeTask();
     }
   }
