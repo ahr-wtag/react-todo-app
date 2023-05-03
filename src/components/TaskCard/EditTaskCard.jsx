@@ -12,11 +12,11 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
 
-  const handleInputText = (e) => {
-    setInputText(e.target.value);
-  };
+  function handleInputText(event) {
+    setInputText(event.target.value);
+  }
 
-  const handleSaveClick = () => {
+  function handleSaveClick() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       setError("Please add task description");
@@ -33,32 +33,32 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     );
 
     setInputText(null);
-  };
+  }
 
-  const handleDeleteClick = () => {
+  function handleDeleteClick() {
     onEditableTask(null);
-  };
+  }
 
-  const handleCompleteClick = () => {
+  function handleCompleteClick() {
     handleSaveClick();
 
     dispatch(completeTask(id));
-  };
+  }
 
-  const storeTaskOnEnter = (e) => {
-    if (e.key === KEY_ENTER) {
-      e.preventDefault();
+  function storeTaskOnEnter(event) {
+    if (event.key === KEY_ENTER) {
+      event.preventDefault();
       handleSaveClick();
     }
-  };
+  }
 
-  const sendCursorToEnd = (e) => {
-    const inputElement = e.target;
+  function sendCursorToEnd(event) {
+    const inputElement = event.target;
     inputElement.setSelectionRange(
       inputElement.value.length,
       inputElement.value.length
     );
-  };
+  }
 
   return (
     <div className={style.container}>

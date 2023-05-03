@@ -25,10 +25,10 @@ export const deleteTask = (taskId) => {
   };
 };
 
-export const completeTask = (index) => {
+export const completeTask = (taskId) => {
   return {
     type: COMPLETE_TASK,
-    payload: index,
+    payload: taskId,
   };
 };
 
