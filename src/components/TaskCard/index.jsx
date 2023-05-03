@@ -33,21 +33,21 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
 
   const dispatch = useDispatch();
 
-  const handleCompleteClick = () => {
+  function handleCompleteClick() {
     showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
 
     dispatch(completeTask(id));
-  };
+  }
 
-  const handleDeleteClick = () => {
+  function handleDeleteClick() {
     showErrorToast(NOTIFICATION_MESSAGE_DELETE_TASK);
 
     dispatch(deleteTask(id));
-  };
+  }
 
-  const handleEditClick = () => {
+  function handleEditClick() {
     onEditableTask(id);
-  };
+  }
 
   return (
     <div className={style.container}>
