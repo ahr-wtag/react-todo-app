@@ -30,17 +30,17 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
 
   const dispatch = useDispatch();
 
-  const handleCompleteClick = () => {
+  function handleCompleteClick() {
     dispatch(completeTask(id));
-  };
+  }
 
   function handleDeleteClick() {
     dispatch(deleteTask(id));
   }
 
-  const handleEditClick = () => {
+  function handleEditClick() {
     onEditableTask(id);
-  };
+  }
 
   return (
     <div className={style.container}>

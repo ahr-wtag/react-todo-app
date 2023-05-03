@@ -17,26 +17,26 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
   const searchText = useSelector((state) => state.searchText);
 
   const dispatch = useDispatch();
-  const getCompletedTasks = () => {
+  function getCompletedTasks() {
     return tasks
       .filter((todo) => todo.completed == true)
       .filter((task) =>
         task.task.toLowerCase().includes(searchText.toLowerCase())
       );
-  };
+  }
 
-  const getIncompletedTasks = () => {
+  function getIncompletedTasks() {
     return tasks
       .filter((todo) => todo.completed !== true)
       .filter((task) =>
         task.task.toLowerCase().includes(searchText.toLowerCase())
       );
-  };
-  const getAllTasks = () => {
+  }
+  function getAllTasks() {
     return tasks.filter((task) =>
       task.task.toLowerCase().includes(searchText.toLowerCase())
     );
-  };
+  }
 
   useEffect(() => {
     switch (filter) {

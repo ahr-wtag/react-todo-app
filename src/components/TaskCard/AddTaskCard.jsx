@@ -21,8 +21,8 @@ const AddTaskCard = ({
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  function handleInputText(e) {
-    setInputText(e.target.value);
+  function handleInputText(event) {
+    setInputText(event.target.value);
   }
 
   function handleAddClick() {
@@ -43,9 +43,9 @@ const AddTaskCard = ({
     setFilter(FILTER_STATE_ALL);
   }
 
-  function storeTaskOnEnter(e) {
-    if (e.key === KEY_ENTER) {
-      e.preventDefault();
+  function storeTaskOnEnter(event) {
+    if (event.key === KEY_ENTER) {
+      event.preventDefault();
       handleAddClick();
     }
   }
