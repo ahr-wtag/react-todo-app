@@ -10,13 +10,13 @@ const Pagination = ({ children, isCardCreated, taskListLength }) => {
 
   const dispatch = useDispatch();
 
-  const handlePaginateButtonClick = () => {
+  function handlePaginateButtonClick() {
     if (paginationLength >= taskListLength) {
       dispatch(paginationLimitUpdate(PAGINATION_LIMIT - isCardCreated));
     } else {
       dispatch(paginationLimitUpdate(PAGINATION_LIMIT + paginationLength));
     }
-  };
+  }
 
   return (
     <div className={style.container}>
