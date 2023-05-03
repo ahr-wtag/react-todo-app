@@ -21,11 +21,11 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
   const [inputText, setInputText] = useState(task);
   const dispatch = useDispatch();
 
-  const handleInputText = (e) => {
-    setInputText(e.target.value);
-  };
+  function handleInputText(event) {
+    setInputText(event.target.value);
+  }
 
-  const storeTask = (sanitizedTask) => {
+  function storeTask(sanitizedTask) {
     onEditableTask(null);
     dispatch(
       editTask({
@@ -35,9 +35,9 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     );
 
     setInputText(null);
-  };
+  }
 
-  const handleSaveClick = () => {
+  function handleSaveClick() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
@@ -46,14 +46,14 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     }
     storeTask(sanitizedTask);
     showSuccessToast(NOTIFICATION_MESSAGE_UPDATE_TASK);
-  };
+  }
 
-  const handleDeleteClick = () => {
+  function handleDeleteClick() {
     onEditableTask(null);
     showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
-  };
+  }
 
-  const handleCompleteClick = () => {
+  function handleCompleteClick() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
@@ -63,22 +63,22 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
     storeTask(sanitizedTask);
     showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
     dispatch(completeTask(id));
-  };
+  }
 
-  const storeTaskOnEnter = (e) => {
-    if (e.key === KEY_ENTER) {
-      e.preventDefault();
+  function storeTaskOnEnter(event) {
+    if (event.key === KEY_ENTER) {
+      event.preventDefault();
       handleSaveClick();
     }
-  };
+  }
 
-  const sendCursorToEnd = (e) => {
-    const inputElement = e.target;
+  function sendCursorToEnd(event) {
+    const inputElement = event.target;
     inputElement.setSelectionRange(
       inputElement.value.length,
       inputElement.value.length
     );
-  };
+  }
 
   return (
     <div className={style.container}>
