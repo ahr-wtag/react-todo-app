@@ -24,8 +24,8 @@ const AddTaskCard = ({
   const [inputText, setInputText] = useState("");
   const dispatch = useDispatch();
 
-  function handleInputText(e) {
-    setInputText(e.target.value);
+  function handleInputText(event) {
+    setInputText(event.target.value);
   }
 
   function handleAddClick() {
@@ -47,9 +47,9 @@ const AddTaskCard = ({
     showSuccessToast(NOTIFICATION_MESSAGE_ADD_TASK);
   }
 
-  function storeTaskOnEnter(e) {
-    if (e.key === KEY_ENTER) {
-      e.preventDefault();
+  function storeTaskOnEnter(event) {
+    if (event.key === KEY_ENTER) {
+      event.preventDefault();
       handleAddClick();
     }
   }
