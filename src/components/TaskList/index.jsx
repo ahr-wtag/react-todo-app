@@ -65,7 +65,7 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
   return filteredTasks
     .slice(0, limit)
     .map((todo) =>
-      todo.id == editableTask ? (
+      todo.id === editableTask ? (
         <EditTaskCard
           key={todo.id}
           id={todo.id}
