@@ -7,7 +7,7 @@ const TaskList = ({ tasks }) => {
   const [editableTask, setEditableTask] = useState(null);
 
   return tasks.map((todo) =>
-    todo.id == editableTask ? (
+    todo.id === editableTask ? (
       <EditTaskCard
         key={todo.id}
         id={todo.id}

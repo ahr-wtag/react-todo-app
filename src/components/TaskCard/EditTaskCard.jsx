@@ -54,10 +54,8 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
 
   function sendCursorToEnd(event) {
     const inputElement = event.target;
-    inputElement.setSelectionRange(
-      inputElement.value.length,
-      inputElement.value.length
-    );
+    const { length } = inputElement.value;
+    inputElement.setSelectionRange(length, length);
   }
 
   return (
