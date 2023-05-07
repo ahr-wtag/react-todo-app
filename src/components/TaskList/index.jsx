@@ -9,7 +9,7 @@ const TaskList = ({ tasks, limit }) => {
   return tasks
     .slice(0, limit)
     .map((todo) =>
-      todo.id == editableTask ? (
+      todo.id === editableTask ? (
         <EditTaskCard
           key={todo.id}
           id={todo.id}
