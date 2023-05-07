@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import style from "components/Shared/Navbar/index.module.scss";
 import {
   ICON_LOGO,
@@ -11,29 +11,28 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { loadingState, paginationLimitUpdate, searchTask } from "store/actions";
 import { sanitizeText } from "utils/helpers/sanitizeText";
+import { debounce } from "utils/helpers/debouce";
 
-const Navbar = ({ searchText, onSearchText }) => {
-  const [searchBarVisible, setSearchBarVisible] = useState(false);
+const Navbar = ({ isSearchBarVisible, onSearchBarVisible }) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const handleInputChange = (event) => {
     dispatch(loadingState(true));
-    const timerId = setTimeout(() => {
-      dispatch(loadingState(false));
-      const sanitizedText = sanitizeText(searchText);
-      dispatch(searchTask(sanitizedText));
-    }, 500);
-
-    return () => clearTimeout(timerId);
-  }, [searchText]);
-
-  const handleChange = (event) => {
-    onSearchText(event.target.value);
+    const sanitizedText = sanitizeText(event.target.value);
+    handleSearchWithDebounce(sanitizedText);
   };
 
+  const handleSearchInput = (sanitizedText) => {
+    dispatch(searchTask(sanitizedText));
+    dispatch(loadingState(false));
+  };
+
+  const handleSearchWithDebounce = debounce(handleSearchInput);
+
   const setVisibality = () => {
-    setSearchBarVisible(!searchBarVisible);
+    onSearchBarVisible(!isSearchBarVisible);
     dispatch(paginationLimitUpdate(PAGINATION_LIMIT));
+    dispatch(searchTask(""));
   };
 
   return (
@@ -44,11 +43,10 @@ const Navbar = ({ searchText, onSearchText }) => {
           <h1 className={style.title}>Todos</h1>
         </div>
         <div className={style.searchBar}>
-          {searchBarVisible && (
+          {isSearchBarVisible && (
             <input
-              onChange={handleChange}
+              onChange={handleInputChange}
               autoFocus
-              value={searchText}
               className={style.searchField}
             ></input>
           )}
@@ -63,7 +61,7 @@ const Navbar = ({ searchText, onSearchText }) => {
   );
 };
 Navbar.propTypes = {
-  searchText: PropTypes.string.isRequired,
-  onSearchText: PropTypes.func.isRequired,
+  isSearchBarVisible: PropTypes.bool.isRequired,
+  onSearchBarVisible: PropTypes.func.isRequired,
 };
 export default Navbar;
