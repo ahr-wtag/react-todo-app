@@ -12,7 +12,7 @@ import {
 import { sanitizeText } from "utils/helpers/sanitizeText";
 
 const AddTaskCard = ({
-  onSearchText,
+  onSearchBarVisible,
   isCardCreated,
   onCreateCard,
   setFilter,
@@ -38,7 +38,7 @@ const AddTaskCard = ({
 
     dispatch(addTask({ task }));
     dispatch(searchTask(""));
-    onSearchText("");
+    onSearchBarVisible(false);
     setInputText(null);
     setFilter(FILTER_STATE_ALL);
   }
@@ -84,7 +84,7 @@ const AddTaskCard = ({
 AddTaskCard.propTypes = {
   isCardCreated: PropTypes.bool.isRequired,
   onCreateCard: PropTypes.func.isRequired,
-  onSearchText: PropTypes.func.isRequired,
+  onSearchBarVisible: PropTypes.func.isRequired,
   setFilter: PropTypes.func.isRequired,
 };
 
