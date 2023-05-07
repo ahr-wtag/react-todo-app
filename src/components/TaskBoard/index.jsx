@@ -46,7 +46,7 @@ const TaskBoard = () => {
         {isCardCreated && (
           <AddTaskCard isCardCreated onCreateCard={setIsCardCreated} />
         )}
-        <TaskList limit={paginationLength} tasks={tasks}></TaskList>
+        <TaskList limit={paginationLength} tasks={tasks} />
       </div>
 
       {isPaginationButtonVisible && (
