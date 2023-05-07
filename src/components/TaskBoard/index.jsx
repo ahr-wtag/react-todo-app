@@ -24,7 +24,7 @@ const TaskBoard = () => {
         {isCardCreated && (
           <AddTaskCard isCardCreated onCreateCard={setIsCardCreated} />
         )}
-        <TaskList tasks={tasks}></TaskList>
+        <TaskList tasks={tasks} />
       </div>
     </div>
   );
