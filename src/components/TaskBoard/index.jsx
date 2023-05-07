@@ -113,7 +113,7 @@ const TaskBoard = ({ onSearchBarVisible }) => {
           limit={paginationLength}
           tasks={tasks}
           isCardCreated={isCardCreated}
-        ></TaskList>
+        />
       </div>
 
       {isPaginationButtonVisible && (

@@ -10,32 +10,39 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    display: flex;
+    display: flex;
     height: 4.5rem;
+    justify-content: space-between;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 78rem;
 
     .logo {
+      align-items: center;
       display: flex;
       justify-content: center;
-      align-items: center;
 
       .title {
-        padding-left: 0.875rem;
         color: $lavender-blue;
+        padding-left: 0.875rem;
       }
     }
 
     .searchBar {
+      align-items: center;
       display: flex;
       justify-content: center;
-      align-items: center;
+
       .searchField {
-        width: 32.375rem;
-        height: 2.25rem;
-        border: 0.188rem solid $light-blue;
         background-color: $white;
         border-radius: 0.313rem;
-        margin-right: 1.063rem;
-        width: 500;
+        border: 0.188rem solid $light-blue;
         font-size: 1rem;
+        height: 2.25rem;
+        margin-right: 1.063rem;
+        width: 32.375rem;
+        width: 500;
       }
     }
   }
