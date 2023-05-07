@@ -1,20 +1,20 @@
 @import "assets/style/color.scss";
 
 .container {
-  width: 100%;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
 .button {
-  width: 7.313rem;
-  height: 2.25rem;
-  font-weight: 500;
-  font-size: 1rem;
-  color: $white;
   background-color: $navy-blue;
-  border: 0.063rem solid $light-periwinkle;
   border-radius: 0.313rem;
+  border: 0.063rem solid $light-periwinkle;
+  color: $white;
+  font-size: 1rem;
+  font-weight: 500;
+  height: 2.25rem;
   margin: 3.563rem 0;
+  width: 7.313rem;
 }
