@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import TaskBoard from "components/TaskBoard/index.jsx";
 import Navbar from "components/Shared/Navbar";
 const Home = () => {
-  const [searchText, setSearchText] = useState("");
+  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
   return (
     <>
-      <Navbar searchText={searchText} onSearchText={setSearchText} />
-      <TaskBoard onSearchText={setSearchText} />
+      <Navbar
+        isSearchBarVisible={isSearchBarVisible}
+        onSearchBarVisible={setIsSearchBarVisible}
+      />
+      <TaskBoard onSearchBarVisible={setIsSearchBarVisible} />
     </>
   );
 };

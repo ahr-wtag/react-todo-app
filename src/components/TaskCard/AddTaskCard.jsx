@@ -16,7 +16,7 @@ import { showErrorToast, showSuccessToast } from "utils/notification";
 import { NOTIFICATION_MESSAGE_PROCESSING_ERROR } from "utils/constant/notification";
 
 const AddTaskCard = ({
-  onSearchText,
+  onSearchBarVisible,
   isCardCreated,
   onCreateCard,
   setFilter,
@@ -41,7 +41,7 @@ const AddTaskCard = ({
 
     dispatch(addTask({ task }));
     dispatch(searchTask(""));
-    onSearchText("");
+    onSearchBarVisible(false);
     setInputText(null);
     setFilter(FILTER_STATE_ALL);
     showSuccessToast(NOTIFICATION_MESSAGE_ADD_TASK);
@@ -89,7 +89,7 @@ const AddTaskCard = ({
 AddTaskCard.propTypes = {
   isCardCreated: PropTypes.bool.isRequired,
   onCreateCard: PropTypes.func.isRequired,
-  onSearchText: PropTypes.func.isRequired,
+  onSearchBarVisible: PropTypes.func.isRequired,
   setFilter: PropTypes.func.isRequired,
 };
 
