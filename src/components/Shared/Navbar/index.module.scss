@@ -2,18 +2,18 @@
   margin: auto;
   max-width: 78rem;
 
-  .navbar {
+  &__navbar {
     align-items: center;
     display: flex;
     height: 4.5rem;
     justify-content: space-between;
 
-    .logo {
+    &__logo {
       align-items: center;
       display: flex;
       justify-content: center;
 
-      .title {
+      &__title {
         padding-left: 0.875rem;
       }
     }
