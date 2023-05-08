@@ -19,7 +19,14 @@ import {
   NOTIFICATION_MESSAGE_DELETE_TASK,
 } from "utils/constant";
 
-const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
+const TaskCard = ({
+  id,
+  task,
+  createdTime,
+  completed,
+  onEditableTasks,
+  editableTasks,
+}) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
 
   const TaskText = classNames({
@@ -46,7 +53,7 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTask }) => {
   }
 
   function handleEditClick() {
-    onEditableTask(id);
+    onEditableTasks([...editableTasks, id]);
   }
 
   return (
@@ -94,7 +101,8 @@ TaskCard.propTypes = {
   task: PropTypes.string.isRequired,
   createdTime: checkDateString,
   completed: PropTypes.bool.isRequired,
-  onEditableTask: PropTypes.func.isRequired,
+  onEditableTasks: PropTypes.func.isRequired,
+  editableTasks: PropTypes.array.isRequired,
 };
 
 export default TaskCard;
