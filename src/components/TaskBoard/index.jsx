@@ -12,45 +12,51 @@ import { paginationLimitUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 
 const TaskBoard = () => {
-  const [isCardCreated, setIsCardCreated] = useState(false);
+  const [showCreateCard, setShowCreateCard] = useState(false);
   const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isCardCreated) {
+    if (showCreateCard) {
       dispatch(paginationLimitUpdate(paginationLength - 1));
     } else {
       if (paginationLength != PAGINATION_LIMIT) {
         dispatch(paginationLimitUpdate(paginationLength + 1));
       }
     }
-  }, [isCardCreated]);
+  }, [showCreateCard]);
 
-  function handleCreateClick() {
-    setIsCardCreated(!isCardCreated);
+  function handleCreateTask() {
+    setShowCreateCard(!showCreateCard);
   }
 
   const isPaginationButtonVisible =
-    tasks.length + isCardCreated > PAGINATION_LIMIT;
+    tasks.length + showCreateCard > PAGINATION_LIMIT;
 
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
       <div>
-        <button disabled={isCardCreated} onClick={handleCreateClick}>
+        <button disabled={showCreateCard} onClick={handleCreateTask}>
           Create
         </button>
       </div>
       <div className={style.task__board}>
-        {isCardCreated && (
-          <AddTaskCard isCardCreated onCreateCard={setIsCardCreated} />
+        {showCreateCard && (
+          <AddTaskCard
+            isCardCreated={showCreateCard}
+            onCreateCard={setShowCreateCard}
+          />
         )}
         <TaskList limit={paginationLength} tasks={tasks} />
       </div>
 
       {isPaginationButtonVisible && (
-        <Pagination isCardCreated={isCardCreated} taskListLength={tasks.length}>
+        <Pagination
+          isCardCreated={showCreateCard}
+          taskListLength={tasks.length}
+        >
           {paginationLength >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
         </Pagination>
       )}
