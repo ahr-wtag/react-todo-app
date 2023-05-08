@@ -24,7 +24,6 @@
 
     .searchBar {
       align-items: center;
-      align-items: center;
       display: flex;
       justify-content: flex-end;
       width: 100%;
@@ -33,13 +32,14 @@
         background-color: $white;
         border-radius: 0.313rem;
         border: 0.188rem solid $light-blue;
-        border: 0.188rem solid $light-blue;
         color: $navy-blue;
         font-size: 1rem;
         font-size: 1rem;
         font-weight: 500;
         height: 2.25rem;
+        margin-right: 1.063rem;
         width: 50%;
+        width: 500;
       }
     }
   }
