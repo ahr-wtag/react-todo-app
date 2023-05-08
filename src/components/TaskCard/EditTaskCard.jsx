@@ -17,16 +17,21 @@ import {
 import { showErrorToast, showSuccessToast } from "utils/notification";
 import { NOTIFICATION_MESSAGE_PROCESSING_ERROR } from "utils/constant/notification";
 
-const EditTaskCard = ({ id, task, onEditableTask }) => {
+const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
   const [inputText, setInputText] = useState(task);
   const dispatch = useDispatch();
+
+  function removeFromEditList() {
+    const updatedList = editableTasks.filter((taskId) => taskId !== id);
+    onEditableTasks(updatedList);
+  }
 
   function handleInputText(event) {
     setInputText(event.target.value);
   }
 
   function storeTask(sanitizedTask) {
-    onEditableTask(null);
+    removeFromEditList();
     dispatch(
       editTask({
         id,
@@ -49,7 +54,7 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
   }
 
   function handleDeleteClick() {
-    onEditableTask(null);
+    removeFromEditList();
     showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   }
 
@@ -114,7 +119,8 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
 EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
-  onEditableTask: PropTypes.func.isRequired,
+  onEditableTasks: PropTypes.func.isRequired,
+  editableTasks: PropTypes.array.isRequired,
 };
 
 export default EditTaskCard;
