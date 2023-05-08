@@ -82,7 +82,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
       ></textarea>
       <small className={style.error}>{error && error}</small>
 
-      <div className={style.actionButtonContainer}>
+      <div className={style.action__button__container}>
         <div>
           <button className={style.button} onClick={handleSaveClick}>
             save

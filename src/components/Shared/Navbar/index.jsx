@@ -37,10 +37,10 @@ const Navbar = ({ isSearchBarVisible, onSearchBarVisible }) => {
 
   return (
     <div className={style.container}>
-      <div className={style.navbar}>
-        <div className={style.logo}>
+      <div className={style.container__navbar}>
+        <div className={style.container__navbar__logo}>
           <img src={ICON_LOGO} alt={LOGO_ICON_ALT_TEXT} />
-          <h1 className={style.title}>Todos</h1>
+          <h1 className={style.container__navbar__logo__title}>Todos</h1>
         </div>
         <div className={style.searchBar}>
           {isSearchBarVisible && (
