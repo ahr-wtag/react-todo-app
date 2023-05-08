@@ -12,10 +12,15 @@ import {
   KEY_ENTER,
 } from "utils/constant";
 
-const EditTaskCard = ({ id, task, onEditableTask }) => {
+const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+
+  function removeFromEditList() {
+    const updatedList = editableTasks.filter((taskId) => taskId !== id);
+    onEditableTasks(updatedList);
+  }
 
   function handleInputText(event) {
     setInputText(event.target.value);
@@ -29,7 +34,7 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
       return;
     }
 
-    onEditableTask(null);
+    removeFromEditList();
     dispatch(
       editTask({
         id,
@@ -41,7 +46,7 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
   }
 
   function handleDeleteClick() {
-    onEditableTask(null);
+    removeFromEditList();
   }
 
   function handleCompleteClick() {
@@ -101,7 +106,8 @@ const EditTaskCard = ({ id, task, onEditableTask }) => {
 EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
-  onEditableTask: PropTypes.func.isRequired,
+  onEditableTasks: PropTypes.func.isRequired,
+  editableTasks: PropTypes.array.isRequired,
 };
 
 export default EditTaskCard;
