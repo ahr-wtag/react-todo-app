@@ -4,17 +4,18 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 
 const TaskList = ({ tasks, limit }) => {
-  const [editableTask, setEditableTask] = useState(null);
+  const [editableTasks, setEditableTasks] = useState(null);
 
   return tasks
     .slice(0, limit)
     .map((todo) =>
-      todo.id === editableTask ? (
+      todo.id === editableTasks ? (
         <EditTaskCard
           key={todo.id}
           id={todo.id}
           task={todo.task}
-          onEditableTask={setEditableTask}
+          editableTasks={editableTasks}
+          onEditableTasks={setEditableTasks}
         />
       ) : (
         <TaskCard
@@ -23,7 +24,8 @@ const TaskList = ({ tasks, limit }) => {
           task={todo.task}
           createdTime={todo.createdTime}
           completed={todo.completed}
-          onEditableTask={setEditableTask}
+          editableTasks={editableTasks}
+          onEditableTasks={setEditableTasks}
         />
       )
     );
