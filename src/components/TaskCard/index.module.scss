@@ -5,10 +5,8 @@
   border: 0.188rem solid $light-blue;
   box-sizing: border-box;
   height: 5rem;
-  height: 5rem;
   resize: none;
   width: 100%;
-  width: 21.938rem;
 }
 
 .container {
@@ -67,19 +65,10 @@
   background: $lavender-blue;
   border-radius: 0.313rem;
   color: $white;
-  color: $white;
-  display: flex;
   display: flex;
   font-size: 0.75rem;
-  font-size: 0.75rem;
-  height: 1.5rem;
   height: 1.5rem;
   justify-content: center;
-  justify-content: center;
-  left: calc(50% - 8.375rem / 2 + 6.813rem);
-  position: absolute;
-  top: calc(50% - 1.5rem / 2 + 3.156rem);
-  width: 8.375rem;
   width: 8.375rem;
 }
 
@@ -90,6 +79,8 @@
   color: $navy-blue;
   font-size: 1rem;
   font-weight: 500;
+  height: 2.25rem;
+  width: 5.688rem;
 }
 
 .error {
