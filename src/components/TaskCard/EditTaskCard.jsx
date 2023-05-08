@@ -42,7 +42,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
     setInputText(null);
   }
 
-  function handleSaveClick() {
+  function handleSaveTask() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
@@ -53,12 +53,12 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
     showSuccessToast(NOTIFICATION_MESSAGE_UPDATE_TASK);
   }
 
-  function handleDeleteClick() {
+  function handleDeleteTask() {
     removeFromEditList();
     showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   }
 
-  function handleCompleteClick() {
+  function handleCompleteTask() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
@@ -73,7 +73,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      handleSaveClick();
+      handleSaveTask();
     }
   }
 
@@ -95,21 +95,21 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
-      <div className={style.actionButtonContainer}>
+      <div className={style.action__button__container}>
         <div>
-          <button className={style.button} onClick={handleSaveClick}>
+          <button className={style.button} onClick={handleSaveTask}>
             save
           </button>
         </div>
         <img
           src={ICON_COMPLETE}
           alt={COMPLETE_ICON_ALT_TEXT}
-          onClick={handleCompleteClick}
+          onClick={handleCompleteTask}
         />
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteClick}
+          onClick={handleDeleteTask}
         />
       </div>
     </div>

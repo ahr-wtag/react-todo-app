@@ -38,16 +38,16 @@ const Navbar = ({ isSearchBarVisible, onSearchBarVisible }) => {
   return (
     <div className={style.container}>
       <div className={style.navbar}>
-        <div className={style.logo}>
+        <div className={style.navbar__logo}>
           <img src={ICON_LOGO} alt={LOGO_ICON_ALT_TEXT} />
-          <h1 className={style.title}>Todos</h1>
+          <h1 className={style.navbar__logo__title}>Todos</h1>
         </div>
-        <div className={style.searchBar}>
+        <div className={style.navbar__search__bar}>
           {isSearchBarVisible && (
             <input
               onChange={handleInputChange}
               autoFocus
-              className={style.searchField}
+              className={style.navbar__search__bar__field}
             ></input>
           )}
           <img

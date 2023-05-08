@@ -28,7 +28,7 @@ const AddTaskCard = ({
     setInputText(event.target.value);
   }
 
-  function handleAddClick() {
+  function handleAddTask() {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -50,11 +50,11 @@ const AddTaskCard = ({
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      handleAddClick();
+      handleAddTask();
     }
   }
 
-  function handleDeleteClick() {
+  function handleDeleteTask() {
     onCreateCard(!isCardCreated);
     showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   }
@@ -70,14 +70,14 @@ const AddTaskCard = ({
         onKeyDown={storeTaskOnEnter}
         className={style.textarea}
       ></textarea>
-      <div className={style.actionButtonContainer}>
-        <button className={style.button} onClick={handleAddClick}>
+      <div className={style.action__button__container}>
+        <button className={style.button} onClick={handleAddTask}>
           Add Task
         </button>
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteClick}
+          onClick={handleDeleteTask}
         />
       </div>
     </div>
