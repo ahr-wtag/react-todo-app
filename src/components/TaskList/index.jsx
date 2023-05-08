@@ -12,7 +12,7 @@ import {
 } from "utils/constant";
 
 const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
-  const [editableTask, setEditableTask] = useState(null);
+  const [editableTasks, setEditableTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const searchText = useSelector((state) => state.searchText);
 
@@ -65,12 +65,13 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
   return filteredTasks
     .slice(0, limit)
     .map((todo) =>
-      todo.id === editableTask ? (
+      editableTasks.includes(todo.id) ? (
         <EditTaskCard
           key={todo.id}
           id={todo.id}
           task={todo.task}
-          onEditableTask={setEditableTask}
+          editableTasks={editableTasks}
+          onEditableTasks={setEditableTasks}
         />
       ) : (
         <TaskCard
@@ -79,7 +80,8 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
           task={todo.task}
           createdTime={todo.createdTime}
           completed={todo.completed}
-          onEditableTask={setEditableTask}
+          editableTasks={editableTasks}
+          onEditableTasks={setEditableTasks}
         />
       )
     );
