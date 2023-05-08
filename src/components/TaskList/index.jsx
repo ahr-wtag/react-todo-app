@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 
 const TaskList = ({ tasks, limit }) => {
-  const [editableTasks, setEditableTasks] = useState(null);
+  const [editableTasks, setEditableTasks] = useState([]);
 
   return tasks
     .slice(0, limit)
     .map((todo) =>
-      todo.id === editableTasks ? (
+      editableTasks.includes(todo.id) ? (
         <EditTaskCard
           key={todo.id}
           id={todo.id}
