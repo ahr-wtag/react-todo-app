@@ -20,7 +20,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
     setInputText(event.target.value);
   }
 
-  function handleAddClick() {
+  function handleAddTask() {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -40,11 +40,11 @@ const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      handleAddClick();
+      handleAddTask();
     }
   }
 
-  function handleDeleteClick() {
+  function handleDeleteTask() {
     onCreateCard(!isCardCreated);
   }
 
@@ -61,14 +61,14 @@ const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
       ></textarea>
       <small className={style.error}>{error && error}</small>
 
-      <div className={style.actionButtonContainer}>
-        <button className={style.button} onClick={handleAddClick}>
+      <div className={style.action__button__container}>
+        <button className={style.button} onClick={handleAddTask}>
           Add Task
         </button>
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteClick}
+          onClick={handleDeleteTask}
         />
       </div>
     </div>

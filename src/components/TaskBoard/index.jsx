@@ -58,27 +58,28 @@ const TaskBoard = () => {
   return (
     <div className={style.container}>
       <h1>Add Task</h1>
-      <div className={style.topBar}>
+      <div className={style.top__bar}>
         <button
-          className={style.createButton}
+          className={style.top__bar__create__button}
           disabled={isCardCreated}
           onClick={handleCreateClick}
         >
           <img
-            className={style.addIcon}
+            className={style.top__bar__create__button__add__icon}
             src={ICON_ADD}
             alt={ADD_ICON_ALT_TEXT}
           />
           Create
         </button>
-        <div className={style.filterBar}>
+        <div className={style.top__bar__filter__bar}>
           {filterButtons.map((button) => (
             <button
               key={button.filter}
               onClick={() => setFilter(button.filter)}
               className={classNames({
-                [style.filterButton]: true,
-                [style.filterButtonActive]: button.filter == filter,
+                [style.top__bar__filter__bar__button]: true,
+                [style["top__bar__filter__bar__button--active"]]:
+                  button.filter == filter,
               })}
             >
               {button.label}
@@ -86,7 +87,7 @@ const TaskBoard = () => {
           ))}
         </div>
       </div>
-      <div className={style.taskBoard}>
+      <div className={style.task__board}>
         {isTaskListEmpty || (
           <EmptyPage
             onShowCreateCard={setIsCardCreated}
