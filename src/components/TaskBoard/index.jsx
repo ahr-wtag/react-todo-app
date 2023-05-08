@@ -20,7 +20,7 @@ const TaskBoard = () => {
           Create
         </button>
       </div>
-      <div className={style.taskBoard}>
+      <div className={style.task__board}>
         {isCardCreated && (
           <AddTaskCard isCardCreated onCreateCard={setIsCardCreated} />
         )}
