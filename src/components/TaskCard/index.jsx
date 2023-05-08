@@ -32,7 +32,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
     dispatch(completeTask(id));
   }
 
-  function handleDeleteClick() {
+  function handleDeleteTask() {
     dispatch(deleteTask(id));
   }
 
@@ -53,7 +53,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteClick}
+          onClick={handleDeleteTask}
         />
       </div>
       {completed && (
