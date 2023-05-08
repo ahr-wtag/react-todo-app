@@ -21,7 +21,7 @@ const AddTaskCard = ({
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  function handleInputText(event) {
+  function handleInputChange(event) {
     setInputText(event.target.value);
   }
 
@@ -59,7 +59,7 @@ const AddTaskCard = ({
       <textarea
         name="task"
         id="task"
-        onChange={handleInputText}
+        onChange={handleInputChange}
         value={inputText}
         autoFocus
         onKeyDown={storeTaskOnEnter}
