@@ -23,19 +23,19 @@
   line-height: 1.758rem;
 }
 
-.taskDone {
+.task__done {
   color: $vivid-green;
   text-decoration: line-through;
 }
 
-.dateText {
+.date__text {
   color: $blue-grey;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1rem;
 }
 
-.actionButtonContainer {
+.action__button__container {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -45,7 +45,7 @@
   width: 8.125rem;
 }
 
-.completedText {
+.completed__text {
   align-items: center;
   background: $lavender-blue;
   border-radius: 0.313rem;

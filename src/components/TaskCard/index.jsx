@@ -19,7 +19,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
 
   const TaskText = classNames({
     task: true,
-    [style.taskDone]: completed,
+    [style.task__done]: completed,
   });
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
 
   const dispatch = useDispatch();
 
-  function handleCompleteClick() {
+  function handleCompleteTask() {
     dispatch(completeTask(id));
   }
 
@@ -39,15 +39,15 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
   return (
     <div className={style.container}>
       <h1 className={TaskText}>{task}</h1>
-      <p className={style.dateText}>{`Created at: ${dateFormatter(
+      <p className={style.date__text}>{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>
-      <div className={style.actionButtonContainer}>
+      <div className={style.action__button__container}>
         {!completed && (
           <img
             src={ICON_COMPLETE}
             alt={COMPLETE_ICON_ALT_TEXT}
-            onClick={handleCompleteClick}
+            onClick={handleCompleteTask}
           />
         )}
         <img
@@ -57,7 +57,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
         />
       </div>
       {completed && (
-        <div className={style.completedText}>
+        <div className={style.completed__text}>
           Completed in {taskCompletedIn} {taskCompletedIn > 1 ? "days" : "day"}
         </div>
       )}

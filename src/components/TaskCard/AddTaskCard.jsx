@@ -55,7 +55,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
       ></textarea>
       <small className={style.error}>{error && error}</small>
 
-      <div className={style.actionButtonContainer}>
+      <div className={style.action__button__container}>
         <button className={style.button} onClick={handleAddClick}>
           Add Task
         </button>
