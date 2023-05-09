@@ -1,32 +1,9 @@
-import TaskCard from "components/TaskCard";
-import EditTaskCard from "components/TaskCard/EditTaskCard";
+import Task from "components/TaskCard/Task";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React from "react";
 
 const TaskList = ({ tasks }) => {
-  const [editableTasks, setEditableTasks] = useState([]);
-
-  return tasks.map((todo) =>
-    editableTasks.includes(todo.id) ? (
-      <EditTaskCard
-        key={todo.id}
-        id={todo.id}
-        task={todo.task}
-        editableTasks={editableTasks}
-        onEditableTasks={setEditableTasks}
-      />
-    ) : (
-      <TaskCard
-        key={todo.id}
-        id={todo.id}
-        task={todo.task}
-        createdTime={todo.createdTime}
-        completed={todo.completed}
-        editableTasks={editableTasks}
-        onEditableTasks={setEditableTasks}
-      />
-    )
-  );
+  return tasks.map((todo) => <Task key={todo.id} todo={todo} />);
 };
 
 TaskList.propTypes = {
