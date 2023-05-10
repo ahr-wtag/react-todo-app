@@ -12,21 +12,16 @@ import {
   KEY_ENTER,
 } from "utils/constant";
 
-const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
+const EditTaskCard = ({ id, task, onEditableTasks }) => {
   const [inputText, setInputText] = useState(task);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
 
-  function removeFromEditList() {
-    const updatedList = editableTasks.filter((taskId) => taskId !== id);
-    onEditableTasks(updatedList);
-  }
-
-  function handleInputText(event) {
+  function handleInputChange(event) {
     setInputText(event.target.value);
   }
 
-  function handleSaveClick() {
+  function onSave() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       setError("Please add task description");
@@ -34,7 +29,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
       return;
     }
 
-    removeFromEditList();
+    onEditableTasks(false);
     dispatch(
       editTask({
         id,
@@ -45,12 +40,12 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
     setInputText(null);
   }
 
-  function handleDeleteClick() {
-    removeFromEditList();
+  function handleDeleteTask() {
+    onEditableTasks(false);
   }
 
-  function handleCompleteClick() {
-    handleSaveClick();
+  function handleCompleteTask() {
+    onSave();
 
     dispatch(completeTask(id));
   }
@@ -58,7 +53,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      handleSaveClick();
+      onSave();
     }
   }
 
@@ -73,7 +68,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
       <textarea
         name="task"
         id="task"
-        onChange={handleInputText}
+        onChange={handleInputChange}
         value={inputText}
         autoFocus
         onFocus={sendCursorToEnd}
@@ -84,19 +79,19 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
 
       <div className={style.action__button__container}>
         <div>
-          <button className={style.button} onClick={handleSaveClick}>
+          <button className={style.button} onClick={onSave}>
             save
           </button>
         </div>
         <img
           src={ICON_COMPLETE}
           alt={COMPLETE_ICON_ALT_TEXT}
-          onClick={handleCompleteClick}
+          onClick={handleCompleteTask}
         />
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteClick}
+          onClick={handleDeleteTask}
         />
       </div>
     </div>
@@ -107,7 +102,6 @@ EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
   onEditableTasks: PropTypes.func.isRequired,
-  editableTasks: PropTypes.array.isRequired,
 };
 
 export default EditTaskCard;

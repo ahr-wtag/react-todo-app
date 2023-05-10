@@ -1,7 +1,5 @@
-import TaskCard from "components/TaskCard";
-import EditTaskCard from "components/TaskCard/EditTaskCard";
-import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { paginationLimitUpdate } from "store/actions";
 import {
@@ -10,9 +8,9 @@ import {
   FILTER_STATE_INCOMPLETE,
   PAGINATION_LIMIT,
 } from "utils/constant";
+import Task from "components/TaskCard/Task";
 
 const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
-  const [editableTasks, setEditableTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const dispatch = useDispatch();
   function getCompletedTasks() {
@@ -48,27 +46,7 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
 
   return filteredTasks
     .slice(0, limit)
-    .map((todo) =>
-      editableTasks.includes(todo.id) ? (
-        <EditTaskCard
-          key={todo.id}
-          id={todo.id}
-          task={todo.task}
-          editableTasks={editableTasks}
-          onEditableTasks={setEditableTasks}
-        />
-      ) : (
-        <TaskCard
-          key={todo.id}
-          id={todo.id}
-          task={todo.task}
-          createdTime={todo.createdTime}
-          completed={todo.completed}
-          editableTasks={editableTasks}
-          onEditableTasks={setEditableTasks}
-        />
-      )
-    );
+    .map((todo) => <Task key={todo.id} todo={todo} />);
 };
 
 TaskList.propTypes = {
