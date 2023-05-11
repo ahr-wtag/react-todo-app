@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
-import style from "components/TaskBoard/index.module.scss";
+import "components/TaskBoard/index.scss";
 import TaskList from "components/TaskList";
 
 const TaskBoard = () => {
@@ -13,14 +13,14 @@ const TaskBoard = () => {
   }
 
   return (
-    <div className={style.container}>
+    <div className="task-board">
       <h1>Add Task</h1>
       <div>
         <button disabled={showCreateCard} onClick={handleCreateTask}>
           Create
         </button>
       </div>
-      <div className={style.task__board}>
+      <div className="task-board__container">
         {showCreateCard && (
           <AddTaskCard isCardCreated onCreateCard={setShowCreateCard} />
         )}
