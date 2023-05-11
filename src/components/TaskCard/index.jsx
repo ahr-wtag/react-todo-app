@@ -10,7 +10,7 @@ import {
   DELETE_ICON_ALT_TEXT,
 } from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
-import "components/TaskCard/index.module.scss";
+import "components/TaskCard/index.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
 
