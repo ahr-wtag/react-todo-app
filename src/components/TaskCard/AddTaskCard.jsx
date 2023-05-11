@@ -28,7 +28,7 @@ const AddTaskCard = ({
     setInputText(event.target.value);
   }
 
-  function handleAddTask() {
+  function onSave() {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -50,7 +50,7 @@ const AddTaskCard = ({
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      handleAddTask();
+      onSave();
     }
   }
 
@@ -71,7 +71,7 @@ const AddTaskCard = ({
         className={style.textarea}
       ></textarea>
       <div className={style.action__button__container}>
-        <button className={style.button} onClick={handleAddTask}>
+        <button className={style.button} onClick={onSave}>
           Add Task
         </button>
         <img

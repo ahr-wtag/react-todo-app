@@ -17,21 +17,16 @@ import {
 import { showErrorToast, showSuccessToast } from "utils/notification";
 import { NOTIFICATION_MESSAGE_PROCESSING_ERROR } from "utils/constant/notification";
 
-const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
+const EditTaskCard = ({ id, task, onEditableTasks }) => {
   const [inputText, setInputText] = useState(task);
   const dispatch = useDispatch();
-
-  function removeFromEditList() {
-    const updatedList = editableTasks.filter((taskId) => taskId !== id);
-    onEditableTasks(updatedList);
-  }
 
   function handleInputText(event) {
     setInputText(event.target.value);
   }
 
   function storeTask(sanitizedTask) {
-    removeFromEditList();
+    onEditableTasks(false);
     dispatch(
       editTask({
         id,
@@ -42,7 +37,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
     setInputText(null);
   }
 
-  function handleSaveTask() {
+  function onSave() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
@@ -54,7 +49,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
   }
 
   function handleDeleteTask() {
-    removeFromEditList();
+    onEditableTasks(false);
     showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   }
 
@@ -73,7 +68,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      handleSaveTask();
+      onSave();
     }
   }
 
@@ -97,7 +92,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
       ></textarea>
       <div className={style.action__button__container}>
         <div>
-          <button className={style.button} onClick={handleSaveTask}>
+          <button className={style.button} onClick={onSave}>
             save
           </button>
         </div>
@@ -120,7 +115,6 @@ EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
   onEditableTasks: PropTypes.func.isRequired,
-  editableTasks: PropTypes.array.isRequired,
 };
 
 export default EditTaskCard;
