@@ -1,35 +1,36 @@
 @import "assets/style/color.scss";
-.container {
-  background-color: $white;
-  border: 0.063rem solid $light-periwinkle;
-}
 
 .navbar {
-  align-items: center;
-  display: flex;
-  height: 4.5rem;
-  justify-content: space-between;
-  margin: auto;
-  max-width: 78rem;
+  background-color: $white;
+  border: 0.063rem solid $light-periwinkle;
 
-  &__logo {
+  &__container {
     align-items: center;
     display: flex;
-    justify-content: center;
+    height: 4.5rem;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 78rem;
 
-    &__title {
-      color: $lavender-blue;
-      padding-left: 0.875rem;
+    &__logo {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+
+      &__title {
+        color: $lavender-blue;
+        padding-left: 0.875rem;
+      }
     }
   }
 
-  &__search__bar {
+  &__search-bar {
     align-items: center;
     display: flex;
     justify-content: flex-end;
     width: 100%;
 
-    &__field {
+    &--field {
       background-color: $white;
       border-radius: 0.313rem;
       border: 0.188rem solid $light-blue;

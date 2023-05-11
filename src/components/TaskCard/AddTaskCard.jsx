@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { addTask, searchTask } from "store/actions/";
-import style from "components/TaskCard/index.module.scss";
+import "components/TaskCard/index.scss";
 import {
   ICON_DELETE,
   DELETE_ICON_ALT_TEXT,
@@ -60,7 +60,7 @@ const AddTaskCard = ({
   }
 
   return (
-    <div className={style.container}>
+    <div className="task-card">
       <textarea
         name="task"
         id="task"
@@ -68,10 +68,10 @@ const AddTaskCard = ({
         value={inputText}
         autoFocus
         onKeyDown={storeTaskOnEnter}
-        className={style.textarea}
+        className="task-card__textarea"
       ></textarea>
-      <div className={style.action__button__container}>
-        <button className={style.button} onClick={onSave}>
+      <div className="task-card__action-button-container">
+        <button className="task-card__button" onClick={onSave}>
           Add Task
         </button>
         <img
