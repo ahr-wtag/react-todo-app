@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
-import style from "components/TaskBoard/index.module.scss";
+import "components/TaskBoard/index.scss";
 import Pagination from "components/Pagination";
 import classNames from "classnames";
 import {
@@ -56,30 +56,29 @@ const TaskBoard = () => {
   const isTaskListEmpty = Boolean(taskLength + showCreateCard);
 
   return (
-    <div className={style.container}>
+    <div className="task-board">
       <h1>Add Task</h1>
-      <div className={style.top__bar}>
+      <div className="top-bar">
         <button
-          className={style.top__bar__create__button}
+          className="top-bar__create-button"
           disabled={showCreateCard}
           onClick={handleCreateTask}
         >
           <img
-            className={style.top__bar__create__button__add__icon}
+            className="top-bar__create-button__icon"
             src={ICON_ADD}
             alt={ADD_ICON_ALT_TEXT}
           />
           Create
         </button>
-        <div className={style.top__bar__filter__bar}>
+        <div className="top-bar__filter-bar">
           {filterButtons.map((button) => (
             <button
               key={button.filter}
               onClick={() => setFilter(button.filter)}
               className={classNames({
-                [style.top__bar__filter__bar__button]: true,
-                [style["top__bar__filter__bar__button--active"]]:
-                  button.filter == filter,
+                "top-bar__filter-bar__button": true,
+                "top-bar__filter-bar__button--active": button.filter == filter,
               })}
             >
               {button.label}
@@ -87,7 +86,7 @@ const TaskBoard = () => {
           ))}
         </div>
       </div>
-      <div className={style.task__board}>
+      <div className="task-board__container">
         {isTaskListEmpty || (
           <EmptyPage
             onShowCreateCard={setShowCreateCard}
