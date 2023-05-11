@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { EMPTY_PAGE_ICON_ALT_TEXT, ICON_EMPTY_PAGE } from "utils/constant";
-import style from "components/EmptyPage/index.module.scss";
+import "components/EmptyPage/index.scss";
 
 const EmptyPage = ({ isCardCreated, onShowCreateCard }) => {
   function handleIconClick() {
@@ -9,12 +9,17 @@ const EmptyPage = ({ isCardCreated, onShowCreateCard }) => {
   }
 
   return (
-    <div className={style.container}>
-      <img
-        onClick={handleIconClick}
-        src={ICON_EMPTY_PAGE}
-        alt={EMPTY_PAGE_ICON_ALT_TEXT}
-      />
+    <div className="empty-page">
+      <div className="empty-page__container">
+        <img
+          onClick={handleIconClick}
+          src={ICON_EMPTY_PAGE}
+          alt={EMPTY_PAGE_ICON_ALT_TEXT}
+        />
+        <h1 className="empty-page__container--text">
+          You didn’t add any task. Please, add one.
+        </h1>
+      </div>
     </div>
   );
 };
