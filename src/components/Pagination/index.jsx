@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { PAGINATION_LIMIT } from "utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { paginationLimitUpdate } from "store/actions/";
-import style from "components/Pagination/index.module.scss";
+import "components/Pagination/index.scss";
 
 const Pagination = ({ children, isCardCreated, taskListLength }) => {
   const paginationLength = useSelector((state) => state.paginationLength);
@@ -19,8 +19,11 @@ const Pagination = ({ children, isCardCreated, taskListLength }) => {
   }
 
   return (
-    <div className={style.container}>
-      <button className={style.button} onClick={handlePaginateButtonClick}>
+    <div className="pagination__container">
+      <button
+        className="pagination__button"
+        onClick={handlePaginateButtonClick}
+      >
         {children}
       </button>
     </div>
