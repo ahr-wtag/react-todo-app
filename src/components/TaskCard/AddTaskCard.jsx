@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask } from "store/actions/";
-import style from "components/TaskCard/index.module.scss";
+import "components/TaskCard/index.scss";
 import { ICON_DELETE, DELETE_ICON_ALT_TEXT, KEY_ENTER } from "utils/constant";
 
 const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
@@ -43,7 +43,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
   }
 
   return (
-    <div className={style.container}>
+    <div className="task-card">
       <textarea
         name="task"
         id="task"
@@ -51,12 +51,12 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
         value={inputText}
         autoFocus
         onKeyDown={storeTaskOnEnter}
-        className={style.textarea}
+        className="task-card__textarea"
       ></textarea>
-      <small className={style.error}>{error && error}</small>
+      <small className="task-card__error">{error && error}</small>
 
-      <div className={style.action__button__container}>
-        <button className={style.button} onClick={handleAddTask}>
+      <div className="task-card__action-button-container">
+        <button className="task-card__button" onClick={handleAddTask}>
           Add Task
         </button>
         <img
