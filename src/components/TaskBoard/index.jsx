@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
-import style from "components/TaskBoard/index.module.scss";
+import "components/TaskBoard/index.scss";
 import Pagination from "components/Pagination";
 import {
   PAGINATION_LIMIT,
@@ -35,14 +35,14 @@ const TaskBoard = () => {
     tasks.length + showCreateCard > PAGINATION_LIMIT;
 
   return (
-    <div className={style.container}>
+    <div className="task-board">
       <h1>Add Task</h1>
       <div>
         <button disabled={showCreateCard} onClick={handleCreateTask}>
           Create
         </button>
       </div>
-      <div className={style.task__board}>
+      <div className="task-board__container">
         {showCreateCard && (
           <AddTaskCard
             isCardCreated={showCreateCard}

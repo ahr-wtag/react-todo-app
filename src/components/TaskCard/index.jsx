@@ -12,7 +12,7 @@ import {
   EDIT_ICON_ALT_TEXT,
 } from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
-import style from "components/TaskCard/index.module.scss";
+import "components/TaskCard/index.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
 
@@ -20,8 +20,8 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
 
   const TaskText = classNames({
-    task: true,
-    [style.task__done]: completed,
+    "task-card__task": true,
+    "task-card__task--done": completed,
   });
 
   useEffect(() => {
@@ -43,12 +43,12 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
   }
 
   return (
-    <div className={style.container}>
+    <div className="task-card">
       <h1 className={TaskText}>{task}</h1>
-      <p className={style.date__text}>{`Created at: ${dateFormatter(
+      <p className="task-card__date">{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>
-      <div className={style.action__button__container}>
+      <div className="task-card__action-button-container">
         {!completed && (
           <>
             <img
@@ -70,7 +70,7 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
         />
       </div>
       {completed && (
-        <div className={style.completed__text}>
+        <div className="task-card__completed">
           Completed in {taskCompletedIn} {taskCompletedIn > 1 ? "days" : "day"}
         </div>
       )}

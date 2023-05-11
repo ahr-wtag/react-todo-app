@@ -1,8 +1,8 @@
-.container {
+.navbar {
   margin: auto;
   max-width: 78rem;
 
-  &__navbar {
+  &__container {
     align-items: center;
     display: flex;
     height: 4.5rem;
@@ -12,10 +12,10 @@
       align-items: center;
       display: flex;
       justify-content: center;
+    }
 
-      &__title {
-        padding-left: 0.875rem;
-      }
+    &__title {
+      padding-left: 0.875rem;
     }
   }
 }
