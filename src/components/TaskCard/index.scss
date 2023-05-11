@@ -1,0 +1,35 @@
+@import "assets/style/color.scss";
+
+.task-card {
+  border-radius: 0.313rem;
+  border: 0.063rem solid $light-blue;
+  height: 10.188rem;
+  width: 23.875rem;
+
+  &__textarea {
+    border-radius: 0.313rem;
+    border: 0.188rem solid $light-blue;
+    height: 5rem;
+    resize: none;
+    width: 21.938rem;
+  }
+
+  &__error {
+    color: $red;
+    display: block;
+  }
+
+  &__action-button-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 8.125rem;
+  }
+
+  &__button {
+    border-radius: 0.313rem;
+    border: 0.063rem solid #dde2ff;
+    height: 2.25rem;
+    width: 5.688rem;
+  }
+}
