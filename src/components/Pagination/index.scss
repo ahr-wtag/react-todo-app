@@ -1,0 +1,22 @@
+@import "assets/style/color.scss";
+
+.pagination {
+  &__container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__button {
+    background-color: $navy-blue;
+    border-radius: 0.313rem;
+    border: 0.063rem solid $light-periwinkle;
+    color: $white;
+    font-size: 1rem;
+    font-weight: 500;
+    height: 2.25rem;
+    margin: 3.563rem 0;
+    width: 7.313rem;
+  }
+}
