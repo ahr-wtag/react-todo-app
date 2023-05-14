@@ -7,7 +7,7 @@ import { getDateDifference } from "utils/helpers/getDateDifference";
 import "components/TaskCard/index.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
-import { showErrorToast, showSuccessToast } from "utils/notification";
+import { showSuccessToast } from "utils/notification";
 import {
   ICON_COMPLETE,
   COMPLETE_ICON_ALT_TEXT,
@@ -35,13 +35,11 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
 
   function handleCompleteTask() {
     showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
-
     dispatch(completeTask(id));
   }
 
   function handleDeleteTask() {
-    showErrorToast(NOTIFICATION_MESSAGE_DELETE_TASK);
-
+    showSuccessToast(NOTIFICATION_MESSAGE_DELETE_TASK);
     dispatch(deleteTask(id));
   }
 

@@ -10,10 +10,10 @@ import {
   FILTER_STATE_ALL,
   NOTIFICATION_MESSAGE_EMPTY_TASK,
   NOTIFICATION_MESSAGE_ADD_TASK,
+  NOTIFICATION_MESSAGE_PROCESSING_ERROR,
 } from "utils/constant";
 import { sanitizeText } from "utils/helpers/sanitizeText";
 import { showErrorToast, showSuccessToast } from "utils/notification";
-import { NOTIFICATION_MESSAGE_PROCESSING_ERROR } from "utils/constant/notification";
 
 const AddTaskCard = ({
   onSearchBarVisible,
