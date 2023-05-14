@@ -36,6 +36,10 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
     dispatch(deleteTask(id));
   }
 
+  const completedInText = `Completed in ${taskCompletedIn} ${
+    taskCompletedIn > 1 ? "days" : "day"
+  }`;
+
   return (
     <div className="task-card">
       <h1 className={taskTextStyle}>{task}</h1>
@@ -57,9 +61,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
         />
       </div>
       {completed && (
-        <div className="task-card__completed">
-          Completed in {taskCompletedIn} {taskCompletedIn > 1 ? "days" : "day"}
-        </div>
+        <div className="task-card__completed">{completedInText}</div>
       )}
     </div>
   );
