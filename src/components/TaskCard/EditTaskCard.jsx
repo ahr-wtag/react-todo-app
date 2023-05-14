@@ -13,15 +13,15 @@ import {
   NOTIFICATION_MESSAGE_EMPTY_TASK,
   NOTIFICATION_MESSAGE_COMPLETE_TASK,
   NOTIFICATION_MESSAGE_UPDATE_TASK,
+  NOTIFICATION_MESSAGE_PROCESSING_ERROR,
 } from "utils/constant";
 import { showErrorToast, showSuccessToast } from "utils/notification";
-import { NOTIFICATION_MESSAGE_PROCESSING_ERROR } from "utils/constant/notification";
 
 const EditTaskCard = ({ id, task, onEditableTasks }) => {
   const [inputText, setInputText] = useState(task);
   const dispatch = useDispatch();
 
-  function handleInputText(event) {
+  function handleInputChange(event) {
     setInputText(event.target.value);
   }
 
@@ -83,7 +83,7 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
       <textarea
         name="task"
         id="task"
-        onChange={handleInputText}
+        onChange={handleInputChange}
         value={inputText}
         autoFocus
         onFocus={sendCursorToEnd}
