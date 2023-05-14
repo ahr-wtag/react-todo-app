@@ -42,12 +42,12 @@ const Navbar = ({ isSearchBarVisible, onSearchBarVisible }) => {
           <img src={ICON_LOGO} alt={LOGO_ICON_ALT_TEXT} />
           <h1 className="navbar__container__title">Todos</h1>
         </div>
-        <div className={"navbar__search-bar"}>
+        <div className="navbar__search-bar">
           {isSearchBarVisible && (
             <input
               onChange={handleInputChange}
               autoFocus
-              className={"navbar__search-bar--field"}
+              className="navbar__search-bar--field"
             ></input>
           )}
           <img
