@@ -17,7 +17,7 @@ import { dateFormatter } from "utils/helpers/dateFormatter";
 const TaskCard = ({ id, task, createdTime, completed }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
 
-  const TaskText = classNames({
+  const taskTextStyle = classNames({
     "task-card__task": true,
     "task-card__task--done": completed,
   });
@@ -38,7 +38,7 @@ const TaskCard = ({ id, task, createdTime, completed }) => {
 
   return (
     <div className="task-card">
-      <h1 className={TaskText}>{task}</h1>
+      <h1 className={taskTextStyle}>{task}</h1>
       <p className="task-card__date">{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>
