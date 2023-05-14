@@ -7,7 +7,6 @@
   min-height: 8.313rem;
   padding: 0.938rem;
   position: relative;
-  width: 22rem;
 
   &__textarea {
     border-radius: 0.313rem;
@@ -35,7 +34,7 @@
     display: flex;
     justify-content: space-between;
     position: absolute;
-    width: 22rem;
+    width: calc(100% - 1.875rem);
   }
 
   &__button {
