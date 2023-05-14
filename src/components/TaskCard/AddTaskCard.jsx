@@ -19,7 +19,7 @@ const AddTaskCard = ({
   onSearchBarVisible,
   isCardCreated,
   onCreateCard,
-  setFilter,
+  onFilterState,
 }) => {
   const [inputText, setInputText] = useState("");
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const AddTaskCard = ({
     dispatch(searchTask(""));
     onSearchBarVisible(false);
     setInputText(null);
-    setFilter(FILTER_STATE_ALL);
+    onFilterState(FILTER_STATE_ALL);
     showSuccessToast(NOTIFICATION_MESSAGE_ADD_TASK);
   }
 
@@ -90,7 +90,7 @@ AddTaskCard.propTypes = {
   isCardCreated: PropTypes.bool.isRequired,
   onCreateCard: PropTypes.func.isRequired,
   onSearchBarVisible: PropTypes.func.isRequired,
-  setFilter: PropTypes.func.isRequired,
+  onFilterState: PropTypes.func.isRequired,
 };
 
 export default AddTaskCard;

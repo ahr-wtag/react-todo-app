@@ -10,45 +10,51 @@ import {
   PAGINATION_LIMIT,
 } from "utils/constant";
 
-const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
+const TaskList = ({
+  tasks,
+  limit,
+  filterState,
+  setTaskLength,
+  isCardCreated,
+}) => {
   const [filteredTasks, setFilteredTasks] = useState([]);
   const searchText = useSelector((state) => state.searchText);
 
   const dispatch = useDispatch();
   function getCompletedTasks() {
     return tasks
-      .filter((todo) => todo.completed == true)
-      .filter((task) =>
-        task.task.toLowerCase().includes(searchText.toLowerCase())
+      .filter((todo) => todo.completed === true)
+      .filter((todo) =>
+        todo.task.toLowerCase().includes(searchText.toLowerCase())
       );
   }
 
   function getIncompletedTasks() {
     return tasks
       .filter((todo) => todo.completed !== true)
-      .filter((task) =>
-        task.task.toLowerCase().includes(searchText.toLowerCase())
+      .filter((todo) =>
+        todo.task.toLowerCase().includes(searchText.toLowerCase())
       );
   }
   function getAllTasks() {
-    return tasks.filter((task) =>
-      task.task.toLowerCase().includes(searchText.toLowerCase())
+    return tasks.filter((todo) =>
+      todo.task.toLowerCase().includes(searchText.toLowerCase())
     );
   }
 
   useEffect(() => {
-    switch (filter) {
+    switch (filterState) {
       case FILTER_STATE_COMPLETE:
-        setFilteredTasks(getCompletedTasks);
+        setFilteredTasks(getCompletedTasks());
         break;
       case FILTER_STATE_INCOMPLETE:
-        setFilteredTasks(getIncompletedTasks);
+        setFilteredTasks(getIncompletedTasks());
         break;
       case FILTER_STATE_ALL:
-        setFilteredTasks(getAllTasks);
+        setFilteredTasks(getAllTasks());
         break;
     }
-  }, [tasks, filter, searchText]);
+  }, [tasks, filterState, searchText]);
 
   useEffect(() => {
     setTaskLength(filteredTasks.length);
@@ -58,7 +64,7 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
     isCardCreated
       ? dispatch(paginationLimitUpdate(PAGINATION_LIMIT - 1))
       : dispatch(paginationLimitUpdate(PAGINATION_LIMIT));
-  }, [filter]);
+  }, [filterState]);
 
   return filteredTasks
     .slice(0, limit)
@@ -68,7 +74,7 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
 TaskList.propTypes = {
   tasks: PropTypes.array.isRequired,
   limit: PropTypes.number.isRequired,
-  filter: PropTypes.string.isRequired,
+  filterState: PropTypes.string.isRequired,
   setTaskLength: PropTypes.func.isRequired,
   isCardCreated: PropTypes.bool.isRequired,
 };
