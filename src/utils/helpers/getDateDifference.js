@@ -1,7 +1,8 @@
+import moment from "moment";
+
 export const getDateDifference = (from) => {
-  let date = new Date(from);
-  let currentDate = new Date();
-  let differenceInTime = currentDate.getTime() - date.getTime();
-  let differenceInDays = differenceInTime / (1000 * 3600 * 24);
-  return Math.max(Math.round(differenceInDays), 1);
+  const startDate = moment(from);
+  const endDate = moment();
+  const diffInDays = endDate.diff(startDate, "days");
+  return Math.max(diffInDays, 1);
 };

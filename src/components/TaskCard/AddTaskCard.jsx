@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { addTask, searchTask } from "store/actions/";
-import style from "components/TaskCard/index.module.scss";
+import "components/TaskCard/index.scss";
 import {
   ICON_DELETE,
   DELETE_ICON_ALT_TEXT,
@@ -24,11 +24,11 @@ const AddTaskCard = ({
   const [inputText, setInputText] = useState("");
   const dispatch = useDispatch();
 
-  function handleInputText(event) {
+  function handleInputChange(event) {
     setInputText(event.target.value);
   }
 
-  function handleAddClick() {
+  function onSave() {
     const task = sanitizeText(inputText);
 
     if (task === "") {
@@ -50,35 +50,35 @@ const AddTaskCard = ({
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      handleAddClick();
+      onSave();
     }
   }
 
-  function handleDeleteClick() {
+  function handleDeleteTask() {
     onCreateCard(!isCardCreated);
     showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   }
 
   return (
-    <div className={style.container}>
+    <div className="task-card">
       <textarea
         name="task"
         id="task"
-        onChange={handleInputText}
+        onChange={handleInputChange}
         value={inputText}
         autoFocus
         onKeyDown={storeTaskOnEnter}
-        className={style.textarea}
+        className="task-card__textarea"
       ></textarea>
-      <div className={style.bottomBar}>
-        <div className={style.actionButtonContainer}>
-          <button className={style.button} onClick={handleAddClick}>
+      <div className="task-card__bottom-bar">
+        <div className="task-card__action-button-container">
+          <button className="task-card__button" onClick={onSave}>
             Add Task
           </button>
           <img
             src={ICON_DELETE}
             alt={DELETE_ICON_ALT_TEXT}
-            onClick={handleDeleteClick}
+            onClick={handleDeleteTask}
           />
         </div>
       </div>
