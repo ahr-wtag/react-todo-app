@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
 import { getDateDifference } from "utils/helpers/getDateDifference";
-import style from "components/TaskCard/index.module.scss";
+import "components/TaskCard/index.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
 import { showErrorToast, showSuccessToast } from "utils/notification";
@@ -19,19 +19,12 @@ import {
   NOTIFICATION_MESSAGE_DELETE_TASK,
 } from "utils/constant";
 
-const TaskCard = ({
-  id,
-  task,
-  createdTime,
-  completed,
-  onEditableTasks,
-  editableTasks,
-}) => {
+const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
 
   const TaskText = classNames({
-    [style.task]: true,
-    [style.taskDone]: completed,
+    "task-card__task": true,
+    "task-card__task--done": completed,
   });
 
   useEffect(() => {
@@ -40,53 +33,53 @@ const TaskCard = ({
 
   const dispatch = useDispatch();
 
-  function handleCompleteClick() {
+  function handleCompleteTask() {
     showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
 
     dispatch(completeTask(id));
   }
 
-  function handleDeleteClick() {
+  function handleDeleteTask() {
     showErrorToast(NOTIFICATION_MESSAGE_DELETE_TASK);
 
     dispatch(deleteTask(id));
   }
 
-  function handleEditClick() {
-    onEditableTasks([...editableTasks, id]);
+  function handleEditTask() {
+    onEditableTasks(true);
   }
 
   return (
-    <div className={style.container}>
+    <div className="task-card">
       <h1 className={TaskText}>{task}</h1>
-      <p className={style.dateText}>{`Created at: ${dateFormatter(
+      <p className="task-card__date">{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>
 
-      <div className={style.bottomBar}>
-        <div className={style.actionButtonContainer}>
+      <div className="task-card__bottom-bar">
+        <div className="task-card__action-button-container">
           {!completed && (
             <>
               <img
                 src={ICON_COMPLETE}
                 alt={COMPLETE_ICON_ALT_TEXT}
-                onClick={handleCompleteClick}
+                onClick={handleCompleteTask}
               />
               <img
                 src={ICON_EDIT}
                 alt={EDIT_ICON_ALT_TEXT}
-                onClick={handleEditClick}
+                onClick={handleEditTask}
               />
             </>
           )}
           <img
             src={ICON_DELETE}
             alt={DELETE_ICON_ALT_TEXT}
-            onClick={handleDeleteClick}
+            onClick={handleDeleteTask}
           />
         </div>
         {completed && (
-          <div className={style.completedText}>
+          <div className="task-card__completed">
             Completed in {taskCompletedIn}{" "}
             {taskCompletedIn > 1 ? "days" : "day"}
           </div>
@@ -102,7 +95,6 @@ TaskCard.propTypes = {
   createdTime: checkDateString,
   completed: PropTypes.bool.isRequired,
   onEditableTasks: PropTypes.func.isRequired,
-  editableTasks: PropTypes.array.isRequired,
 };
 
 export default TaskCard;

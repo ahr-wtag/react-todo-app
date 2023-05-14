@@ -1,0 +1,19 @@
+@import "assets/style/color.scss";
+
+.empty-page {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  &__container {
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--text {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: $navy-blue;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { editTask, completeTask } from "store/actions/";
-import style from "components/TaskCard/index.module.scss";
+import "components/TaskCard/index.scss";
 import {
   ICON_COMPLETE,
   COMPLETE_ICON_ALT_TEXT,
@@ -17,21 +17,16 @@ import {
 import { showErrorToast, showSuccessToast } from "utils/notification";
 import { NOTIFICATION_MESSAGE_PROCESSING_ERROR } from "utils/constant/notification";
 
-const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
+const EditTaskCard = ({ id, task, onEditableTasks }) => {
   const [inputText, setInputText] = useState(task);
   const dispatch = useDispatch();
-
-  function removeFromEditList() {
-    const updatedList = editableTasks.filter((taskId) => taskId !== id);
-    onEditableTasks(updatedList);
-  }
 
   function handleInputText(event) {
     setInputText(event.target.value);
   }
 
   function storeTask(sanitizedTask) {
-    removeFromEditList();
+    onEditableTasks(false);
     dispatch(
       editTask({
         id,
@@ -42,7 +37,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
     setInputText(null);
   }
 
-  function handleSaveClick() {
+  function onSave() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
@@ -53,12 +48,12 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
     showSuccessToast(NOTIFICATION_MESSAGE_UPDATE_TASK);
   }
 
-  function handleDeleteClick() {
-    removeFromEditList();
+  function handleDeleteTask() {
+    onEditableTasks(false);
     showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   }
 
-  function handleCompleteClick() {
+  function handleCompleteTask() {
     const sanitizedTask = sanitizeText(inputText);
     if (sanitizedTask === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
@@ -73,7 +68,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      handleSaveClick();
+      onSave();
     }
   }
 
@@ -84,7 +79,7 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
   }
 
   return (
-    <div className={style.container}>
+    <div className="task-card">
       <textarea
         name="task"
         id="task"
@@ -93,24 +88,24 @@ const EditTaskCard = ({ id, task, editableTasks, onEditableTasks }) => {
         autoFocus
         onFocus={sendCursorToEnd}
         onKeyDown={storeTaskOnEnter}
-        className={style.textarea}
+        className="task-card__textarea"
       ></textarea>
-      <div className={style.bottomBar}>
-        <div className={style.actionButtonContainer}>
+      <div className="task-card__bottom-bar">
+        <div className="task-card__action-button-container">
           <div>
-            <button className={style.button} onClick={handleSaveClick}>
+            <button className="task-card__button" onClick={onSave}>
               save
             </button>
           </div>
           <img
             src={ICON_COMPLETE}
             alt={COMPLETE_ICON_ALT_TEXT}
-            onClick={handleCompleteClick}
+            onClick={handleCompleteTask}
           />
           <img
             src={ICON_DELETE}
             alt={DELETE_ICON_ALT_TEXT}
-            onClick={handleDeleteClick}
+            onClick={handleDeleteTask}
           />
         </div>
       </div>
@@ -122,7 +117,6 @@ EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
   onEditableTasks: PropTypes.func.isRequired,
-  editableTasks: PropTypes.array.isRequired,
 };
 
 export default EditTaskCard;
