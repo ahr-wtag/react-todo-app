@@ -61,13 +61,17 @@
 }
 
 @media only screen and (max-width: $screen-sm) {
-  .taskBoard {
-    grid-template-columns: repeat(1, 100%);
+  .task-board {
+    &__container {
+      grid-template-columns: repeat(1, 100%);
+    }
   }
 }
 
 @media only screen and (min-width: $screen-sm) and (max-width: $screen-md) {
-  .taskBoard {
-    grid-template-columns: repeat(2, calc((100% - 2.125rem) / 2));
+  .task-board {
+    &__container {
+      grid-template-columns: repeat(2, calc((100% - 2.125rem) / 2));
+    }
   }
 }
