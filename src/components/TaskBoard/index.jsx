@@ -23,7 +23,7 @@ import EmptyPage from "components/EmptyPage";
 
 const TaskBoard = ({ onSearchBarVisible }) => {
   const [showCreateCard, setShowCreateCard] = useState(false);
-  const [filter, setFilter] = useState(FILTER_STATE_ALL);
+  const [filterState, setFilterState] = useState(FILTER_STATE_ALL);
   const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const isLoading = useSelector((state) => state.loadingState);
@@ -80,10 +80,11 @@ const TaskBoard = ({ onSearchBarVisible }) => {
           {filterButtons.map((button) => (
             <button
               key={button.filter}
-              onClick={() => setFilter(button.filter)}
+              onClick={() => setFilterState(button.filter)}
               className={classNames({
                 "top-bar__filter-bar__button": true,
-                "top-bar__filter-bar__button--active": button.filter == filter,
+                "top-bar__filter-bar__button--active":
+                  button.filter == filterState,
               })}
             >
               {button.label}
@@ -104,12 +105,12 @@ const TaskBoard = ({ onSearchBarVisible }) => {
             onSearchBarVisible={onSearchBarVisible}
             isCardCreated={showCreateCard}
             onCreateCard={setShowCreateCard}
-            setFilter={setFilter}
+            onFilterState={setFilterState}
           />
         )}
         <TaskList
           setTaskLength={setTaskLength}
-          filter={filter}
+          filterState={filterState}
           limit={paginationLength}
           tasks={tasks}
           isCardCreated={showCreateCard}
