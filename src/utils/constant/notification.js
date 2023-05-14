@@ -1,4 +1,4 @@
-export const NOTIFICATION_SETTINGS_SUCCESS = {
+export const NOTIFICATION_SETTINGS = {
   position: "top-center",
   autoClose: 5000,
   hideProgressBar: true,
@@ -8,16 +8,7 @@ export const NOTIFICATION_SETTINGS_SUCCESS = {
   progress: undefined,
   theme: "colored",
 };
-export const NOTIFICATION_SETTINGS_ERROR = {
-  position: "top-center",
-  autoClose: 5000,
-  hideProgressBar: true,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  theme: "colored",
-};
+
 export const NOTIFICATION_MESSAGE_ADD_TASK = "Task Created!";
 export const NOTIFICATION_MESSAGE_DELETE_TASK = "Task Deleted!";
 export const NOTIFICATION_MESSAGE_COMPLETE_TASK = "Task Completed!";

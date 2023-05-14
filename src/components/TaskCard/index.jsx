@@ -7,7 +7,7 @@ import { getDateDifference } from "utils/helpers/getDateDifference";
 import "components/TaskCard/index.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
-import { showErrorToast, showSuccessToast } from "utils/notification";
+import { showSuccessToast } from "utils/notification";
 import {
   ICON_COMPLETE,
   COMPLETE_ICON_ALT_TEXT,
@@ -22,7 +22,7 @@ import {
 const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
   const [taskCompletedIn, setTaskCompletedIn] = useState(null);
 
-  const TaskText = classNames({
+  const taskTextStyle = classNames({
     "task-card__task": true,
     "task-card__task--done": completed,
   });
@@ -35,13 +35,11 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
 
   function handleCompleteTask() {
     showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
-
     dispatch(completeTask(id));
   }
 
   function handleDeleteTask() {
-    showErrorToast(NOTIFICATION_MESSAGE_DELETE_TASK);
-
+    showSuccessToast(NOTIFICATION_MESSAGE_DELETE_TASK);
     dispatch(deleteTask(id));
   }
 
@@ -51,7 +49,7 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
 
   return (
     <div className="task-card">
-      <h1 className={TaskText}>{task}</h1>
+      <h1 className={taskTextStyle}>{task}</h1>
       <p className="task-card__date">{`Created at: ${dateFormatter(
         createdTime
       )}`}</p>

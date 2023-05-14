@@ -1,8 +1,8 @@
-import moment from "moment";
+import { differenceInDays } from "date-fns";
 
 export const getDateDifference = (from) => {
-  const startDate = moment(from);
-  const endDate = moment();
-  const diffInDays = endDate.diff(startDate, "days");
+  const startDate = new Date(from);
+  const endDate = new Date();
+  const diffInDays = differenceInDays(endDate, startDate);
   return Math.max(diffInDays, 1);
 };
