@@ -14,7 +14,8 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
   const [filteredTasks, setFilteredTasks] = useState([]);
   const dispatch = useDispatch();
   function getCompletedTasks() {
-    return tasks.filter((todo) => todo.completed == true);
+    console.log("calling");
+    return tasks.filter((todo) => todo.completed === true);
   }
 
   function getIncompletedTasks() {
@@ -26,7 +27,7 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
         setFilteredTasks(getCompletedTasks());
         break;
       case FILTER_STATE_INCOMPLETE:
-        setFilteredTasks(getIncompletedTasks);
+        setFilteredTasks(getIncompletedTasks());
         break;
       case FILTER_STATE_ALL:
         setFilteredTasks(tasks);
