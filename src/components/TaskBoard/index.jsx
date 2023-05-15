@@ -62,7 +62,7 @@ const TaskBoard = ({ onSearchBarVisible }) => {
   return (
     <div className="task-board">
       {isLoading && <Loading />}
-      <h1>Add Task</h1>
+      <h1 className="title">Add Task</h1>
       <div className="top-bar">
         <button
           className="top-bar__create-button"
