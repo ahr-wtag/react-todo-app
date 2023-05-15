@@ -1,5 +1,5 @@
 import React from "react";
-import style from "components/Shared/Navbar/index.module.scss";
+import "components/Shared/Navbar/index.scss";
 import {
   ICON_LOGO,
   LOGO_ICON_ALT_TEXT,
@@ -36,18 +36,19 @@ const Navbar = ({ isSearchBarVisible, onSearchBarVisible }) => {
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.navbar}>
-        <div className={style.logo}>
+    <div className="navbar">
+      <div className="navbar__container">
+        <div className="navbar__container__logo">
           <img src={ICON_LOGO} alt={LOGO_ICON_ALT_TEXT} />
-          <h1 className={style.title}>Todos</h1>
+          <h1 className="navbar__container__title">Todos</h1>
         </div>
-        <div className={style.searchBar}>
+        <div className="navbar__search-bar">
           {isSearchBarVisible && (
             <input
               onChange={handleInputChange}
               autoFocus
-              className={style.searchField}
+              placeholder="search..."
+              className="navbar__search-bar--field"
             ></input>
           )}
           <img

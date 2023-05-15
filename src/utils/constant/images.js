@@ -4,6 +4,7 @@ import deleteIcon from "assets/images/icons/deleteIcon.png";
 import completeIcon from "assets/images/icons/completeIcon.png";
 import editIcon from "assets/images/icons/editIcon.png";
 import addIcon from "assets/images/icons/addIcon.png";
+import tickIcon from "assets/images/icons/tick.png";
 import emptyPageIcon from "assets/images/icons/emptyPageIcon.png";
 
 export const ICON_LOGO = logo;
@@ -12,6 +13,7 @@ export const ICON_DELETE = deleteIcon;
 export const ICON_COMPLETE = completeIcon;
 export const ICON_EDIT = editIcon;
 export const ICON_ADD = addIcon;
+export const ICON_TICK = tickIcon;
 export const ICON_EMPTY_PAGE = emptyPageIcon;
 
 export const LOGO_ICON_ALT_TEXT = "logo";
@@ -20,4 +22,5 @@ export const DELETE_ICON_ALT_TEXT = "delete icon";
 export const COMPLETE_ICON_ALT_TEXT = "complete icon";
 export const EDIT_ICON_ALT_TEXT = "edit icon";
 export const ADD_ICON_ALT_TEXT = "add icon";
+export const TICK_ICON_ALT_TEXT = "tick icon";
 export const EMPTY_PAGE_ICON_ALT_TEXT = "Empty Page Icon";

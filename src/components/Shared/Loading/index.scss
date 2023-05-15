@@ -1,0 +1,36 @@
+@import "assets/style/color.scss";
+
+.screen-blocker {
+  background-color: $transparent-blue;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 4.5rem;
+  width: 100%;
+  z-index: 9999;
+}
+
+.loading-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &__loader {
+    width: 6.25rem;
+    height: 6.25rem;
+    border: 0.625rem solid $lavender-blue;
+    border-top: 0.7rem solid rgba(0, 0, 0, 0);
+    border-radius: 6.25rem;
+    animation: spin 1.5s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
