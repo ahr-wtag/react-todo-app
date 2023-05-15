@@ -12,7 +12,6 @@ const EmptyPage = ({ isCardCreated, onShowCreateCard }) => {
     <div className="empty-page">
       <div className="empty-page__container">
         <img
-          className="empty-page__container--icon"
           onClick={handleIconClick}
           src={ICON_EMPTY_PAGE}
           alt={EMPTY_PAGE_ICON_ALT_TEXT}

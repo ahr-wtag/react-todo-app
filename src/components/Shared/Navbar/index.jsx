@@ -47,7 +47,6 @@ const Navbar = ({ isSearchBarVisible, onSearchBarVisible }) => {
             <input
               onChange={handleInputChange}
               autoFocus
-              placeholder="search..."
               className="navbar__search-bar--field"
             ></input>
           )}
