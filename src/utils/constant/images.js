@@ -5,8 +5,8 @@ import completeIcon from "assets/images/icons/completeIcon.png";
 import editIcon from "assets/images/icons/editIcon.png";
 import addIcon from "assets/images/icons/addIcon.png";
 import tickIcon from "assets/images/icons/tick.png";
-
 import emptyPageIcon from "assets/images/icons/emptyPageIcon.png";
+
 export const ICON_LOGO = logo;
 export const ICON_SEARCH = searchIcon;
 export const ICON_DELETE = deleteIcon;
