@@ -90,22 +90,24 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
         onKeyDown={storeTaskOnEnter}
         className="task-card__textarea"
       ></textarea>
-      <div className="task-card__action-button-container">
-        <div>
-          <button className="task-card__button" onClick={onSave}>
-            save
-          </button>
+      <div className="task-card__bottom-bar">
+        <div className="task-card__action-button-container">
+          <div>
+            <button className="task-card__button" onClick={onSave}>
+              save
+            </button>
+          </div>
+          <img
+            src={ICON_COMPLETE}
+            alt={COMPLETE_ICON_ALT_TEXT}
+            onClick={handleCompleteTask}
+          />
+          <img
+            src={ICON_DELETE}
+            alt={DELETE_ICON_ALT_TEXT}
+            onClick={handleDeleteTask}
+          />
         </div>
-        <img
-          src={ICON_COMPLETE}
-          alt={COMPLETE_ICON_ALT_TEXT}
-          onClick={handleCompleteTask}
-        />
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteTask}
-        />
       </div>
     </div>
   );
