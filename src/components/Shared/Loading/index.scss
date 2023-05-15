@@ -11,18 +11,20 @@
 }
 
 .loading-container {
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
   &__loader {
-    width: 6.25rem;
-    height: 6.25rem;
-    border: 0.625rem solid $lavender-blue;
+    animation: spin 1s linear infinite;
+    border-radius: 50%;
+    border: 0.7rem solid $lavender-blue;
     border-top: 0.7rem solid rgba(0, 0, 0, 0);
-    border-radius: 6.25rem;
-    animation: spin 1.5s linear infinite;
+    bottom: 50%;
+    height: 6.25rem;
+    left: 50%;
+    position: absolute;
+    width: 6.25rem;
   }
 }
 
