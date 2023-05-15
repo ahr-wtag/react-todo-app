@@ -17,11 +17,11 @@
       align-items: center;
       display: flex;
       justify-content: center;
+    }
 
-      &__title {
-        color: $lavender-blue;
-        padding-left: 0.875rem;
-      }
+    &__title {
+      color: $lavender-blue;
+      padding-left: 0.875rem;
     }
   }
 
