@@ -53,11 +53,12 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
 
   return (
     <div className="task-card">
-      <h1 className={taskTextStyle}>{task}</h1>
-      <p className="task-card__date">{`Created at: ${dateFormatter(
-        createdTime
-      )}`}</p>
-
+      <div className="task-card__top-bar">
+        <h1 className={taskTextStyle}>{task}</h1>
+        <p className="task-card__date">{`Created at: ${dateFormatter(
+          createdTime
+        )}`}</p>
+      </div>
       <div className="task-card__bottom-bar">
         <div className="task-card__action-button-container">
           {!completed && (
