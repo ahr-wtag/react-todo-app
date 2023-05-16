@@ -16,8 +16,8 @@ import { sanitizeText } from "utils/helpers/sanitizeText";
 import { showErrorToast, showSuccessToast } from "utils/notification";
 
 const AddTaskCard = ({
-  onSearchBarVisible,
   isCardCreated,
+  onSearchBarVisible,
   onCreateCard,
   onFilterState,
 }) => {
