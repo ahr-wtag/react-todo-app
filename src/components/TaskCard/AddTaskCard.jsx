@@ -12,8 +12,8 @@ import {
 import { sanitizeText } from "utils/helpers/sanitizeText";
 
 const AddTaskCard = ({
-  onSearchBarVisible,
   isCardCreated,
+  onSearchBarVisible,
   onCreateCard,
   onFilterState,
 }) => {

@@ -16,24 +16,24 @@ import { debounce } from "utils/helpers/debouce";
 const Navbar = ({ isSearchBarVisible, onSearchBarVisible }) => {
   const dispatch = useDispatch();
 
-  const handleInputChange = (event) => {
+  function handleInputChange(event) {
     dispatch(loadingState(true));
     const sanitizedText = sanitizeText(event.target.value);
     handleSearchWithDebounce(sanitizedText);
-  };
+  }
 
-  const handleSearchInput = (sanitizedText) => {
+  function handleSearchInput(sanitizedText) {
     dispatch(searchTask(sanitizedText));
     dispatch(loadingState(false));
-  };
+  }
 
   const handleSearchWithDebounce = debounce(handleSearchInput);
 
-  const setVisibality = () => {
+  function setVisibality() {
     onSearchBarVisible(!isSearchBarVisible);
     dispatch(paginationLimitUpdate(PAGINATION_LIMIT));
     dispatch(searchTask(""));
-  };
+  }
 
   return (
     <div className="navbar">
