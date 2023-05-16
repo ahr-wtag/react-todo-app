@@ -23,6 +23,10 @@
     width: 100%;
   }
 
+  &__textarea:focus {
+    outline: none;
+  }
+
   &__error {
     color: $red;
     display: block;
