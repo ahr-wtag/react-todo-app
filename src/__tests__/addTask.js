@@ -1,10 +1,9 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "store/store";
 import AddTaskCard from "components/TaskCard/AddTaskCard";
 import { DELETE_ICON_ALT_TEXT } from "utils/constant";
-
 const DemoAddTaskCard = () => {
   return (
     <Provider store={store}>
@@ -12,7 +11,7 @@ const DemoAddTaskCard = () => {
         isCardCreated={true}
         onCreateCard={jest.fn()}
         onSearchBarVisible={jest.fn()}
-        setFilter={jest.fn()}
+        onFilterState={jest.fn()}
       />
     </Provider>
   );
@@ -27,5 +26,13 @@ describe("Add Task", () => {
     expect(textArea).toBeInTheDocument();
     expect(button).toBeInTheDocument();
     expect(deleteIcon).toHaveAttribute("alt", DELETE_ICON_ALT_TEXT);
+  });
+
+  it("Expected user to type in text area", () => {
+    render(<DemoAddTaskCard />);
+    const textArea = screen.getByRole("textbox");
+    const userInput = "typing...";
+    fireEvent.change(textArea, { target: { value: userInput } });
+    expect(textArea.value).toBe(userInput);
   });
 });

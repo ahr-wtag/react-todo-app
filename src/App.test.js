@@ -12,6 +12,6 @@ test("renders app", () => {
       </Provider>
     </BrowserRouter>
   );
-  const linkElement = screen.getByText(/Add Tasks/i);
+  const linkElement = screen.getByText(/Add Task/i);
   expect(linkElement).toBeInTheDocument();
 });
