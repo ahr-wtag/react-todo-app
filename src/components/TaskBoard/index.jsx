@@ -5,7 +5,6 @@ import "components/TaskBoard/index.scss";
 import Pagination from "components/Pagination";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-
 import {
   PAGINATION_LIMIT,
   TEXT_SHOW_MORE,
