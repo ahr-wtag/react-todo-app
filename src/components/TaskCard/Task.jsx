@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-
 import EditTaskCard from "components/TaskCard/EditTaskCard";
 import TaskCard from "components/TaskCard";
 
 const Task = ({ todo }) => {
   const [isEditable, setIsEditable] = useState(false);
+
   return (
     <>
       {isEditable ? (

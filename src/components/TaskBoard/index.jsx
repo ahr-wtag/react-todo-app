@@ -16,6 +16,8 @@ const TaskBoard = () => {
   const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const dispatch = useDispatch();
+  const isPaginationButtonVisible =
+    tasks.length + showCreateCard > PAGINATION_LIMIT;
 
   useEffect(() => {
     if (showCreateCard) {
@@ -30,9 +32,6 @@ const TaskBoard = () => {
   function handleCreateTask() {
     setShowCreateCard(!showCreateCard);
   }
-
-  const isPaginationButtonVisible =
-    tasks.length + showCreateCard > PAGINATION_LIMIT;
 
   return (
     <div className="task-board">
