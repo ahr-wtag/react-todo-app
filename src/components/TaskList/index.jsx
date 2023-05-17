@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import Task from "components/TaskCard/Task";
 
 const TaskList = ({ tasks, limit }) => {
-  return tasks
-    .slice(0, limit)
-    .map((todo) => <Task key={todo.id} todo={todo} />);
+  const paginatedTasks = tasks.slice(0, limit);
+  return paginatedTasks.map((todo) => <Task key={todo.id} todo={todo} />);
 };
 
 TaskList.propTypes = {
