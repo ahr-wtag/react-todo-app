@@ -3,7 +3,7 @@
 
 .navbar {
   background-color: $white;
-  border: 0.063rem solid $light-periwinkle;
+  border-bottom: 0.063rem solid $light-periwinkle;
 
   &__container {
     align-items: center;
@@ -40,8 +40,13 @@
       font-weight: 500;
       height: 2.25rem;
       margin-right: 1.063rem;
-      width: 50%;
+      width: 32.375rem;
       font-weight: 500;
+      padding: 0 0.75rem; // Add inner padding
+    }
+
+    &--field:focus {
+      outline: none;
     }
   }
 }
@@ -51,10 +56,11 @@
     &__container {
       position: relative;
     }
+
     &__search-bar {
       &--field {
         top: 4.9rem;
-        width: 100%;
+        width: calc(100% - 1.75rem);
         margin: auto;
         margin: 0;
         position: absolute;
