@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask } from "store/actions";
+import { addTask, searchTask } from "store/actions/";
 import "components/TaskCard/index.scss";
 import {
   ICON_DELETE,
@@ -11,7 +11,12 @@ import {
   FILTER_STATE_ALL,
 } from "utils/constant";
 
-const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
+const AddTaskCard = ({
+  isCardCreated,
+  onSearchBarVisible,
+  onCreateCard,
+  onFilterState,
+}) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -30,8 +35,10 @@ const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
 
     onCreateCard(!isCardCreated);
     dispatch(addTask({ task }));
+    dispatch(searchTask(""));
+    onSearchBarVisible(false);
     setInputText(null);
-    setFilter(FILTER_STATE_ALL);
+    onFilterState(FILTER_STATE_ALL);
   }
 
   function storeTaskOnEnter(event) {
@@ -74,7 +81,8 @@ const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
 AddTaskCard.propTypes = {
   isCardCreated: PropTypes.bool.isRequired,
   onCreateCard: PropTypes.func.isRequired,
-  setFilter: PropTypes.func.isRequired,
+  onSearchBarVisible: PropTypes.func.isRequired,
+  onFilterState: PropTypes.func.isRequired,
 };
 
 export default AddTaskCard;

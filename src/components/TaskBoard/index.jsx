@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import "components/TaskBoard/index.scss";
 import Pagination from "components/Pagination";
+import PropTypes from "prop-types";
 import classNames from "classnames";
+
 import {
   PAGINATION_LIMIT,
   TEXT_SHOW_MORE,
@@ -16,13 +18,15 @@ import {
 } from "utils/constant";
 import { paginationLimitUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
+import Loading from "components/Shared/Loading";
 import EmptyPage from "components/EmptyPage";
 
-const TaskBoard = () => {
+const TaskBoard = ({ onSearchBarVisible }) => {
   const [showCreateCard, setShowCreateCard] = useState(false);
-  const [filter, setFilter] = useState(FILTER_STATE_ALL);
+  const [filterState, setFilterState] = useState(FILTER_STATE_ALL);
   const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
+  const isLoading = useSelector((state) => state.loadingState);
   const [taskLength, setTaskLength] = useState(tasks.length);
   const dispatch = useDispatch();
   const isPaginationButtonVisible =
@@ -55,6 +59,7 @@ const TaskBoard = () => {
 
   return (
     <div className="task-board">
+      {isLoading && <Loading />}
       <h1>Add Task</h1>
       <div className="top-bar">
         <button
@@ -73,10 +78,11 @@ const TaskBoard = () => {
           {filterButtons.map((button) => (
             <button
               key={button.filter}
-              onClick={() => setFilter(button.filter)}
+              onClick={() => setFilterState(button.filter)}
               className={classNames({
                 "top-bar__filter-bar__button": true,
-                "top-bar__filter-bar__button--active": button.filter == filter,
+                "top-bar__filter-bar__button--active":
+                  button.filter == filterState,
               })}
             >
               {button.label}
@@ -93,14 +99,15 @@ const TaskBoard = () => {
         )}
         {showCreateCard && (
           <AddTaskCard
+            onSearchBarVisible={onSearchBarVisible}
             isCardCreated={showCreateCard}
             onCreateCard={setShowCreateCard}
-            setFilter={setFilter}
+            onFilterState={setFilterState}
           />
         )}
         <TaskList
           setTaskLength={setTaskLength}
-          filter={filter}
+          filterState={filterState}
           limit={paginationLength}
           tasks={tasks}
           isCardCreated={showCreateCard}
@@ -115,4 +122,7 @@ const TaskBoard = () => {
   );
 };
 
+TaskBoard.propTypes = {
+  onSearchBarVisible: PropTypes.func.isRequired,
+};
 export default TaskBoard;

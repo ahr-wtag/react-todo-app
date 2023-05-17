@@ -1,21 +1,43 @@
+@import "assets/style/color.scss";
+
 .navbar {
-  margin: auto;
-  max-width: 78rem;
+  background-color: $white;
+  border: 0.063rem solid $light-periwinkle;
 
   &__container {
     align-items: center;
     display: flex;
     height: 4.5rem;
     justify-content: space-between;
+    margin: auto;
+    max-width: 78rem;
 
     &__logo {
       align-items: center;
       display: flex;
       justify-content: center;
-    }
 
-    &__title {
-      padding-left: 0.875rem;
+      &__title {
+        color: $lavender-blue;
+        padding-left: 0.875rem;
+      }
+    }
+  }
+
+  &__search-bar {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    &--field {
+      background-color: $white;
+      border-radius: 0.313rem;
+      border: 0.188rem solid $light-blue;
+      font-size: 1rem;
+      height: 2.25rem;
+      margin-right: 1.063rem;
+      width: 32.375rem;
+      font-weight: 500;
     }
   }
 }

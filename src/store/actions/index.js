@@ -5,6 +5,8 @@ import {
   COMPLETE_TASK,
   EDIT_TASK,
   PAGINATION_UPDATE,
+  SEARCH_TASK,
+  LOADING,
 } from "store/constants";
 
 export const addTask = (task) => {
@@ -43,5 +45,18 @@ export const paginationLimitUpdate = (count) => {
   return {
     type: PAGINATION_UPDATE,
     payload: count,
+  };
+};
+
+export const searchTask = (text) => {
+  return {
+    type: SEARCH_TASK,
+    payload: text,
+  };
+};
+export const loadingState = (state) => {
+  return {
+    type: LOADING,
+    payload: state,
   };
 };
