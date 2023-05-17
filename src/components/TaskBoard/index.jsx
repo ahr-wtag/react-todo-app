@@ -37,9 +37,9 @@ const TaskBoard = ({ onSearchBarVisible }) => {
   const customStyle = dropDownStyle;
 
   const filterButtons = [
-    { label: "All", value: FILTER_STATE_ALL },
-    { label: "Incomplete", value: FILTER_STATE_INCOMPLETE },
-    { label: "Complete", value: FILTER_STATE_COMPLETE },
+    { label: FILTER_STATE_ALL, value: FILTER_STATE_ALL },
+    { label: FILTER_STATE_INCOMPLETE, value: FILTER_STATE_INCOMPLETE },
+    { label: FILTER_STATE_COMPLETE, value: FILTER_STATE_COMPLETE },
   ];
 
   useEffect(() => {
@@ -78,17 +78,16 @@ const TaskBoard = ({ onSearchBarVisible }) => {
           Create
         </button>
         <div className="top-bar__filter-bar">
-          {filterButtons.map((button) => (
+          {filterButtons.map(({ label, value }) => (
             <button
-              key={button.value}
-              onClick={() => setFilterState(button.value)}
+              key={value}
+              onClick={() => setFilterState(value)}
               className={classNames({
                 "top-bar__filter-bar__button": true,
-                "top-bar__filter-bar__button--active":
-                  button.value == filterState,
+                "top-bar__filter-bar__button--active": value == filterState,
               })}
             >
-              {button.label}
+              {label}
             </button>
           ))}
         </div>
