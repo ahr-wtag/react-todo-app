@@ -67,9 +67,8 @@ const TaskList = ({
       : dispatch(paginationLimitUpdate(PAGINATION_LIMIT));
   }, [filterState]);
 
-  return filteredTasks
-    .slice(0, limit)
-    .map((todo) => <Task key={todo.id} todo={todo} />);
+  const paginatedTasks = filteredTasks.slice(0, limit);
+  return paginatedTasks.map((todo) => <Task key={todo.id} todo={todo} />);
 };
 
 TaskList.propTypes = {
