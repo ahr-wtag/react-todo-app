@@ -20,14 +20,11 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
 
     if (task === "") {
       setError("Please add task description");
-
       return;
     }
 
     onCreateCard(!isCardCreated);
-
     dispatch(addTask({ task }));
-
     setInputText(null);
   }
 
