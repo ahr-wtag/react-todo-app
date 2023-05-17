@@ -6,7 +6,6 @@ import "components/TaskBoard/index.scss";
 import Pagination from "components/Pagination";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-
 import {
   PAGINATION_LIMIT,
   TEXT_SHOW_MORE,
@@ -30,6 +29,10 @@ const TaskBoard = ({ onSearchBarVisible }) => {
   const tasks = useSelector((state) => state.todo);
   const isLoading = useSelector((state) => state.loadingState);
   const [taskLength, setTaskLength] = useState(tasks.length);
+  const dispatch = useDispatch();
+  const isPaginationButtonVisible =
+    taskLength + showCreateCard > PAGINATION_LIMIT;
+  const isTaskListEmpty = Boolean(taskLength + showCreateCard);
 
   const customStyle = dropDownStyle;
 
@@ -42,7 +45,6 @@ const TaskBoard = ({ onSearchBarVisible }) => {
   useEffect(() => {
     setTaskLength(tasks.length);
   }, [tasks]);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (showCreateCard) {
@@ -57,10 +59,6 @@ const TaskBoard = ({ onSearchBarVisible }) => {
   function handleCreateTask() {
     setShowCreateCard(!showCreateCard);
   }
-
-  const isPaginationButtonVisible =
-    taskLength + showCreateCard > PAGINATION_LIMIT;
-  const isTaskListEmpty = Boolean(taskLength + showCreateCard);
 
   return (
     <div className="task-board">
@@ -114,7 +112,6 @@ const TaskBoard = ({ onSearchBarVisible }) => {
             className="top-bar__filter-bar__button--active"
           />
         )}
-
         {showCreateCard && (
           <AddTaskCard
             onSearchBarVisible={onSearchBarVisible}
@@ -131,7 +128,6 @@ const TaskBoard = ({ onSearchBarVisible }) => {
           isCardCreated={showCreateCard}
         />
       </div>
-
       {isPaginationButtonVisible && (
         <Pagination isCardCreated={showCreateCard} taskListLength={taskLength}>
           {paginationLength >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}

@@ -21,6 +21,7 @@ const TaskList = ({
   const searchText = useSelector((state) => state.searchText);
 
   const dispatch = useDispatch();
+
   function getCompletedTasks() {
     return tasks
       .filter((todo) => todo.completed === true)
