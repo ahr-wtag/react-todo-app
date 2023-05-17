@@ -1,8 +1,9 @@
 @import "assets/style/color.scss";
+@import "assets/style/breakPoints.scss";
 
 .navbar {
   background-color: $white;
-  border: 0.063rem solid $light-periwinkle;
+  border-bottom: 0.063rem solid $light-periwinkle;
 
   &__container {
     align-items: center;
@@ -16,11 +17,11 @@
       align-items: center;
       display: flex;
       justify-content: center;
+    }
 
-      &__title {
-        color: $lavender-blue;
-        padding-left: 0.875rem;
-      }
+    &__title {
+      color: $lavender-blue;
+      padding-left: 0.875rem;
     }
   }
 
@@ -39,7 +40,31 @@
       font-weight: 500;
       height: 2.25rem;
       margin-right: 1.063rem;
-      width: 50%;
+      width: 32.375rem;
+      font-weight: 500;
+      padding: 0 0.75rem; // Add inner padding
+    }
+
+    &--field:focus {
+      outline: none;
+    }
+  }
+}
+
+@media only screen and (max-width: $screen-sm) {
+  .navbar {
+    &__container {
+      position: relative;
+    }
+
+    &__search-bar {
+      &--field {
+        top: 4.9rem;
+        width: calc(100% - 1.75rem);
+        margin: auto;
+        margin: 0;
+        position: absolute;
+      }
     }
   }
 }
