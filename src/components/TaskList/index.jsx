@@ -13,14 +13,15 @@ import Task from "components/TaskCard/Task";
 const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
   const [filteredTasks, setFilteredTasks] = useState([]);
   const dispatch = useDispatch();
+
   function getCompletedTasks() {
-    console.log("calling");
     return tasks.filter((todo) => todo.completed === true);
   }
 
   function getIncompletedTasks() {
     return tasks.filter((todo) => todo.completed !== true);
   }
+
   useEffect(() => {
     switch (filter) {
       case FILTER_STATE_COMPLETE:
