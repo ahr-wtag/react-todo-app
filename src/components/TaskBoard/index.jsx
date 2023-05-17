@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import "components/TaskBoard/index.scss";
@@ -20,6 +21,7 @@ import { paginationLimitUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 import Loading from "components/Shared/Loading";
 import EmptyPage from "components/EmptyPage";
+import { dropDownStyle } from "utils/helpers/styleHelper";
 
 const TaskBoard = ({ onSearchBarVisible }) => {
   const [showCreateCard, setShowCreateCard] = useState(false);
@@ -27,13 +29,14 @@ const TaskBoard = ({ onSearchBarVisible }) => {
   const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const isLoading = useSelector((state) => state.loadingState);
-
   const [taskLength, setTaskLength] = useState(tasks.length);
 
+  const customStyle = dropDownStyle;
+
   const filterButtons = [
-    { label: "All", filter: FILTER_STATE_ALL },
-    { label: "Incomplete", filter: FILTER_STATE_INCOMPLETE },
-    { label: "Complete", filter: FILTER_STATE_COMPLETE },
+    { label: "All", value: FILTER_STATE_ALL },
+    { label: "Incomplete", value: FILTER_STATE_INCOMPLETE },
+    { label: "Complete", value: FILTER_STATE_COMPLETE },
   ];
 
   useEffect(() => {
@@ -79,24 +82,36 @@ const TaskBoard = ({ onSearchBarVisible }) => {
         <div className="top-bar__filter-bar">
           {filterButtons.map((button) => (
             <button
-              key={button.filter}
-              onClick={() => setFilterState(button.filter)}
+              key={button.value}
+              onClick={() => setFilterState(button.value)}
               className={classNames({
                 "top-bar__filter-bar__button": true,
                 "top-bar__filter-bar__button--active":
-                  button.filter == filterState,
+                  button.value == filterState,
               })}
             >
               {button.label}
             </button>
           ))}
         </div>
+
+        <div className="top-bar__filter-dropdown">
+          <Select
+            isSearchable={false}
+            options={filterButtons}
+            styles={customStyle}
+            value={{ label: filterState, value: filterState }}
+            onChange={(selectedOption) => setFilterState(selectedOption.value)}
+          />
+        </div>
       </div>
       <div className="task-board__container">
         {isTaskListEmpty || (
           <EmptyPage
+            filterState={filterState}
             onShowCreateCard={setShowCreateCard}
             isCardCreated={showCreateCard}
+            className="top-bar__filter-bar__button--active"
           />
         )}
 

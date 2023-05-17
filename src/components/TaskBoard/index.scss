@@ -60,6 +60,11 @@
       }
     }
   }
+
+  &__filter-dropdown {
+    width: 100%;
+    display: none;
+  }
 }
 
 .title {
@@ -73,11 +78,25 @@
       grid-template-columns: repeat(1, 100%);
     }
   }
+
   .top-bar {
     flex-direction: column;
     align-items: center;
     gap: 1.25rem;
+
+    &__create-button {
+      width: 100%;
+    }
+
+    &__filter-dropdown {
+      display: block;
+    }
+
+    &__filter-bar {
+      display: none;
+    }
   }
+
   .title {
     text-align: center;
   }
