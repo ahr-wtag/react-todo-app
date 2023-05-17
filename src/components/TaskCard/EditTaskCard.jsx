@@ -97,7 +97,7 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
         <div className="task-card__action-button-container">
           <div>
             <button className="task-card__button" onClick={onSave}>
-              save
+              Save
             </button>
           </div>
           <img
