@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask } from "store/actions/";
+import { addTask } from "store/actions";
 import "components/TaskCard/index.scss";
 import { ICON_DELETE, DELETE_ICON_ALT_TEXT, KEY_ENTER } from "utils/constant";
 

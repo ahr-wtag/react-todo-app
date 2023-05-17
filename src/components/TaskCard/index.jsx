@@ -8,7 +8,7 @@ import {
   COMPLETE_ICON_ALT_TEXT,
   ICON_DELETE,
   DELETE_ICON_ALT_TEXT,
-} from "utils/constant/images";
+} from "utils/constant";
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import "components/TaskCard/index.scss";
 import { checkDateString } from "utils/helpers/propCustomValidation";
