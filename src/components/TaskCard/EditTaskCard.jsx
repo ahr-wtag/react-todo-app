@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { editTask, completeTask } from "store/actions/";
+import { editTask, completeTask } from "store/actions";
 import "components/TaskCard/index.scss";
 import {
   ICON_COMPLETE,
@@ -23,13 +23,12 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
 
   function onSave() {
     const sanitizedTask = sanitizeText(inputText);
+
     if (sanitizedTask === "") {
       setError("Please add task description");
-
       return;
     }
 
-    onEditableTasks(false);
     dispatch(
       editTask({
         id,
@@ -37,6 +36,7 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
       })
     );
 
+    onEditableTasks(false);
     setInputText(null);
   }
 
@@ -46,7 +46,6 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
 
   function handleCompleteTask() {
     onSave();
-
     dispatch(completeTask(id));
   }
 
@@ -76,7 +75,6 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
         className="task-card__textarea"
       ></textarea>
       <small className="task-card__error">{error && error}</small>
-
       <div className="task-card__action-button-container">
         <div>
           <button className="task-card__button" onClick={onSave}>

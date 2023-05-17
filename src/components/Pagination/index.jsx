@@ -7,7 +7,6 @@ import "components/Pagination/index.scss";
 
 const Pagination = ({ children, isCardCreated, taskListLength }) => {
   const paginationLength = useSelector((state) => state.paginationLength);
-
   const dispatch = useDispatch();
 
   function handlePaginateButtonClick() {

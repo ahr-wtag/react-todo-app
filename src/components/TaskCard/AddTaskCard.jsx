@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask } from "store/actions/";
+import { addTask } from "store/actions";
 import "components/TaskCard/index.scss";
 import {
   ICON_DELETE,
@@ -25,14 +25,11 @@ const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
 
     if (task === "") {
       setError("Please add task description");
-
       return;
     }
 
     onCreateCard(!isCardCreated);
-
     dispatch(addTask({ task }));
-
     setInputText(null);
     setFilter(FILTER_STATE_ALL);
   }
@@ -60,7 +57,6 @@ const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
         className="task-card__textarea"
       ></textarea>
       <small className="task-card__error">{error && error}</small>
-
       <div className="task-card__action-button-container">
         <button className="task-card__button" onClick={onSave}>
           Add Task
