@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { editTask, completeTask } from "store/actions/";
+import { editTask, completeTask } from "store/actions";
 import "components/TaskCard/index.scss";
 import {
   ICON_COMPLETE,
@@ -27,6 +27,7 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
 
   function storeTask(sanitizedTask) {
     onEditableTasks(false);
+
     dispatch(
       editTask({
         id,
@@ -34,6 +35,7 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
       })
     );
 
+    onEditableTasks(false);
     setInputText(null);
   }
 
@@ -55,11 +57,12 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
 
   function handleCompleteTask() {
     const sanitizedTask = sanitizeText(inputText);
+
     if (sanitizedTask === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
-
       return;
     }
+
     storeTask(sanitizedTask);
     showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
     dispatch(completeTask(id));
@@ -94,7 +97,7 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
         <div className="task-card__action-button-container">
           <div>
             <button className="task-card__button" onClick={onSave}>
-              save
+              Save
             </button>
           </div>
           <img
