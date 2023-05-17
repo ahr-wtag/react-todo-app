@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask, searchTask } from "store/actions/";
 import "components/TaskCard/index.scss";
 import {
@@ -12,7 +13,6 @@ import {
   NOTIFICATION_MESSAGE_ADD_TASK,
   NOTIFICATION_MESSAGE_PROCESSING_ERROR,
 } from "utils/constant";
-import { sanitizeText } from "utils/helpers/sanitizeText";
 import { showErrorToast, showSuccessToast } from "utils/notification";
 
 const AddTaskCard = ({
@@ -33,12 +33,10 @@ const AddTaskCard = ({
 
     if (task === "") {
       showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
-
       return;
     }
 
     onCreateCard(!isCardCreated);
-
     dispatch(addTask({ task }));
     dispatch(searchTask(""));
     onSearchBarVisible(false);
