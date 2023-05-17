@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask, searchTask } from "store/actions/";
 import "components/TaskCard/index.scss";
 import {
@@ -9,7 +10,6 @@ import {
   KEY_ENTER,
   FILTER_STATE_ALL,
 } from "utils/constant";
-import { sanitizeText } from "utils/helpers/sanitizeText";
 
 const AddTaskCard = ({
   isCardCreated,
@@ -30,12 +30,10 @@ const AddTaskCard = ({
 
     if (task === "") {
       setError("Please add task description");
-
       return;
     }
 
     onCreateCard(!isCardCreated);
-
     dispatch(addTask({ task }));
     dispatch(searchTask(""));
     onSearchBarVisible(false);
@@ -66,7 +64,6 @@ const AddTaskCard = ({
         className="task-card__textarea"
       ></textarea>
       <small className="task-card__error">{error && error}</small>
-
       <div className="task-card__action-button-container">
         <button className="task-card__button" onClick={onSave}>
           Add Task
