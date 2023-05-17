@@ -10,24 +10,23 @@ import {
   ICON_DELETE,
   DELETE_ICON_ALT_TEXT,
   KEY_ENTER,
+  NOTIFICATION_MESSAGE_EMPTY_TASK,
+  NOTIFICATION_MESSAGE_COMPLETE_TASK,
+  NOTIFICATION_MESSAGE_UPDATE_TASK,
+  NOTIFICATION_MESSAGE_PROCESSING_ERROR,
 } from "utils/constant";
+import { showErrorToast, showSuccessToast } from "utils/notification";
 
 const EditTaskCard = ({ id, task, onEditableTasks }) => {
   const [inputText, setInputText] = useState(task);
-  const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   function handleInputChange(event) {
     setInputText(event.target.value);
   }
 
-  function onSave() {
-    const sanitizedTask = sanitizeText(inputText);
-
-    if (sanitizedTask === "") {
-      setError("Please add task description");
-      return;
-    }
+  function storeTask(sanitizedTask) {
+    onEditableTasks(false);
 
     dispatch(
       editTask({
@@ -40,12 +39,32 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
     setInputText(null);
   }
 
+  function onSave() {
+    const sanitizedTask = sanitizeText(inputText);
+    if (sanitizedTask === "") {
+      showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
+
+      return;
+    }
+    storeTask(sanitizedTask);
+    showSuccessToast(NOTIFICATION_MESSAGE_UPDATE_TASK);
+  }
+
   function handleDeleteTask() {
     onEditableTasks(false);
+    showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   }
 
   function handleCompleteTask() {
-    onSave();
+    const sanitizedTask = sanitizeText(inputText);
+
+    if (sanitizedTask === "") {
+      showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
+      return;
+    }
+
+    storeTask(sanitizedTask);
+    showSuccessToast(NOTIFICATION_MESSAGE_COMPLETE_TASK);
     dispatch(completeTask(id));
   }
 
@@ -74,7 +93,6 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
         onKeyDown={storeTaskOnEnter}
         className="task-card__textarea"
       ></textarea>
-      <small className="task-card__error">{error && error}</small>
       <div className="task-card__action-button-container">
         <div>
           <button className="task-card__button" onClick={onSave}>

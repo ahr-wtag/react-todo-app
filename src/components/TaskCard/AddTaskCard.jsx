@@ -9,7 +9,11 @@ import {
   DELETE_ICON_ALT_TEXT,
   KEY_ENTER,
   FILTER_STATE_ALL,
+  NOTIFICATION_MESSAGE_EMPTY_TASK,
+  NOTIFICATION_MESSAGE_ADD_TASK,
+  NOTIFICATION_MESSAGE_PROCESSING_ERROR,
 } from "utils/constant";
+import { showErrorToast, showSuccessToast } from "utils/notification";
 
 const AddTaskCard = ({
   isCardCreated,
@@ -18,7 +22,6 @@ const AddTaskCard = ({
   onFilterState,
 }) => {
   const [inputText, setInputText] = useState("");
-  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   function handleInputChange(event) {
@@ -29,7 +32,7 @@ const AddTaskCard = ({
     const task = sanitizeText(inputText);
 
     if (task === "") {
-      setError("Please add task description");
+      showErrorToast(NOTIFICATION_MESSAGE_EMPTY_TASK);
       return;
     }
 
@@ -39,6 +42,7 @@ const AddTaskCard = ({
     onSearchBarVisible(false);
     setInputText(null);
     onFilterState(FILTER_STATE_ALL);
+    showSuccessToast(NOTIFICATION_MESSAGE_ADD_TASK);
   }
 
   function storeTaskOnEnter(event) {
@@ -50,6 +54,7 @@ const AddTaskCard = ({
 
   function handleDeleteTask() {
     onCreateCard(!isCardCreated);
+    showErrorToast(NOTIFICATION_MESSAGE_PROCESSING_ERROR);
   }
 
   return (
@@ -63,7 +68,6 @@ const AddTaskCard = ({
         onKeyDown={storeTaskOnEnter}
         className="task-card__textarea"
       ></textarea>
-      <small className="task-card__error">{error && error}</small>
       <div className="task-card__action-button-container">
         <button className="task-card__button" onClick={onSave}>
           Add Task

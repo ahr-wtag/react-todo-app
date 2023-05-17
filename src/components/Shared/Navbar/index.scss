@@ -27,16 +27,19 @@
   &__search-bar {
     align-items: center;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    width: 100%;
 
     &--field {
       background-color: $white;
       border-radius: 0.313rem;
       border: 0.188rem solid $light-blue;
+      color: $navy-blue;
       font-size: 1rem;
+      font-weight: 500;
       height: 2.25rem;
       margin-right: 1.063rem;
-      width: 32.375rem;
+      width: 50%;
       font-weight: 500;
     }
   }
