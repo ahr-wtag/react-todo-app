@@ -40,7 +40,7 @@ const AddTaskCard = ({
     dispatch(addTask({ task }));
     dispatch(searchTask(""));
     onSearchBarVisible(false);
-    setInputText(null);
+    setInputText("");
     onFilterState(FILTER_STATE_ALL);
     showSuccessToast(NOTIFICATION_MESSAGE_ADD_TASK);
   }
