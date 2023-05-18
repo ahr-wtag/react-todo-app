@@ -1,6 +1,7 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
+import userEvent from "@testing-library/user-event";
 import { store } from "store/store";
 import AddTaskCard from "components/TaskCard/AddTaskCard";
 import { DELETE_ICON_ALT_TEXT } from "utils/constant";
@@ -19,6 +20,7 @@ const DemoAddTaskCard = () => {
 };
 
 describe("Add Task", () => {
+  const user = userEvent.setup();
   it("render add task card", () => {
     render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
@@ -29,42 +31,42 @@ describe("Add Task", () => {
     expect(deleteIcon).toHaveAttribute("alt", DELETE_ICON_ALT_TEXT);
   });
 
-  it("Expected user to type in text area", () => {
+  it("Expected user to type in text area", async () => {
     render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const userInput = "typing...";
-    fireEvent.change(textArea, { target: { value: userInput } });
+    await user.type(textArea, userInput);
     expect(textArea.value).toBe(userInput);
   });
 
-  it("Expected call onSave() function and store task in redux", () => {
+  it("Expected call onSave() function and store task in redux", async () => {
     render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const userInput = "task 1";
     const button = screen.getByRole("button", { name: "Add Task" });
-    fireEvent.change(textArea, { target: { value: userInput } });
-    fireEvent.click(button);
+    await user.type(textArea, userInput);
+    await user.click(button);
     const newState = store.getState();
     expect(newState.todo[0].task).toEqual(userInput);
   });
 
-  it("Expected call onSave() function and store task in redux", () => {
+  it("Expected call onSave() function and store task in redux", async () => {
     render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const userInput = "task 1";
     const button = screen.getByRole("button", { name: "Add Task" });
-    fireEvent.change(textArea, { target: { value: userInput } });
-    fireEvent.click(button);
+    await user.type(textArea, userInput);
+    await user.click(button);
     const newState = store.getState();
     expect(newState.todo[0].task).toEqual(userInput);
   });
 
-  it("Expected call onSave() function and store task in redux on key up", () => {
+  it("Expected call onSave() function and store task in redux on key up", async () => {
     render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const userInput = "task 1";
-    fireEvent.change(textArea, { target: { value: userInput } });
-    fireEvent.keyUp(textArea);
+    await user.type(textArea, userInput);
+    await user.keyboard("[Enter]");
     const newState = store.getState();
     expect(newState.todo[0].task).toEqual(userInput);
   });

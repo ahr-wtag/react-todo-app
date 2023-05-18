@@ -1,29 +1,25 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { store } from "store/store";
-import TaskCard from "components/TaskCard";
 import { addTask } from "store/actions";
 import { COMPLETE_ICON_ALT_TEXT } from "utils/constant";
+import TaskBoard from "components/TaskBoard";
 
 describe("Task State Done", () => {
   it("Expecte Task marked as done", async () => {
+    const user = userEvent.setup();
     store.dispatch(addTask({ task: "task1" }));
     render(
       <Provider store={store}>
-        <TaskCard
-          id={store.getState().todo[0].id}
-          task="task1"
-          createdTime={new Date()}
-          completed={false}
-          onEditableTasks={jest.fn()}
-        />
+        <TaskBoard onSearchBarVisible={jest.fn()} />
       </Provider>
     );
     const icon = screen.getByRole("img", { name: COMPLETE_ICON_ALT_TEXT });
-    fireEvent.click(icon);
-    await waitFor(() => {
-      expect(store.getState().todo[0].completed).toEqual(true);
-    });
+    await user.click(icon);
+    expect(store.getState().todo[0].completed).toEqual(true);
+    const completeText = screen.getByText(/Completed in 1 day/i);
+    expect(completeText).toBeInTheDocument();
   });
 });
