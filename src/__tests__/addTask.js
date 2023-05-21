@@ -18,11 +18,13 @@ const DemoAddTaskCard = () => {
     </Provider>
   );
 };
+beforeEach(async () => {
+  render(<DemoAddTaskCard />);
+});
 
 describe("Add Task", () => {
   const user = userEvent.setup();
   it("render add task card", () => {
-    render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const button = screen.getByRole("button", { name: "Add Task" });
     const deleteIcon = screen.getByRole("img");
@@ -32,7 +34,6 @@ describe("Add Task", () => {
   });
 
   it("Expected user to type in text area", async () => {
-    render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const userInput = "typing...";
     await user.type(textArea, userInput);
@@ -40,7 +41,6 @@ describe("Add Task", () => {
   });
 
   it("Expected call onSave() function and store task in redux", async () => {
-    render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const userInput = "task 1";
     const button = screen.getByRole("button", { name: "Add Task" });
@@ -51,7 +51,6 @@ describe("Add Task", () => {
   });
 
   it("Expected call onSave() function and store task in redux", async () => {
-    render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const userInput = "task 1";
     const button = screen.getByRole("button", { name: "Add Task" });
@@ -62,7 +61,6 @@ describe("Add Task", () => {
   });
 
   it("Expected call onSave() function and store task in redux on key up", async () => {
-    render(<DemoAddTaskCard />);
     const textArea = screen.getByRole("textbox");
     const userInput = "task 1";
     await user.type(textArea, userInput);
