@@ -1,17 +1,10 @@
-@import "assets/style/helper.scss";
 .navbar {
   margin: auto;
   max-width: 78rem;
 
   &__container {
-    @extend .flex--center;
     height: 4.5rem;
     justify-content: space-between;
-
-    &__logo {
-      @extend .flex--center;
-      justify-content: center;
-    }
 
     &__title {
       padding-left: 0.875rem;

@@ -3,11 +3,11 @@ import React from "react";
 import TaskCard from "components/TaskCard";
 
 const TaskList = ({ tasks }) =>
-  tasks.map((todo) => (
+  tasks.map((task) => (
     <TaskCard
-      key={todo.id}
-      taskName={todo.task}
-      createdDate={todo.createdDate}
+      key={task.id}
+      taskName={task.task}
+      createdDate={task.createdDate}
     />
   ));
 

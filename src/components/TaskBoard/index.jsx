@@ -1,27 +1,36 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
 import TaskList from "components/TaskList";
+import { addTask } from "store/actions";
 import "components/TaskBoard/index.scss";
 
 const TaskBoard = () => {
-  const [showCreateCard, setShowCreateCard] = useState(false);
+  const [isCreateButtonClicked, setCreateButtonClicked] = useState(false);
   const tasks = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
 
-  function handleCreateTask() {
-    setShowCreateCard((showCreateCard) => !showCreateCard);
+  function handleCreateButton() {
+    setCreateButtonClicked((isCreateButtonClicked) => !isCreateButtonClicked);
+  }
+
+  function handleCreateTask(task) {
+    handleCreateButton();
+    dispatch(addTask({ task }));
   }
 
   return (
     <div className="task-board">
       <h1>Add Task</h1>
       <div>
-        <button disabled={showCreateCard} onClick={handleCreateTask}>
+        <button disabled={isCreateButtonClicked} onClick={handleCreateButton}>
           Create
         </button>
       </div>
-      <div className="task-board__container">
-        {showCreateCard && <AddTaskCard onCreateCard={handleCreateTask} />}
+      <div className="flex flex--warp task-board__container">
+        {isCreateButtonClicked && (
+          <AddTaskCard onCreateTask={handleCreateTask} />
+        )}
         <TaskList tasks={tasks} />
       </div>
     </div>

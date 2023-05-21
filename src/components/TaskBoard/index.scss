@@ -1,11 +1,8 @@
-@import "assets/style/helper.scss";
-
 .task-board {
   margin: auto;
   max-width: 78rem;
 
   &__container {
-    @extend .flex--warp;
     gap: 2.125rem;
   }
 }

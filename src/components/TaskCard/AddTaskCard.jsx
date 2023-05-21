@@ -1,31 +1,26 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask } from "store/actions/";
 import { KEY_ENTER } from "utils/constant/form";
 import "components/TaskCard/index.scss";
 
-const AddTaskCard = ({ onCreateCard }) => {
-  const [inputText, setInputText] = useState("");
+const AddTaskCard = ({ onCreateTask }) => {
+  const [taskName, setTaskName] = useState("");
   const [error, setError] = useState(null);
-  const dispatch = useDispatch();
 
   function handleInputChange(event) {
-    setInputText(event.target.value);
+    setTaskName(event.target.value);
   }
 
   function handleAddTask() {
-    const task = sanitizeText(inputText);
+    const task = sanitizeText(taskName);
 
     if (task === "") {
       setError("Please add task description");
       return;
     }
 
-    onCreateCard();
-    dispatch(addTask({ task }));
-    setInputText(null);
+    onCreateTask(task);
   }
 
   function storeTaskOnEnter(event) {
@@ -41,7 +36,7 @@ const AddTaskCard = ({ onCreateCard }) => {
         name="task"
         id="task"
         onChange={handleInputChange}
-        value={inputText}
+        value={taskName}
         autoFocus
         onKeyDown={storeTaskOnEnter}
         className="task-card__textarea"
@@ -53,7 +48,7 @@ const AddTaskCard = ({ onCreateCard }) => {
 };
 
 AddTaskCard.propTypes = {
-  onCreateCard: PropTypes.func.isRequired,
+  onCreateTask: PropTypes.func.isRequired,
 };
 
 export default AddTaskCard;
