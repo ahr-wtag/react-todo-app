@@ -53,34 +53,38 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
 
   return (
     <div className="task-card">
-      <h1 className={taskTextStyle}>{task}</h1>
-      <p className="task-card__date">{`Created at: ${dateFormatter(
-        createdTime
-      )}`}</p>
-      <div className="task-card__action-button-container">
-        {!completed && (
-          <>
-            <img
-              src={ICON_COMPLETE}
-              alt={COMPLETE_ICON_ALT_TEXT}
-              onClick={handleCompleteTask}
-            />
-            <img
-              src={ICON_EDIT}
-              alt={EDIT_ICON_ALT_TEXT}
-              onClick={handleEditTask}
-            />
-          </>
-        )}
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteTask}
-        />
+      <div className="task-card__top-bar">
+        <h1 className={taskTextStyle}>{task}</h1>
+        <p className="task-card__date">{`Created at: ${dateFormatter(
+          createdTime
+        )}`}</p>
       </div>
-      {completed && (
-        <div className="task-card__completed">{completedInText}</div>
-      )}
+      <div className="task-card__bottom-bar">
+        <div className="task-card__action-button-container">
+          {!completed && (
+            <>
+              <img
+                src={ICON_COMPLETE}
+                alt={COMPLETE_ICON_ALT_TEXT}
+                onClick={handleCompleteTask}
+              />
+              <img
+                src={ICON_EDIT}
+                alt={EDIT_ICON_ALT_TEXT}
+                onClick={handleEditTask}
+              />
+            </>
+          )}
+          <img
+            src={ICON_DELETE}
+            alt={DELETE_ICON_ALT_TEXT}
+            onClick={handleDeleteTask}
+          />
+        </div>
+        {completed && (
+          <div className="task-card__completed">{completedInText}</div>
+        )}
+      </div>
     </div>
   );
 };
