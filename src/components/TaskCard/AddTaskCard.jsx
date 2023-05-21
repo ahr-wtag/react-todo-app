@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { addTask } from "store/actions/";
+import { KEY_ENTER } from "utils/constant/form";
 import "components/TaskCard/index.scss";
-import { KEY_ENTER } from "utils/constant";
 
-const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
+const AddTaskCard = ({ onCreateCard }) => {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
       return;
     }
 
-    onCreateCard(!isCardCreated);
+    onCreateCard();
     dispatch(addTask({ task }));
     setInputText(null);
   }
@@ -53,7 +53,6 @@ const AddTaskCard = ({ isCardCreated, onCreateCard }) => {
 };
 
 AddTaskCard.propTypes = {
-  isCardCreated: PropTypes.bool.isRequired,
   onCreateCard: PropTypes.func.isRequired,
 };
 

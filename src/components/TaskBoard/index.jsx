@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
-import "components/TaskBoard/index.scss";
 import TaskList from "components/TaskList";
+import "components/TaskBoard/index.scss";
 
 const TaskBoard = () => {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const tasks = useSelector((state) => state.todo);
 
   function handleCreateTask() {
-    setShowCreateCard(!showCreateCard);
+    setShowCreateCard((showCreateCard) => !showCreateCard);
   }
 
   return (
@@ -21,9 +21,7 @@ const TaskBoard = () => {
         </button>
       </div>
       <div className="task-board__container">
-        {showCreateCard && (
-          <AddTaskCard isCardCreated onCreateCard={setShowCreateCard} />
-        )}
+        {showCreateCard && <AddTaskCard onCreateCard={handleCreateTask} />}
         <TaskList tasks={tasks} />
       </div>
     </div>

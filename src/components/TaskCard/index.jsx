@@ -1,21 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "components/TaskCard/index.scss";
-import { checkDateString } from "utils/helpers/propCustomValidation";
+import { datePropTypeValidation } from "utils/helpers/datePropTypeValidation";
 import { dateFormatter } from "utils/helpers/dateFormatter";
+import "components/TaskCard/index.scss";
 
-const TaskCard = ({ task, createdTime }) => {
+const TaskCard = ({ taskName, createdDate }) => {
   return (
     <div className="task-card">
-      <p>{task}</p>
-      <p>{`Created at: ${dateFormatter(createdTime)}`}</p>
+      <p>{taskName}</p>
+      <p>{`Created at: ${dateFormatter(createdDate)}`}</p>
     </div>
   );
 };
 
 TaskCard.propTypes = {
-  task: PropTypes.string.isRequired,
-  createdTime: checkDateString,
+  taskName: PropTypes.string.isRequired,
+  createdDate: datePropTypeValidation,
 };
 
 export default TaskCard;

@@ -4,7 +4,11 @@ import TaskCard from "components/TaskCard";
 
 const TaskList = ({ tasks }) =>
   tasks.map((todo) => (
-    <TaskCard key={todo.id} task={todo.task} createdTime={todo.createdTime} />
+    <TaskCard
+      key={todo.id}
+      taskName={todo.task}
+      createdDate={todo.createdDate}
+    />
   ));
 
 TaskList.propTypes = {

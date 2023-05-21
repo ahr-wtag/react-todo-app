@@ -1,11 +1,11 @@
 import React from "react";
-import "components/Shared/Navbar/index.scss";
 import {
   ICON_LOGO,
   LOGO_ICON_ALT_TEXT,
   ICON_SEARCH,
   SEARCH_ICON_ALT_TEXT,
-} from "utils/constant";
+} from "utils/constant/images";
+import "components/Shared/Navbar/index.scss";
 
 const Navbar = () => {
   return (
