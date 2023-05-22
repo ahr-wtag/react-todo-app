@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "store/actions";
 import { ICON_DELETE, DELETE_ICON_ALT_TEXT } from "utils/constant/images";
+import { datePropTypeValidation } from "utils/helpers/datePropTypeValidation";
+import { formatDate } from "utils/helpers/formatDate";
 import "components/TaskCard/index.scss";
-import { checkDateString } from "utils/helpers/propCustomValidation";
-import { dateFormatter } from "utils/helpers/dateFormatter";
 
-const TaskCard = ({ id, task, createdTime }) => {
+const TaskCard = ({ id, taskName, createdDate }) => {
   const dispatch = useDispatch();
 
   function handleDeleteTask() {
@@ -16,8 +16,8 @@ const TaskCard = ({ id, task, createdTime }) => {
 
   return (
     <div className="task-card">
-      <p>{task}</p>
-      <p>{`Created at: ${dateFormatter(createdTime)}`}</p>
+      <p>{taskName}</p>
+      <p>{`Created at: ${formatDate(createdDate)}`}</p>
       <div className="tas-card__action-button-container">
         <img
           src={ICON_DELETE}
@@ -31,8 +31,8 @@ const TaskCard = ({ id, task, createdTime }) => {
 
 TaskCard.propTypes = {
   id: PropTypes.string.isRequired,
-  task: PropTypes.string.isRequired,
-  createdTime: checkDateString,
+  taskName: PropTypes.string.isRequired,
+  createdDate: datePropTypeValidation,
 };
 
 export default TaskCard;
