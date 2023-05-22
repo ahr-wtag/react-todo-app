@@ -7,8 +7,8 @@ const TaskList = ({ tasks }) =>
     <TaskCard
       key={todo.id}
       id={todo.id}
-      task={todo.task}
-      createdTime={todo.createdTime}
+      taskName={todo.task}
+      createdDate={todo.createdDate}
       completed={todo.completed}
     />
   ));

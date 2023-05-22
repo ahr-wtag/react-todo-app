@@ -1,2 +1,2 @@
-import DOMPurify from "dompurify";
-export const sanitizeText = (text) => DOMPurify.sanitize(text).trim("");
+export const sanitizeText = (text) =>
+  text.replaceAll(/<\/?[^>]+(>|$)/gi, "").trim();
