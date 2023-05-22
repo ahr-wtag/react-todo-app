@@ -11,9 +11,7 @@ export const addTask = (task) => {
   };
 };
 
-export const deleteTask = (taskId) => {
-  return {
-    type: DELETE_TASK,
-    payload: taskId,
-  };
-};
+export const deleteTask = (taskId) => ({
+  type: DELETE_TASK,
+  payload: taskId,
+});

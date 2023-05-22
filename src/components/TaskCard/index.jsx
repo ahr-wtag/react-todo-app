@@ -18,7 +18,7 @@ const TaskCard = ({ id, taskName, createdDate }) => {
     <div className="task-card">
       <p>{taskName}</p>
       <p>{`Created at: ${formatDate(createdDate)}`}</p>
-      <div className="tas-card__action-button-container">
+      <div className="flex align-center justify-between task-card__action-button-container">
         <img
           src={ICON_DELETE}
           alt={DELETE_ICON_ALT_TEXT}

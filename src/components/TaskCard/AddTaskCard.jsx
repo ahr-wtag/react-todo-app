@@ -47,7 +47,7 @@ const AddTaskCard = ({ onCreateTask, onCancelIconClick }) => {
         className="task-card__textarea"
       ></textarea>
       <small className="task-card__error">{error && error}</small>
-      <div className="task-card__action-button-container">
+      <div className="flex align-center justify-between task-card__action-button-container">
         <button className="task-card__button" onClick={handleAddTask}>
           Add Task
         </button>
