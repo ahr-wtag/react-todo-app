@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "store/actions";
 import { ICON_DELETE, DELETE_ICON_ALT_TEXT } from "utils/constant/images";
-import { datePropTypeValidation } from "utils/helpers/datePropTypeValidation";
 import { formatDate } from "utils/helpers/formatDate";
 import "components/TaskCard/index.scss";
 
@@ -32,7 +31,7 @@ const TaskCard = ({ id, taskName, createdDate }) => {
 TaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   taskName: PropTypes.string.isRequired,
-  createdDate: datePropTypeValidation,
+  createdDate: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default TaskCard;
