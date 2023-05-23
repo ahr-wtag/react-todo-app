@@ -3,7 +3,6 @@ import { ADD_TASK, DELETE_TASK } from "store/constants/index";
 export const addTask = (task) => {
   task.id = Date.now().toString();
   task.createdDate = new Date();
-  task.completed = false;
 
   return {
     type: ADD_TASK,
