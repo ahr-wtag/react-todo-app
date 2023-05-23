@@ -1,4 +1,3 @@
-import { v1 as uuidv1 } from "uuid";
 import {
   ADD_TASK,
   DELETE_TASK,
@@ -7,8 +6,8 @@ import {
 } from "store/constants";
 
 export const addTask = (task) => {
-  task.id = uuidv1();
-  task.createdTime = new Date();
+  task.id = Date.now().toString();
+  task.createdDate = new Date();
   task.completed = false;
 
   return {
@@ -17,23 +16,17 @@ export const addTask = (task) => {
   };
 };
 
-export const deleteTask = (taskId) => {
-  return {
-    type: DELETE_TASK,
-    payload: taskId,
-  };
-};
+export const deleteTask = (taskId) => ({
+  type: DELETE_TASK,
+  payload: taskId,
+});
 
-export const completeTask = (taskId) => {
-  return {
-    type: COMPLETE_TASK,
-    payload: taskId,
-  };
-};
+export const completeTask = (taskId) => ({
+  type: COMPLETE_TASK,
+  payload: taskId,
+});
 
-export const editTask = (task) => {
-  return {
-    type: EDIT_TASK,
-    payload: task,
-  };
-};
+export const editTask = (task) => ({
+  type: EDIT_TASK,
+  payload: task,
+});

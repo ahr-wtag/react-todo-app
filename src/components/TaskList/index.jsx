@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Task from "components/TaskCard/Task";
 
 const TaskList = ({ tasks }) => {
-  return tasks.map((todo) => <Task key={todo.id} todo={todo} />);
+  return tasks.map((task) => <Task key={task.id} task={task} />);
 };
 
 TaskList.propTypes = {

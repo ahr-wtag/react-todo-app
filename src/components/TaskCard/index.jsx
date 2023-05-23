@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
@@ -10,25 +10,26 @@ import {
   DELETE_ICON_ALT_TEXT,
   ICON_EDIT,
   EDIT_ICON_ALT_TEXT,
-} from "utils/constant";
+} from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
+import { datePropTypeValidation } from "utils/helpers/datePropTypeValidation";
+import { formatDate } from "utils/helpers/formatDate";
+import TaskCompletedDays from "components/Shared/TaskCompleteDays";
 import "components/TaskCard/index.scss";
-import { checkDateString } from "utils/helpers/propCustomValidation";
-import { dateFormatter } from "utils/helpers/dateFormatter";
 
-const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
-  const [taskCompletedIn, setTaskCompletedIn] = useState(null);
+const TaskCard = ({
+  id,
+  taskName,
+  createdDate,
+  completed,
+  onToggleTaskEditing,
+}) => {
+  const taskCompletedIn = getDateDifference(createdDate);
+  const dispatch = useDispatch();
 
-  const taskTextStyle = classNames({
-    "task-card__task": true,
+  const taskTextStyle = classNames("task-card__task", {
     "task-card__task--done": completed,
   });
-
-  useEffect(() => {
-    setTaskCompletedIn(getDateDifference(createdTime));
-  }, []);
-
-  const dispatch = useDispatch();
 
   function handleCompleteTask() {
     dispatch(completeTask(id));
@@ -38,21 +39,17 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
     dispatch(deleteTask(id));
   }
 
-  function handleEditTask() {
-    onEditableTasks(true);
+  function handleEditIconClick() {
+    onToggleTaskEditing();
   }
-
-  const completedInText = `Completed in ${taskCompletedIn} ${
-    taskCompletedIn > 1 ? "days" : "day"
-  }`;
 
   return (
     <div className="task-card">
-      <h1 className={taskTextStyle}>{task}</h1>
-      <p className="task-card__date">{`Created at: ${dateFormatter(
-        createdTime
+      <h1 className={taskTextStyle}>{taskName}</h1>
+      <p className="task-card__date">{`Created at: ${formatDate(
+        createdDate
       )}`}</p>
-      <div className="task-card__action-button-container">
+      <div className="flex align-center justify-between task-card__action-button-container">
         {!completed && (
           <>
             <img
@@ -63,7 +60,7 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
             <img
               src={ICON_EDIT}
               alt={EDIT_ICON_ALT_TEXT}
-              onClick={handleEditTask}
+              onClick={handleEditIconClick}
             />
           </>
         )}
@@ -73,19 +70,17 @@ const TaskCard = ({ id, task, createdTime, completed, onEditableTasks }) => {
           onClick={handleDeleteTask}
         />
       </div>
-      {completed && (
-        <div className="task-card__completed">{completedInText}</div>
-      )}
+      {completed && <TaskCompletedDays days={taskCompletedIn} />}
     </div>
   );
 };
 
 TaskCard.propTypes = {
   id: PropTypes.string.isRequired,
-  task: PropTypes.string.isRequired,
-  createdTime: checkDateString,
+  taskName: PropTypes.string.isRequired,
+  createdDate: datePropTypeValidation,
   completed: PropTypes.bool.isRequired,
-  onEditableTasks: PropTypes.func.isRequired,
+  onToggleTaskEditing: PropTypes.func.isRequired,
 };
 
 export default TaskCard;
