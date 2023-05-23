@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { editTask, completeTask } from "store/actions";
-import "components/TaskCard/index.scss";
 import {
   ICON_COMPLETE,
   COMPLETE_ICON_ALT_TEXT,
   ICON_DELETE,
   DELETE_ICON_ALT_TEXT,
-  KEY_ENTER,
-} from "utils/constant";
+} from "utils/constant/images";
+import { KEY_ENTER } from "utils/constant/form";
+import "components/TaskCard/index.scss";
 
 const EditTaskCard = ({ id, taskName, onToggleTaskEditing }) => {
   const [inputText, setInputText] = useState(taskName);
