@@ -41,7 +41,7 @@ const AddTaskCard = ({ onCreateTask }) => {
         onKeyDown={storeTaskOnEnter}
         className="task-card__textarea"
       ></textarea>
-      <small className="task-card__error">{error && error}</small>
+      {error && <small className="task-card__error">{error}</small>}
       <button onClick={handleAddTask}>Add Task</button>
     </div>
   );

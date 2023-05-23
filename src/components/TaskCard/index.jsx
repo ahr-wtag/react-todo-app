@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { datePropTypeValidation } from "utils/helpers/datePropTypeValidation";
 import { formatDate } from "utils/helpers/formatDate";
 import "components/TaskCard/index.scss";
 
@@ -15,7 +14,7 @@ const TaskCard = ({ taskName, createdDate }) => {
 
 TaskCard.propTypes = {
   taskName: PropTypes.string.isRequired,
-  createdDate: datePropTypeValidation,
+  createdDate: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default TaskCard;
