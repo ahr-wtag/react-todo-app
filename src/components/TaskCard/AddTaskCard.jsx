@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { KEY_ENTER } from "utils/constant/form";
-import "components/TaskCard/index.scss";
 import DeleteIcon from "components/Shared/Image/DeleteIcon";
+import "components/TaskCard/index.scss";
 
 const AddTaskCard = ({ onCreateTask, onCancelIconClick }) => {
   const [taskName, setTaskName] = useState("");
