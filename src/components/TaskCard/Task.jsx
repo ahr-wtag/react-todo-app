@@ -3,26 +3,28 @@ import PropTypes from "prop-types";
 import EditTaskCard from "components/TaskCard/EditTaskCard";
 import TaskCard from "components/TaskCard";
 
-const Task = ({ todo }) => {
+const Task = ({ task }) => {
   const [isEditable, setIsEditable] = useState(false);
+
+  function toggleTaskEditing() {
+    setIsEditable((isEditable) => !isEditable);
+  }
 
   return (
     <>
       {isEditable ? (
         <EditTaskCard
-          key={todo.id}
-          id={todo.id}
-          task={todo.task}
-          onEditableTasks={setIsEditable}
+          id={task.id}
+          taskName={task.task}
+          onToggleTaskEditing={toggleTaskEditing}
         />
       ) : (
         <TaskCard
-          key={todo.id}
-          id={todo.id}
-          task={todo.task}
-          createdTime={todo.createdTime}
-          completed={todo.completed}
-          onEditableTasks={setIsEditable}
+          id={task.id}
+          taskName={task.task}
+          createdDate={task.createdDate}
+          completed={task.completed}
+          onToggleTaskEditing={toggleTaskEditing}
         />
       )}
     </>
@@ -30,7 +32,12 @@ const Task = ({ todo }) => {
 };
 
 Task.propTypes = {
-  todo: PropTypes.object.isRequired,
+  task: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    task: PropTypes.string.isRequired,
+    createdDate: PropTypes.instanceOf(Date).isRequired,
+    completed: PropTypes.bool.isRequired,
+  }),
 };
 
 export default Task;
