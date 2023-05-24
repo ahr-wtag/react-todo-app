@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { KEY_ENTER } from "utils/constant/form";
-import { ICON_DELETE, DELETE_ICON_ALT_TEXT } from "utils/constant/images";
 import "components/TaskCard/index.scss";
+import DeleteIcon from "components/Shared/Image/DeleteIcon";
 
 const AddTaskCard = ({ onCreateTask, onCancelIconClick }) => {
   const [taskName, setTaskName] = useState("");
@@ -51,11 +51,7 @@ const AddTaskCard = ({ onCreateTask, onCancelIconClick }) => {
         <button className="task-card__button" onClick={handleAddTask}>
           Add Task
         </button>
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleCancelIcon}
-        />
+        <DeleteIcon action={handleCancelIcon} />
       </div>
     </div>
   );
