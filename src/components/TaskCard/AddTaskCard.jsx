@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { KEY_ENTER } from "utils/constant/form";
-import { ICON_DELETE, DELETE_ICON_ALT_TEXT } from "utils/constant/images";
+import DeleteIcon from "components/Shared/Image/DeleteIcon";
 import "components/TaskCard/index.scss";
 
 const AddTaskCard = ({ onCreateTask, onCancelIconClick }) => {
@@ -46,16 +46,12 @@ const AddTaskCard = ({ onCreateTask, onCancelIconClick }) => {
         onKeyDown={storeTaskOnEnter}
         className="task-card__textarea"
       ></textarea>
-      <small className="task-card__error">{error && error}</small>
+      {error && <small className="task-card__error">{error}</small>}
       <div className="flex align-center justify-between task-card__action-button-container">
         <button className="task-card__button" onClick={handleAddTask}>
           Add Task
         </button>
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleCancelIcon}
-        />
+        <DeleteIcon action={handleCancelIcon} />
       </div>
     </div>
   );

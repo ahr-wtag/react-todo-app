@@ -3,16 +3,11 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
-import {
-  ICON_COMPLETE,
-  COMPLETE_ICON_ALT_TEXT,
-  ICON_DELETE,
-  DELETE_ICON_ALT_TEXT,
-} from "utils/constant/images";
 import { getDateDifference } from "utils/helpers/getDateDifference";
-import { datePropTypeValidation } from "utils/helpers/datePropTypeValidation";
 import { formatDate } from "utils/helpers/formatDate";
 import TaskCompletedDays from "components/Shared/TaskCompleteDays";
+import DeleteIcon from "components/Shared/Image/DeleteIcon";
+import CompleteIcon from "components/Shared/Image/CompleteIcon";
 import "components/TaskCard/index.scss";
 
 const TaskCard = ({ id, taskName, createdDate, completed }) => {
@@ -30,7 +25,6 @@ const TaskCard = ({ id, taskName, createdDate, completed }) => {
   function handleDeleteTask() {
     dispatch(deleteTask(id));
   }
-
   return (
     <div className="task-card">
       <h1 className={taskTextStyle}>{taskName}</h1>
@@ -38,18 +32,8 @@ const TaskCard = ({ id, taskName, createdDate, completed }) => {
         createdDate
       )}`}</p>
       <div className="flex align-center justify-between task-card__action-button-container">
-        {!completed && (
-          <img
-            src={ICON_COMPLETE}
-            alt={COMPLETE_ICON_ALT_TEXT}
-            onClick={handleCompleteTask}
-          />
-        )}
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteTask}
-        />
+        {!completed && <CompleteIcon action={handleCompleteTask} />}
+        <DeleteIcon action={handleDeleteTask} />
       </div>
       {completed && <TaskCompletedDays days={taskCompletedIn} />}
     </div>
@@ -59,7 +43,7 @@ const TaskCard = ({ id, taskName, createdDate, completed }) => {
 TaskCard.propTypes = {
   id: PropTypes.string.isRequired,
   taskName: PropTypes.string.isRequired,
-  createdDate: datePropTypeValidation,
+  createdDate: PropTypes.instanceOf(Date).isRequired,
   completed: PropTypes.bool.isRequired,
 };
 

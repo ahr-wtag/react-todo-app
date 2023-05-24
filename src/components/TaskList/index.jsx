@@ -14,7 +14,13 @@ const TaskList = ({ tasks }) =>
   ));
 
 TaskList.propTypes = {
-  tasks: PropTypes.array.isRequired,
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      task: PropTypes.string.isRequired,
+      createdDate: PropTypes.instanceOf(Date).isRequired,
+    })
+  ),
 };
 
 export default TaskList;
