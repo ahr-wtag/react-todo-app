@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "store/actions";
 import { formatDate } from "utils/helpers/formatDate";
-import DeleteIcon from "components/Shared/Image/DeleteIcon";
+import DeleteIcon from "components/shared/image/DeleteIcon";
 import "components/TaskCard/index.scss";
 
 const TaskCard = ({ id, taskName, createdDate }) => {
@@ -17,7 +17,7 @@ const TaskCard = ({ id, taskName, createdDate }) => {
       <p>{taskName}</p>
       <p>{`Created at: ${formatDate(createdDate)}`}</p>
       <div className="flex align-center justify-between task-card__action-button-container">
-        <DeleteIcon action={handleDeleteTask} />
+        <DeleteIcon onClick={handleDeleteTask} />
       </div>
     </div>
   );
