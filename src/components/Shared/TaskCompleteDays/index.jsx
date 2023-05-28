@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "components/Shared/TaskCompleteDays/index.scss";
+import "components/shared/TaskCompleteDays/index.scss";
 
 const TaskCompletedDays = ({ days }) => {
   return (

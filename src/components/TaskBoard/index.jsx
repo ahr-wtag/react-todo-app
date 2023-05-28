@@ -31,7 +31,7 @@ const TaskBoard = () => {
         {isCreateButtonClicked && (
           <AddTaskCard
             onCreateTask={handleCreateTask}
-            onCancelIconClick={handleCreateButton}
+            onCancelTask={handleCreateButton}
           />
         )}
         <TaskList tasks={tasks} />
