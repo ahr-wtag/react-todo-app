@@ -3,14 +3,10 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { editTask, completeTask } from "store/actions";
-import {
-  ICON_COMPLETE,
-  COMPLETE_ICON_ALT_TEXT,
-  ICON_DELETE,
-  DELETE_ICON_ALT_TEXT,
-} from "utils/constant/images";
 import { KEY_ENTER } from "utils/constant/form";
+import DeleteIcon from "components/shared/image/DeleteIcon";
 import "components/TaskCard/index.scss";
+import CompleteIcon from "components/shared/image/CompleteIcon";
 
 const EditTaskCard = ({ id, taskName, onToggleTaskEditing }) => {
   const [inputText, setInputText] = useState(taskName);
@@ -78,16 +74,8 @@ const EditTaskCard = ({ id, taskName, onToggleTaskEditing }) => {
         <button className="task-card__button" onClick={handleAddTask}>
           save
         </button>
-        <img
-          src={ICON_COMPLETE}
-          alt={COMPLETE_ICON_ALT_TEXT}
-          onClick={handleCompleteTask}
-        />
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteIconClick}
-        />
+        <CompleteIcon onClick={handleCompleteTask} />
+        <DeleteIcon onClick={handleDeleteIconClick} />
       </div>
     </div>
   );
