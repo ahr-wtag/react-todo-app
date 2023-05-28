@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { EDIT_ICON_ALT_TEXT, ICON_EDIT } from "utils/constant/images";
 
-const EditIcon = ({ action }) => {
-  return <img src={ICON_EDIT} alt={EDIT_ICON_ALT_TEXT} onClick={action} />;
+const EditIcon = ({ onClick }) => {
+  return <img src={ICON_EDIT} alt={EDIT_ICON_ALT_TEXT} onClick={onClick} />;
 };
 
 EditIcon.propTypes = {
-  action: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default EditIcon;

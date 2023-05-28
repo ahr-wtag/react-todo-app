@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DELETE_ICON_ALT_TEXT, ICON_DELETE } from "utils/constant/images";
 
-const DeleteIcon = ({ action }) => {
-  return <img src={ICON_DELETE} alt={DELETE_ICON_ALT_TEXT} onClick={action} />;
+const DeleteIcon = ({ onClick }) => {
+  return <img src={ICON_DELETE} alt={DELETE_ICON_ALT_TEXT} onClick={onClick} />;
 };
 
 DeleteIcon.propTypes = {
-  action: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default DeleteIcon;

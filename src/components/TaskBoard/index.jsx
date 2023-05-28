@@ -51,7 +51,7 @@ const TaskBoard = () => {
         {isCreateButtonClicked && (
           <AddTaskCard
             onCreateTask={handleCreateTask}
-            onCancelIconClick={handleCreateButton}
+            onCancelTask={handleCreateButton}
           />
         )}
         <TaskList limit={paginationLength} tasks={tasks} />
