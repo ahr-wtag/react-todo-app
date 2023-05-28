@@ -1,4 +1,9 @@
-import { ADD_TASK, DELETE_TASK, COMPLETE_TASK } from "store/constants";
+import {
+  ADD_TASK,
+  DELETE_TASK,
+  COMPLETE_TASK,
+  EDIT_TASK,
+} from "store/constants";
 
 export const addTask = (task) => {
   task.id = Date.now().toString();
@@ -19,4 +24,9 @@ export const deleteTask = (taskId) => ({
 export const completeTask = (taskId) => ({
   type: COMPLETE_TASK,
   payload: taskId,
+});
+
+export const editTask = (task) => ({
+  type: EDIT_TASK,
+  payload: task,
 });

@@ -1,17 +1,10 @@
-import PropTypes from "prop-types";
 import React from "react";
-import TaskCard from "components/TaskCard";
+import PropTypes from "prop-types";
+import Task from "components/TaskCard/Task";
 
-const TaskList = ({ tasks }) =>
-  tasks.map((task) => (
-    <TaskCard
-      key={task.id}
-      id={task.id}
-      taskName={task.task}
-      createdDate={task.createdDate}
-      completed={task.completed}
-    />
-  ));
+const TaskList = ({ tasks }) => {
+  return tasks.map((task) => <Task key={task.id} task={task} />);
+};
 
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(

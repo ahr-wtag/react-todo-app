@@ -1,4 +1,9 @@
-import { ADD_TASK, COMPLETE_TASK, DELETE_TASK } from "store/constants";
+import {
+  ADD_TASK,
+  COMPLETE_TASK,
+  DELETE_TASK,
+  EDIT_TASK,
+} from "store/constants";
 
 const initialState = [];
 
@@ -14,6 +19,14 @@ const todoReducer = (state = initialState, action) => {
       return state.map((task) =>
         task.id === action.payload ? { ...task, completed: true } : task
       );
+
+    case EDIT_TASK: {
+      return state.map((task) =>
+        task.id === action.payload.id
+          ? { ...task, task: action.payload.task }
+          : task
+      );
+    }
 
     default:
       return state;

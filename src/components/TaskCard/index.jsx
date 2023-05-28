@@ -8,9 +8,16 @@ import { formatDate } from "utils/helpers/formatDate";
 import TaskCompletedDays from "components/shared/TaskCompleteDays";
 import DeleteIcon from "components/shared/image/DeleteIcon";
 import CompleteIcon from "components/shared/image/CompleteIcon";
+import EditIcon from "components/shared/image/EditIcon";
 import "components/TaskCard/index.scss";
 
-const TaskCard = ({ id, taskName, createdDate, completed }) => {
+const TaskCard = ({
+  id,
+  taskName,
+  createdDate,
+  completed,
+  onToggleTaskEditing,
+}) => {
   const taskCompletedIn = getDateDifference(createdDate);
   const dispatch = useDispatch();
 
@@ -25,6 +32,11 @@ const TaskCard = ({ id, taskName, createdDate, completed }) => {
   function handleDeleteTask() {
     dispatch(deleteTask(id));
   }
+
+  function handleEditIconClick() {
+    onToggleTaskEditing();
+  }
+
   return (
     <div className="task-card">
       <h1 className={taskTextStyle}>{taskName}</h1>
@@ -32,7 +44,12 @@ const TaskCard = ({ id, taskName, createdDate, completed }) => {
         createdDate
       )}`}</p>
       <div className="flex align-center justify-between task-card__action-button-container">
-        {!completed && <CompleteIcon onClick={handleCompleteTask} />}
+        {!completed && (
+          <>
+            <CompleteIcon onClick={handleCompleteTask} />
+            <EditIcon onClick={handleEditIconClick} />
+          </>
+        )}
         <DeleteIcon onClick={handleDeleteTask} />
       </div>
       {completed && <TaskCompletedDays days={taskCompletedIn} />}
@@ -45,6 +62,7 @@ TaskCard.propTypes = {
   taskName: PropTypes.string.isRequired,
   createdDate: PropTypes.instanceOf(Date).isRequired,
   completed: PropTypes.bool.isRequired,
+  onToggleTaskEditing: PropTypes.func.isRequired,
 };
 
 export default TaskCard;
