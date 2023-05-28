@@ -5,9 +5,9 @@ import { useDispatch } from "react-redux";
 import { deleteTask, completeTask } from "store/actions";
 import { getDateDifference } from "utils/helpers/getDateDifference";
 import { formatDate } from "utils/helpers/formatDate";
-import TaskCompletedDays from "components/Shared/TaskCompleteDays";
-import DeleteIcon from "components/Shared/Image/DeleteIcon";
-import CompleteIcon from "components/Shared/Image/CompleteIcon";
+import TaskCompletedDays from "components/shared/TaskCompleteDays";
+import DeleteIcon from "components/shared/image/DeleteIcon";
+import CompleteIcon from "components/shared/image/CompleteIcon";
 import "components/TaskCard/index.scss";
 
 const TaskCard = ({ id, taskName, createdDate, completed }) => {
@@ -32,8 +32,8 @@ const TaskCard = ({ id, taskName, createdDate, completed }) => {
         createdDate
       )}`}</p>
       <div className="flex align-center justify-between task-card__action-button-container">
-        {!completed && <CompleteIcon action={handleCompleteTask} />}
-        <DeleteIcon action={handleDeleteTask} />
+        {!completed && <CompleteIcon onClick={handleCompleteTask} />}
+        <DeleteIcon onClick={handleDeleteTask} />
       </div>
       {completed && <TaskCompletedDays days={taskCompletedIn} />}
     </div>
