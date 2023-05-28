@@ -6,6 +6,7 @@ const TaskList = ({ tasks }) =>
   tasks.map((task) => (
     <TaskCard
       key={task.id}
+      id={task.id}
       taskName={task.task}
       createdDate={task.createdDate}
     />

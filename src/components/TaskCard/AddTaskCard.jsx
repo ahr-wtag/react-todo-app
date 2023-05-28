@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { KEY_ENTER } from "utils/constant/form";
+import DeleteIcon from "components/shared/image/DeleteIcon";
 import "components/TaskCard/index.scss";
 
-const AddTaskCard = ({ onCreateTask }) => {
+const AddTaskCard = ({ onCreateTask, onCancelTask }) => {
   const [taskName, setTaskName] = useState("");
   const [error, setError] = useState(null);
 
@@ -42,13 +43,19 @@ const AddTaskCard = ({ onCreateTask }) => {
         className="task-card__textarea"
       ></textarea>
       {error && <small className="task-card__error">{error}</small>}
-      <button onClick={handleAddTask}>Add Task</button>
+      <div className="flex align-center justify-between task-card__action-button-container">
+        <button className="task-card__button" onClick={handleAddTask}>
+          Add Task
+        </button>
+        <DeleteIcon onClick={onCancelTask} />
+      </div>
     </div>
   );
 };
 
 AddTaskCard.propTypes = {
   onCreateTask: PropTypes.func.isRequired,
+  onCancelTask: PropTypes.func.isRequired,
 };
 
 export default AddTaskCard;

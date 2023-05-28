@@ -1,4 +1,4 @@
-import { ADD_TASK } from "store/constants";
+import { ADD_TASK, DELETE_TASK } from "store/constants/index";
 
 export const addTask = (task) => {
   task.id = Date.now().toString();
@@ -9,3 +9,8 @@ export const addTask = (task) => {
     payload: task,
   };
 };
+
+export const deleteTask = (taskId) => ({
+  type: DELETE_TASK,
+  payload: taskId,
+});

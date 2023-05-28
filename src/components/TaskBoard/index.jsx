@@ -29,7 +29,10 @@ const TaskBoard = () => {
       </div>
       <div className="flex wrap task-board__container">
         {isCreateButtonClicked && (
-          <AddTaskCard onCreateTask={handleCreateTask} />
+          <AddTaskCard
+            onCreateTask={handleCreateTask}
+            onCancelTask={handleCreateButton}
+          />
         )}
         <TaskList tasks={tasks} />
       </div>
