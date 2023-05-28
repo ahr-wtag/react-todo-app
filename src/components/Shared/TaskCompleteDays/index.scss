@@ -1,0 +1,13 @@
+@import "assets/style/color.scss";
+
+.task-completed {
+  background: $lavender-blue;
+  border-radius: 0.313rem;
+  color: $white;
+  font-size: 0.75rem;
+  height: 1.5rem;
+  left: calc(50% - 8.375rem / 2 + 6.813rem);
+  position: absolute;
+  top: calc(50% - 1.5rem / 2 + 3.156rem);
+  width: 8.375rem;
+}

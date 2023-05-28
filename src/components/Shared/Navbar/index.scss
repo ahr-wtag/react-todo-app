@@ -3,16 +3,8 @@
   max-width: 78rem;
 
   &__container {
-    align-items: center;
-    display: flex;
     height: 4.5rem;
     justify-content: space-between;
-
-    &__logo {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-    }
 
     &__title {
       padding-left: 0.875rem;

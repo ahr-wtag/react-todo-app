@@ -47,15 +47,21 @@ const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {
   }, [filter]);
 
   const paginatedTasks = filteredTasks.slice(0, limit);
-  return paginatedTasks.map((todo) => <Task key={todo.id} todo={todo} />);
+  return paginatedTasks.map((task) => <Task key={task.id} task={task} />);
 };
 
 TaskList.propTypes = {
-  tasks: PropTypes.array.isRequired,
   limit: PropTypes.number.isRequired,
   filter: PropTypes.string.isRequired,
   setTaskLength: PropTypes.func.isRequired,
   isCardCreated: PropTypes.bool.isRequired,
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      task: PropTypes.string.isRequired,
+      createdDate: PropTypes.instanceOf(Date).isRequired,
+    })
+  ),
 };
 
 export default TaskList;

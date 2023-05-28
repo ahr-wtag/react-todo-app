@@ -1,5 +1,5 @@
 import { PAGINATION_UPDATE } from "store/constants";
-import { PAGINATION_LIMIT } from "utils/constant";
+import { PAGINATION_LIMIT } from "utils/constant/form";
 
 const initialState = PAGINATION_LIMIT;
 const paginationReducer = (state = initialState, action) => {

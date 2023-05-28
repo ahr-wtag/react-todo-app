@@ -1,48 +1,35 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { addTask } from "store/actions";
+import DeleteIcon from "components/shared/image/DeleteIcon";
+import { KEY_ENTER, FILTER_STATE_ALL } from "utils/constant/form";
 import "components/TaskCard/index.scss";
-import {
-  ICON_DELETE,
-  DELETE_ICON_ALT_TEXT,
-  KEY_ENTER,
-  FILTER_STATE_ALL,
-} from "utils/constant";
 
-const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
-  const [inputText, setInputText] = useState("");
+const AddTaskCard = ({ onCreateTask, onCancelTask, setFilter }) => {
+  const [taskName, setTaskName] = useState("");
   const [error, setError] = useState(null);
-  const dispatch = useDispatch();
 
   function handleInputChange(event) {
-    setInputText(event.target.value);
+    setTaskName(event.target.value);
   }
 
-  function onSave() {
-    const task = sanitizeText(inputText);
+  function handleAddTask() {
+    const task = sanitizeText(taskName);
 
     if (task === "") {
       setError("Please add task description");
       return;
     }
 
-    onCreateCard(!isCardCreated);
-    dispatch(addTask({ task }));
-    setInputText(null);
+    onCreateTask(task);
     setFilter(FILTER_STATE_ALL);
   }
 
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      onSave();
+      handleAddTask();
     }
-  }
-
-  function handleDeleteTask() {
-    onCreateCard(!isCardCreated);
   }
 
   return (
@@ -51,29 +38,25 @@ const AddTaskCard = ({ isCardCreated, onCreateCard, setFilter }) => {
         name="task"
         id="task"
         onChange={handleInputChange}
-        value={inputText}
+        value={taskName}
         autoFocus
         onKeyDown={storeTaskOnEnter}
         className="task-card__textarea"
       ></textarea>
-      <small className="task-card__error">{error && error}</small>
-      <div className="task-card__action-button-container">
-        <button className="task-card__button" onClick={onSave}>
+      {error && <small className="task-card__error">{error}</small>}
+      <div className="flex align-center justify-between task-card__action-button-container">
+        <button className="task-card__button" onClick={handleAddTask}>
           Add Task
         </button>
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteTask}
-        />
+        <DeleteIcon onClick={onCancelTask} />
       </div>
     </div>
   );
 };
 
 AddTaskCard.propTypes = {
-  isCardCreated: PropTypes.bool.isRequired,
-  onCreateCard: PropTypes.func.isRequired,
+  onCreateTask: PropTypes.func.isRequired,
+  onCancelTask: PropTypes.func.isRequired,
   setFilter: PropTypes.func.isRequired,
 };
 

@@ -1,33 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
-import "components/TaskBoard/index.scss";
 import Pagination from "components/Pagination";
 import classNames from "classnames";
 import {
   PAGINATION_LIMIT,
   TEXT_SHOW_MORE,
   TEXT_SHOW_LESS,
-  ICON_ADD,
-  ADD_ICON_ALT_TEXT,
   FILTER_STATE_ALL,
   FILTER_STATE_COMPLETE,
   FILTER_STATE_INCOMPLETE,
-} from "utils/constant";
-import { paginationLimitUpdate } from "store/actions/";
+} from "utils/constant/form";
+import { ICON_ADD, ADD_ICON_ALT_TEXT } from "utils/constant/images";
+import { addTask, paginationLimitUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 import EmptyPage from "components/EmptyPage";
+import "components/TaskBoard/index.scss";
 
 const TaskBoard = () => {
-  const [showCreateCard, setShowCreateCard] = useState(false);
+  const [isCreateButtonClicked, setCreateButtonClicked] = useState(false);
   const [filter, setFilter] = useState(FILTER_STATE_ALL);
   const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const [taskLength, setTaskLength] = useState(tasks.length);
   const dispatch = useDispatch();
   const isPaginationButtonVisible =
-    taskLength + showCreateCard > PAGINATION_LIMIT;
-  const isTaskListEmpty = Boolean(taskLength + showCreateCard);
+    taskLength + isCreateButtonClicked > PAGINATION_LIMIT;
+  const isTaskListEmpty = Boolean(taskLength + isCreateButtonClicked);
 
   const filterButtons = [
     { label: "All", filter: FILTER_STATE_ALL },
@@ -40,17 +39,22 @@ const TaskBoard = () => {
   }, [tasks]);
 
   useEffect(() => {
-    if (showCreateCard) {
+    if (isCreateButtonClicked) {
       dispatch(paginationLimitUpdate(paginationLength - 1));
     } else {
       if (paginationLength != PAGINATION_LIMIT) {
         dispatch(paginationLimitUpdate(paginationLength + 1));
       }
     }
-  }, [showCreateCard]);
+  }, [isCreateButtonClicked]);
 
-  function handleCreateTask() {
-    setShowCreateCard(!showCreateCard);
+  function handleCreateButton() {
+    setCreateButtonClicked((isCreateButtonClicked) => !isCreateButtonClicked);
+  }
+
+  function handleCreateTask(task) {
+    handleCreateButton();
+    dispatch(addTask({ task }));
   }
 
   return (
@@ -59,8 +63,8 @@ const TaskBoard = () => {
       <div className="top-bar">
         <button
           className="top-bar__create-button"
-          disabled={showCreateCard}
-          onClick={handleCreateTask}
+          disabled={isCreateButtonClicked}
+          onClick={handleCreateButton}
         >
           <img
             className="top-bar__create-button__icon"
@@ -84,17 +88,12 @@ const TaskBoard = () => {
           ))}
         </div>
       </div>
-      <div className="task-board__container">
-        {isTaskListEmpty || (
-          <EmptyPage
-            onShowCreateCard={setShowCreateCard}
-            isCardCreated={showCreateCard}
-          />
-        )}
-        {showCreateCard && (
+      <div className="flex wrap task-board__container">
+        {isTaskListEmpty || <EmptyPage onIconClick={handleCreateButton} />}
+        {isCreateButtonClicked && (
           <AddTaskCard
-            isCardCreated={showCreateCard}
-            onCreateCard={setShowCreateCard}
+            onCancelTask={handleCreateButton}
+            onCreateTask={handleCreateTask}
             setFilter={setFilter}
           />
         )}
@@ -103,11 +102,14 @@ const TaskBoard = () => {
           filter={filter}
           limit={paginationLength}
           tasks={tasks}
-          isCardCreated={showCreateCard}
+          isCardCreated={isCreateButtonClicked}
         />
       </div>
       {isPaginationButtonVisible && (
-        <Pagination isCardCreated={showCreateCard} taskListLength={taskLength}>
+        <Pagination
+          isCardCreated={isCreateButtonClicked}
+          taskListLength={taskLength}
+        >
           {paginationLength >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
         </Pagination>
       )}

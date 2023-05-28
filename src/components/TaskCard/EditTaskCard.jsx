@@ -3,17 +3,13 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { editTask, completeTask } from "store/actions";
+import { KEY_ENTER } from "utils/constant/form";
+import DeleteIcon from "components/shared/image/DeleteIcon";
 import "components/TaskCard/index.scss";
-import {
-  ICON_COMPLETE,
-  COMPLETE_ICON_ALT_TEXT,
-  ICON_DELETE,
-  DELETE_ICON_ALT_TEXT,
-  KEY_ENTER,
-} from "utils/constant";
+import CompleteIcon from "components/shared/image/CompleteIcon";
 
-const EditTaskCard = ({ id, task, onEditableTasks }) => {
-  const [inputText, setInputText] = useState(task);
+const EditTaskCard = ({ id, taskName, onToggleTaskEditing }) => {
+  const [inputText, setInputText] = useState(taskName);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
 
@@ -21,7 +17,7 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
     setInputText(event.target.value);
   }
 
-  function onSave() {
+  function handleAddTask() {
     const sanitizedTask = sanitizeText(inputText);
 
     if (sanitizedTask === "") {
@@ -36,23 +32,22 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
       })
     );
 
-    onEditableTasks(false);
-    setInputText(null);
+    onToggleTaskEditing();
   }
 
-  function handleDeleteTask() {
-    onEditableTasks(false);
+  function handleDeleteIconClick() {
+    onToggleTaskEditing();
   }
 
   function handleCompleteTask() {
-    onSave();
+    handleAddTask();
     dispatch(completeTask(id));
   }
 
   function storeTaskOnEnter(event) {
     if (event.key === KEY_ENTER) {
       event.preventDefault();
-      onSave();
+      handleAddTask();
     }
   }
 
@@ -75,22 +70,12 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
         className="task-card__textarea"
       ></textarea>
       <small className="task-card__error">{error && error}</small>
-      <div className="task-card__action-button-container">
-        <div>
-          <button className="task-card__button" onClick={onSave}>
-            save
-          </button>
-        </div>
-        <img
-          src={ICON_COMPLETE}
-          alt={COMPLETE_ICON_ALT_TEXT}
-          onClick={handleCompleteTask}
-        />
-        <img
-          src={ICON_DELETE}
-          alt={DELETE_ICON_ALT_TEXT}
-          onClick={handleDeleteTask}
-        />
+      <div className="flex align-center justify-between task-card__action-button-container">
+        <button className="task-card__button" onClick={handleAddTask}>
+          save
+        </button>
+        <CompleteIcon onClick={handleCompleteTask} />
+        <DeleteIcon onClick={handleDeleteIconClick} />
       </div>
     </div>
   );
@@ -98,8 +83,8 @@ const EditTaskCard = ({ id, task, onEditableTasks }) => {
 
 EditTaskCard.propTypes = {
   id: PropTypes.string.isRequired,
-  task: PropTypes.string.isRequired,
-  onEditableTasks: PropTypes.func.isRequired,
+  taskName: PropTypes.string.isRequired,
+  onToggleTaskEditing: PropTypes.func.isRequired,
 };
 
 export default EditTaskCard;

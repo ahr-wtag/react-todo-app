@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { PAGINATION_LIMIT } from "utils/constant";
+import { PAGINATION_LIMIT } from "utils/constant/form";
 import { useDispatch, useSelector } from "react-redux";
 import { paginationLimitUpdate } from "store/actions/";
 import "components/Pagination/index.scss";
@@ -18,7 +18,7 @@ const Pagination = ({ children, isCardCreated, taskListLength }) => {
   }
 
   return (
-    <div className="pagination__container">
+    <div className="flex align-center justify-center justify-center pagination__container">
       <button
         className="pagination__button"
         onClick={handlePaginateButtonClick}
