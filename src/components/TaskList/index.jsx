@@ -7,7 +7,7 @@ import {
   FILTER_STATE_COMPLETE,
   FILTER_STATE_INCOMPLETE,
   PAGINATION_LIMIT,
-} from "utils/constant";
+} from "utils/constant/form";
 import Task from "components/TaskCard/Task";
 
 const TaskList = ({ tasks, limit, filter, setTaskLength, isCardCreated }) => {

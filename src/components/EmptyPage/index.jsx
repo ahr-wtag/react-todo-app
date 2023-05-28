@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { EMPTY_PAGE_ICON_ALT_TEXT, ICON_EMPTY_PAGE } from "utils/constant";
+import {
+  EMPTY_PAGE_ICON_ALT_TEXT,
+  ICON_EMPTY_PAGE,
+} from "utils/constant/images";
 import "components/EmptyPage/index.scss";
 
 const EmptyPage = ({ onIconClick }) => {

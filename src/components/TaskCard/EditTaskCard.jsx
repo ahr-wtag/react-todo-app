@@ -5,8 +5,8 @@ import { sanitizeText } from "utils/helpers/sanitizeText.js";
 import { editTask, completeTask } from "store/actions";
 import { KEY_ENTER } from "utils/constant/form";
 import DeleteIcon from "components/shared/image/DeleteIcon";
-import "components/TaskCard/index.scss";
 import CompleteIcon from "components/shared/image/CompleteIcon";
+import "components/TaskCard/index.scss";
 
 const EditTaskCard = ({ id, taskName, onToggleTaskEditing }) => {
   const [inputText, setInputText] = useState(taskName);
