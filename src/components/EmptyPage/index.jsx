@@ -3,16 +3,12 @@ import PropTypes from "prop-types";
 import { EMPTY_PAGE_ICON_ALT_TEXT, ICON_EMPTY_PAGE } from "utils/constant";
 import "components/EmptyPage/index.scss";
 
-const EmptyPage = ({ isCardCreated, onShowCreateCard }) => {
-  function handleIconClick() {
-    onShowCreateCard(!isCardCreated);
-  }
-
+const EmptyPage = ({ onIconClick }) => {
   return (
     <div className="empty-page">
       <div className="empty-page__container">
         <img
-          onClick={handleIconClick}
+          onClick={onIconClick}
           src={ICON_EMPTY_PAGE}
           alt={EMPTY_PAGE_ICON_ALT_TEXT}
         />
@@ -25,8 +21,7 @@ const EmptyPage = ({ isCardCreated, onShowCreateCard }) => {
 };
 
 EmptyPage.propTypes = {
-  onShowCreateCard: PropTypes.func.isRequired,
-  isCardCreated: PropTypes.bool.isRequired,
+  onIconClick: PropTypes.func.isRequired,
 };
 
 export default EmptyPage;
