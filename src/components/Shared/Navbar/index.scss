@@ -1,0 +1,13 @@
+.navbar {
+  margin: auto;
+  max-width: 78rem;
+
+  &__container {
+    height: 4.5rem;
+    justify-content: space-between;
+
+    &__title {
+      padding-left: 0.875rem;
+    }
+  }
+}
