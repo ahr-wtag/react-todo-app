@@ -3,6 +3,7 @@ import {
   DELETE_TASK,
   COMPLETE_TASK,
   EDIT_TASK,
+  PAGINATION_UPDATE,
 } from "store/constants";
 
 export const addTask = (task) => {
@@ -29,4 +30,9 @@ export const completeTask = (taskId) => ({
 export const editTask = (task) => ({
   type: EDIT_TASK,
   payload: task,
+});
+
+export const paginationLimitUpdate = (count) => ({
+  type: PAGINATION_UPDATE,
+  payload: count,
 });

@@ -1,14 +1,34 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import AddTaskCard from "components/TaskCard/AddTaskCard.jsx";
+import Pagination from "components/Pagination";
+import {
+  PAGINATION_LIMIT,
+  TEXT_SHOW_MORE,
+  TEXT_SHOW_LESS,
+} from "utils/constant/form";
+import { paginationLimitUpdate } from "store/actions/";
 import TaskList from "components/TaskList";
 import { addTask } from "store/actions";
 import "components/TaskBoard/index.scss";
 
 const TaskBoard = () => {
   const [isCreateButtonClicked, setCreateButtonClicked] = useState(false);
+  const paginationLength = useSelector((state) => state.paginationLength);
   const tasks = useSelector((state) => state.todo);
   const dispatch = useDispatch();
+  const isPaginationButtonVisible =
+    tasks.length + isCreateButtonClicked > PAGINATION_LIMIT;
+
+  useEffect(() => {
+    if (isCreateButtonClicked) {
+      dispatch(paginationLimitUpdate(paginationLength - 1));
+    } else {
+      if (paginationLength != PAGINATION_LIMIT) {
+        dispatch(paginationLimitUpdate(paginationLength + 1));
+      }
+    }
+  }, [isCreateButtonClicked]);
 
   function handleCreateButton() {
     setCreateButtonClicked((isCreateButtonClicked) => !isCreateButtonClicked);
@@ -34,8 +54,17 @@ const TaskBoard = () => {
             onCancelTask={handleCreateButton}
           />
         )}
-        <TaskList tasks={tasks} />
+        <TaskList limit={paginationLength} tasks={tasks} />
       </div>
+
+      {isPaginationButtonVisible && (
+        <Pagination
+          isCardCreated={isCreateButtonClicked}
+          taskListLength={tasks.length}
+        >
+          {paginationLength >= tasks.length ? TEXT_SHOW_LESS : TEXT_SHOW_MORE}
+        </Pagination>
+      )}
     </div>
   );
 };
