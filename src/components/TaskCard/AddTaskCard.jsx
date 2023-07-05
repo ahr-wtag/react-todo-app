@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { sanitizeText } from "utils/helpers/sanitizeText.js";
-import { KEY_ENTER } from "utils/constant/form";
 import DeleteIcon from "components/shared/image/DeleteIcon";
+import { KEY_ENTER, FILTER_STATE_ALL } from "utils/constant/form";
 import "components/TaskCard/index.scss";
 
-const AddTaskCard = ({ onCreateTask, onCancelTask }) => {
+const AddTaskCard = ({ onCreateTask, onCancelTask, setFilter }) => {
   const [taskName, setTaskName] = useState("");
   const [error, setError] = useState(null);
 
@@ -22,6 +22,7 @@ const AddTaskCard = ({ onCreateTask, onCancelTask }) => {
     }
 
     onCreateTask(task);
+    setFilter(FILTER_STATE_ALL);
   }
 
   function storeTaskOnEnter(event) {
@@ -56,6 +57,7 @@ const AddTaskCard = ({ onCreateTask, onCancelTask }) => {
 AddTaskCard.propTypes = {
   onCreateTask: PropTypes.func.isRequired,
   onCancelTask: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
 };
 
 export default AddTaskCard;
